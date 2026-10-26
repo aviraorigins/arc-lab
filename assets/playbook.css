@@ -107,6 +107,7 @@
 .checks-2 { grid-template-columns: 1fr 1fr; column-gap: 9mm; }
 .cover-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
 .cover-row img { width: 100%; border-radius: 10px; box-shadow: 0 0 0 1px var(--hair); }
+.cover-row.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
 /* cover and back */
 .cover, .back { position: relative; overflow: hidden; isolation: isolate; }
@@ -160,6 +161,7 @@
   .callout { margin-top: 24px; padding: 16px 20px; line-height: 1.6; }
   .toc { margin-top: 24px; }
   .toc li { padding: 14px 0; font-size: 1.0625rem; }
+  .lead-p + .stats { margin-top: 26px; }
   .stats li { padding: 20px 18px; }
   .stats b { font-size: 2.25rem; }
   .stats span { margin-top: 8px; font-size: .875rem; line-height: 1.4; }
