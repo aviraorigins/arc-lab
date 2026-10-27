@@ -131,6 +131,13 @@
 .back-perks li { color: var(--soft); }
 .back-perks b { color: var(--gold); }
 .back-legal { color: var(--dim) !important; }
+/* credit: the back page asks for one line of credit (CC BY-NC 4.0), and in print every page carries the site */
+.back-in .credit { border-radius: 18px; background: rgba(255, 216, 74, .06); box-shadow: inset 0 0 0 1px rgba(255, 216, 74, .26); text-align: left; }
+.back-in .credit h3 { margin: 0; color: #fff; font-weight: 800; letter-spacing: -.02em; }
+.back-in .credit-row { display: flex; align-items: center; gap: 12px; }
+.back-in .credit .credit-line { flex: 1; min-width: 0; margin: 0; font-family: var(--mono); color: var(--gold) !important; }
+.back-in .credit .credit-fine { color: var(--dim) !important; }
+.credit-fine a, .pf a { color: inherit; }
 
 /* ---------- screen: a long read ---------- */
 @media screen {
@@ -205,6 +212,12 @@
   .back-perks { margin: 22px auto 0; gap: 6px; }
   .back-in .pill { margin-top: 26px; }
   .back-legal { margin-top: 48px; font-size: .75rem; line-height: 1.5; max-width: 90ch; text-align: center; margin-left: auto; margin-right: auto; }
+  .back-in .credit { margin: 36px auto 0; max-width: 560px; padding: 20px 22px; }
+  .back-in .credit h3 { font-size: 1.25rem; }
+  .back-in .credit p { margin: 8px 0 0; max-width: none; font-size: .9375rem; line-height: 1.55; }
+  .back-in .credit-row { margin-top: 12px; padding: 10px 10px 10px 14px; border-radius: 12px; background: #0A0B0E; box-shadow: inset 0 0 0 1px var(--hair); }
+  .back-in .credit .credit-line { font-size: .8125rem; line-height: 1.45; }
+  .back-in .credit .credit-fine { margin-top: 12px; font-size: .8125rem; }
 }
 @media screen and (max-width: 680px) {
   .loop { grid-template-columns: 1fr; gap: 6px; }
@@ -305,4 +318,14 @@
   .back-perks { margin: 8mm auto 0; gap: 2mm; font-size: 11pt; }
   .back-in .pill { margin-top: 10mm; }
   .back-legal { position: absolute; left: 18mm; right: 18mm; bottom: 10mm; font-size: 7pt; line-height: 1.45; text-align: center; }
+  .back-in .credit { margin: 9mm auto 0; max-width: 140mm; padding: 5mm 6mm; }
+  .back-in .credit h3 { font-size: 14pt; }
+  .back-in .credit p { margin: 2.5mm 0 0; max-width: none; font-size: 9.5pt; line-height: 1.5; }
+  .back-in .credit-row { margin-top: 3mm; }
+  .back-in .credit .credit-line { font-size: 9.5pt; }
+  .back-in .credit .credit-fine { margin-top: 3mm; font-size: 8pt; }
+  .pf a { text-decoration: none; }
+  /* the watermark: down the right margin of every page, and on every template box */
+  .page::before { content: "Free from Arc Lab  ·  aviraorigins.github.io/arc-lab  ·  Share it, credit us"; position: absolute; top: 0; bottom: 0; right: 6mm; z-index: 3; display: flex; align-items: center; justify-content: center; writing-mode: vertical-rl; transform: rotate(180deg); font-size: 7pt; font-weight: 600; letter-spacing: .04em; color: rgba(255, 255, 255, .24); pointer-events: none; }
+  .tpl-head::after { content: "Arc Lab · aviraorigins.github.io/arc-lab"; font-size: 7pt; color: var(--dim); }
 }
