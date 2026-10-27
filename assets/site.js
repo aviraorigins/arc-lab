@@ -1,11 +1,18 @@
-// Arc Lab waitlist page: reveals sections as they arrive, darkens the top bar once you scroll, plays the series reel
+// Arc Lab waitlist page: builds the opening's wall of episode covers, reveals sections as they arrive, counts up the big
+// numbers, shortens the screenshot wall, marks the menu, darkens the top bar once you scroll, plays the series reel
 // while it's on screen, types out the skill's run when it comes into view, opens the waitlist form in a pop-up from every
-// "Join the waitlist" button, shows the join bar on phones, embeds the Tally form and swaps it for the playbook links once
-// you've joined, and shows how many people are on the waitlist. No trackers, no other sites except tally.so for the form
+// "Join the waitlist" button and from the email box at the top, shows the join bar on phones, embeds the Tally form and
+// swaps it for the playbook links once you've joined, lets you vote on the real end of Part 1, and shows how many people
+// are on the waitlist and how many founding spots are left. No trackers, no other sites except tally.so for the form
 // and Google Sheets for the waitlist count.
 
 // The Tally form's id (the part after tally.so/r/).
 const TALLY_ID = 'Qoo5r1';
+
+// Founding spots: the first FOUNDING_SPOTS people on the waitlist get FOUNDING_PERK (the founder's promise, shown as
+// written). 0 hides the meter.
+const FOUNDING_SPOTS = 500;
+const FOUNDING_PERK = 'Founding members get in before the rest of the list, and their name goes on the Arc Lab founding wall.';
 
 (() => {
   document.documentElement.classList.add('js');
@@ -31,9 +38,87 @@ const TALLY_ID = 'Qoo5r1';
     cards.forEach((el) => io.observe(el));
   }
 
+  // the opening's wall: real episode covers in slow columns. Each column holds its list twice, so the drift loops
+  // without a seam; the columns start at different points and alternate up and down
+  const wall = document.querySelector('.open-wall');
+  if (wall) {
+    const C = (n) => `assets/yta/cover_p${n}.jpg`, D = (n) => `assets/d23/${n}.jpg`;
+    const cols = [
+      [C(1), D('cover_a'), C(5), D('hook')],
+      [C(2), C(6), D('cover_b'), D('almost')],
+      [C(3), D('vote'), C(7), D('cover_c')],
+      [C(4), C(8), D('cover_a'), C(1)],
+      [D('cover_b'), C(5), C(2), D('hook')],
+      [C(6), D('almost'), C(3), C(8)],
+      [D('cover_c'), C(4), D('vote'), C(7)],
+    ];
+    cols.forEach((list, i) => {
+      const col = document.createElement('div');
+      col.className = 'ow-col';
+      const track = document.createElement('div');
+      track.className = 'ow-track';
+      track.style.setProperty('--d', `${84 + i * 11}s`);
+      track.style.animationDelay = `${-17 * i}s`;
+      [...list, ...list].forEach((src) => {
+        const im = new Image(432, 768);
+        im.alt = '';
+        im.decoding = 'async';
+        im.src = src;
+        track.append(im);
+      });
+      col.append(track);
+      wall.append(col);
+    });
+  }
+
+  // the big numbers count up once, the first time they're on screen (ranges like 70-80% stay as they are)
+  document.querySelectorAll('.figures b').forEach((b) => {
+    const m = b.textContent.trim().match(/^([\d.,]+)(\D*)$/);
+    if (!m || reduce || !hasIO) return;
+    const end = parseFloat(m[1].replace(/,/g, '')), dec = (m[1].split('.')[1] || '').length, tail = m[2], comma = m[1].includes(',');
+    const fmt = (v) => (comma ? Math.round(v).toLocaleString('en-US') : v.toFixed(dec)) + tail;
+    let done = false;
+    seen(b, (on) => {
+      if (!on || done) return;
+      done = true;
+      const t0 = performance.now();
+      const step = (t) => {
+        const k = Math.min(1, (t - t0) / 1300);
+        b.textContent = fmt(end * (1 - Math.pow(1 - k, 3)));
+        if (k < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+      setTimeout(() => { b.textContent = fmt(end); }, 1400);   // lands on the real number even if frames stall
+    }, 0.6);
+  });
+
+  // the screenshot wall starts with six; the button shows the rest
+  const shots = document.querySelector('.wall'), more = document.querySelector('.wall-more');
+  if (shots && more && shots.children.length > 6) {
+    const label = () => (shots.classList.contains('short') ? `Show all ${shots.children.length} screenshots` : 'Show fewer');
+    shots.classList.add('short');
+    more.hidden = false;
+    more.textContent = label();
+    more.setAttribute('aria-expanded', 'false');
+    more.addEventListener('click', () => {
+      const short = shots.classList.toggle('short');
+      more.textContent = label();
+      more.setAttribute('aria-expanded', String(!short));
+      if (short) shots.scrollIntoView({ block: 'start' });
+    });
+  }
+
+  // the menu marks the part of the page you're reading
+  const navLinks = [...document.querySelectorAll('.bar-nav a')];
+  if (navLinks.length && hasIO) {
+    const bySection = new Map(navLinks.map((a) => [document.querySelector(a.getAttribute('href')), a]).filter(([sec]) => sec));
+    const spy = new IntersectionObserver((es) => es.forEach((e) => bySection.get(e.target).classList.toggle('on', e.isIntersecting)), { rootMargin: '-45% 0px -50% 0px' });
+    bySection.forEach((a, sec) => spy.observe(sec));
+  }
+
   // the top bar turns to dark glass once the opening shot has scrolled a little
   const bar = document.querySelector('.bar');
-  const heroBtn = document.querySelector('.open-cta .pill');
+  const heroBtn = document.querySelector('.hero-join .pill');
   const joinSec = document.getElementById('join');
   const sticky = document.querySelector('.sticky-cta');
   if (sticky && heroBtn && joinSec) sticky.hidden = false;
@@ -96,11 +181,17 @@ const TALLY_ID = 'Qoo5r1';
     if (window.Tally) window.Tally.loadEmbeds();
     else document.querySelectorAll('iframe[data-tally-src]:not([src])').forEach((f) => { f.src = f.dataset.tallySrc; });
   };
-  function mount(slot) {
-    if (!ready || !slot || slot.dataset.mounted) return;
+  const FORM_URL = `https://tally.so/embed/${TALLY_ID}?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1`;
+  function mount(slot, prefill = '') {
+    if (!ready || !slot) return;
+    if (slot.dataset.mounted) {                       // already there: reload it with the new answers filled in
+      const old = slot.querySelector('iframe');
+      if (old && prefill) { if (old.getAttribute('src')) old.src = FORM_URL + prefill; else old.dataset.tallySrc = FORM_URL + prefill; }
+      return;
+    }
     slot.dataset.mounted = '1';
     const f = document.createElement('iframe');
-    f.dataset.tallySrc = `https://tally.so/embed/${TALLY_ID}?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1`;
+    f.dataset.tallySrc = FORM_URL + prefill;
     f.title = 'Join the Arc Lab waitlist';
     f.height = '560';
     slot.replaceChildren(f);
@@ -135,15 +226,58 @@ const TALLY_ID = 'Qoo5r1';
 
   // every "Join the waitlist" opens the form in a pop-up (without dialog support it scrolls to the offer instead)
   const dlg = document.getElementById('join-dialog');
-  if (dlg && typeof dlg.showModal === 'function') {
-    const open = (e) => {
-      e.preventDefault();
-      mount(dlg.querySelector('.form-slot'));
-      dlg.showModal();
-    };
-    document.querySelectorAll('[data-join]').forEach((a) => a.addEventListener('click', open));
+  const hasDialog = dlg && typeof dlg.showModal === 'function';
+  const openJoin = (prefill = '') => {
+    if (hasDialog) { mount(dlg.querySelector('.form-slot'), prefill); dlg.showModal(); return; }
+    mount(joinSec.querySelector('.form-slot'), prefill);
+    joinSec.scrollIntoView();
+  };
+  if (hasDialog) {
+    document.querySelectorAll('[data-join]').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); openJoin(); }));
     dlg.querySelector('.jd-close').addEventListener('click', () => dlg.close());
     dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });   // a tap on the backdrop
+  }
+
+  // the email box at the top: check the email, then open the form with it (and the series idea, if any) filled in
+  const heroJoin = document.getElementById('hero-join');
+  if (heroJoin) {
+    const row = heroJoin.querySelector('.hj-row'), email = heroJoin.querySelector('#hj-email');
+    const idea = heroJoin.querySelector('#hj-idea'), err = heroJoin.querySelector('.hj-err');
+    heroJoin.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const v = email.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) {
+        err.textContent = 'Type your email first.';
+        row.classList.add('err');
+        email.focus();
+        return;
+      }
+      err.textContent = '';
+      row.classList.remove('err');
+      const fill = { email: v };
+      if (idea.value.trim()) fill.idea = idea.value.trim();
+      openJoin('&' + new URLSearchParams(fill).toString());
+    });
+  }
+
+  // vote on the real end of Part 1: the bars fill to the real poll, then Part 2 shows what the vote made
+  const vd = document.querySelector('.vd');
+  if (vd) {
+    const opts = [...vd.querySelectorAll('.vd-opt')], verdict = vd.querySelector('.vd-verdict'), next = vd.querySelector('.vd-next');
+    opts.forEach((b) => b.addEventListener('click', () => {
+      if (vd.classList.contains('voted')) return;
+      vd.classList.add('voted');
+      b.classList.add('mine');
+      opts.forEach((o) => {
+        o.setAttribute('aria-pressed', String(o === b));
+        o.querySelector('.vd-fill').style.width = o.dataset.pct + '%';
+      });
+      const pct = Number(b.dataset.pct);
+      verdict.innerHTML = pct >= 50
+        ? `You voted with <b>${pct}%</b> of 14,400 people.`
+        : `Bold. Only <b>${pct}%</b> of 14,400 people voted with you.`;
+      setTimeout(() => { next.hidden = false; }, reduce ? 0 : 900);
+    }));
   }
 
   // how many people have joined. Tally copies every sign-up into the founder's Google Sheet; one small tab of it, holding
@@ -189,9 +323,24 @@ const TALLY_ID = 'Qoo5r1';
       setTimeout(() => { b.textContent = n.toLocaleString('en-US'); }, 1500);   // lands on the real total even if frames stall
     }, 0.6);
   };
-  if (lives.length) getCount().then((d) => {
+  // founding spots left, from the same count: the bar fills as the list grows, and says so once they're all taken
+  const founding = document.getElementById('founding');
+  const showFounding = (n) => {
+    if (!founding || !(FOUNDING_SPOTS > 0) || !FOUNDING_PERK) return;
+    const left = Math.max(0, FOUNDING_SPOTS - n);
+    founding.querySelector('.fd-cap').textContent = FOUNDING_SPOTS.toLocaleString('en-US');
+    const b = document.createElement('b');
+    b.textContent = left.toLocaleString('en-US');
+    founding.querySelector('.fd-left').replaceChildren(...(left ? [b, ' left'] : ['All taken']));
+    founding.querySelector('.fd-perk').textContent = left ? FOUNDING_PERK : 'Everyone on the list still gets 40% off and 48 hours early.';
+    founding.hidden = false;
+    const fill = () => { founding.querySelector('.fd-bar i').style.width = `${Math.min(100, (n / FOUNDING_SPOTS) * 100).toFixed(1)}%`; };
+    if (reduce || !hasIO) fill(); else seen(founding, (on) => { if (on) fill(); }, 0.4);
+  };
+  if (lives.length || founding) getCount().then((d) => {
     const n = d && Number.isInteger(d.count) ? d.count : 0;
     if (n < MIN_SHOWN) return;
+    showFounding(n);
     const times = d.recent.map(when).filter((t) => t <= Date.now()).sort((a, b) => b - a);
     const today = times.filter((t) => Date.now() - t < 864e5).length;
     const last = times.length && Date.now() - times[0] < 864e5 ? ago(Date.now() - times[0]) : '';

@@ -10,8 +10,6 @@
 <meta name="referrer" content="no-referrer">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/Satoshi-Variable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/yta/hero.jpg" as="image" media="(min-width: 761px)">
-<link rel="preload" href="assets/yta/hero_m.jpg" as="image" media="(max-width: 760px)">
 <link rel="stylesheet" href="assets/site.css">
 <script defer src="assets/site.js"></script>
 </head>
@@ -23,26 +21,37 @@
     <svg viewBox="0 0 32 32" width="22" height="22" aria-hidden="true"><path d="M5 25 A11 15 0 0 1 27 25" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/><circle cx="23.6" cy="13.2" r="3.6" class="mark-dot"/></svg>
     Arc Lab
   </a>
+  <nav class="bar-nav" aria-label="On this page">
+    <a href="#proof">Results</a>
+    <a href="#watch">The series</a>
+    <a href="#vote">Vote</a>
+    <a href="#how">How it works</a>
+    <a href="#faq">Questions</a>
+  </nav>
   <a class="bar-cta" href="#join" data-join>Join the waitlist</a>
 </header>
 
 <main id="main">
   <!-- 1. the opening: one full-screen shot, one line -->
   <section class="open" aria-labelledby="open-h">
-    <picture class="open-bg" aria-hidden="true">
-      <source media="(max-width: 760px)" srcset="assets/yta/hero_m.jpg">
-      <img src="assets/yta/hero.jpg" width="2400" height="1350" alt="">
-    </picture>
+    <div class="open-back" aria-hidden="true"><div class="open-wall"></div><div class="open-soft"></div></div>
     <div class="open-in">
       <p class="kicker">The series skill behind Your Trainer Arc</p>
-      <h1 id="open-h">Your idea.<br>A series people vote on.</h1>
+      <h1 id="open-h"><span class="hl"><span>Your idea.</span></span> <span class="hl"><span>A series people vote on.</span></span></h1>
       <p class="open-sub">Type one idea. The skill writes, voices, animates and checks every episode. You approve three times.</p>
-      <div class="open-cta">
-        <a class="pill" href="#join" data-join>Join the waitlist<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-        <a class="link-play" href="#watch">Watch what it made</a>
-      </div>
-      <p class="open-perk">Join today: a free playbook now, and 40% off at launch.</p>
+      <form class="hero-join" id="hero-join" novalidate>
+        <div class="hj-row">
+          <label class="sr" for="hj-email">Your email</label>
+          <input id="hj-email" type="email" placeholder="you@email.com" autocomplete="email" required>
+          <button type="submit" class="pill">Join the waitlist<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+        </div>
+        <label class="hj-idea" for="hj-idea">The series you'd make <span>(optional)</span></label>
+        <input id="hj-idea" class="hj-idea-in" type="text" maxlength="140" placeholder="A cat runs a heist crew. Viewers vote who betrays who.">
+        <p class="hj-err" aria-live="polite"></p>
+      </form>
+      <p class="open-perk">Free playbook the moment you join. 40% off at launch.</p>
       <p class="live" data-live="hero" hidden></p>
+      <a class="link-play hero-vote" href="#vote">Vote on a real cliffhanger</a>
     </div>
     <a class="cue" href="#proof" aria-label="Scroll to the numbers"><span></span></a>
   </section>
@@ -77,6 +86,7 @@
         <li class="rv"><a href="assets/proof/vote_p6.jpg"><img src="assets/proof/vote_p6.jpg" width="920" height="628" loading="lazy" alt="Part 6 poll on Instagram: 10.4K responses."></a><p><b>10.4K votes</b> on Part 6</p></li>
         <li class="rv"><a href="assets/proof/vote_p7.jpg"><img src="assets/proof/vote_p7.jpg" width="920" height="663" loading="lazy" alt="Part 7 poll on Instagram, two hours after posting: 2,708 responses."></a><p><b>2,708 votes</b> on Part 7, two hours in</p></li>
       </ul>
+      <button type="button" class="wall-more" hidden>Show all the screenshots</button>
       <p class="fine rv">Screenshots from the @yourtrainerarc Instagram app on 26 and 27 October 2026, cropped to the numbers. Other people's names are left out.</p>
     </div>
   </section>
@@ -105,7 +115,36 @@
     </ol>
   </section>
 
+  <!-- 3b. you vote: the real end of Part 1 and the real poll -->
+  <section class="vote-demo" id="vote" aria-labelledby="vote-h">
+    <h2 id="vote-h" class="statement-sm rv">Your turn. Vote.</h2>
+    <p class="lead rv">This is the real end of Part 1. 14,400 people voted on it. What would you do?</p>
+    <div class="vd rv">
+      <figure class="vd-shot"><img src="assets/yta/cover_p1.jpg" width="432" height="768" loading="lazy" alt="Part 1 cover: No Pokémon. No Poké Balls."></figure>
+      <div class="vd-panel">
+        <p class="vd-tag">Part 1 ends here</p>
+        <p class="vd-scene">A Pikachu is caught in a poacher's net. A Beedrill swarm is 30 seconds away, and the net takes a minute to cut.</p>
+        <div class="vd-opts" role="group" aria-label="Your vote">
+          <button type="button" class="vd-opt" data-pct="91" aria-pressed="false"><i class="vd-fill"></i><span class="vd-n">1</span><span class="vd-l">Cut it free</span><span class="vd-p">91%</span></button>
+          <button type="button" class="vd-opt" data-pct="9" aria-pressed="false"><i class="vd-fill"></i><span class="vd-n">2</span><span class="vd-l">Run for town</span><span class="vd-p">9%</span></button>
+        </div>
+        <p class="vd-verdict" aria-live="polite"></p>
+        <div class="vd-next" hidden>
+          <img src="assets/yta/cover_p2.jpg" width="432" height="768" loading="lazy" alt="Part 2 cover: 23 seconds to free it.">
+          <div>
+            <p class="vd-tag">So Part 2 was written from the vote</p>
+            <p class="vd-title">"23 seconds to free it."</p>
+            <p class="vd-meta">207K views. Then 15,400 people voted again.</p>
+          </div>
+          <a class="pill" href="#join" data-join>Make a series like this<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        </div>
+      </div>
+    </div>
+    <p class="fine rv">The real poll under Part 1 on Instagram: 14.4K responses, 91% "Cut it free".</p>
+  </section>
+
   <!-- 4. the product: the skill running -->
+
   <section class="run" id="how" aria-labelledby="run-h">
     <h2 id="run-h" class="statement-sm rv">One idea in. A finished episode out.</h2>
     <p class="lead rv">The skill runs every step. It stops three times for your OK.</p>
@@ -161,6 +200,11 @@
           <p class="how">You can buy two days before the public launch, while founding seats last.</p>
         </li>
       </ol>
+      <div class="founding" id="founding" hidden>
+        <div class="fd-top"><p class="fd-h">Founding members: the first <b class="fd-cap"></b> on the list</p><p class="fd-left"></p></div>
+        <div class="fd-bar" aria-hidden="true"><i></i></div>
+        <p class="fd-perk"></p>
+      </div>
       <div class="offer-form">
         <p class="live" data-live="offer" hidden></p>
         <div class="form-slot">
