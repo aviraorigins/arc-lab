@@ -38,8 +38,9 @@ const FOUNDING_PERK = 'Founding members get in before the rest of the list, and 
     cards.forEach((el) => io.observe(el));
   }
 
-  // the opening's wall: real episode covers in slow columns. Each column holds its list twice, so the drift loops
-  // without a seam; the columns start at different points and alternate up and down
+  // the wall of covers behind the opening line. Each column is drawn once, into its own tall strip, and the browser
+  // slides the strips itself (a transform animation), so the motion keeps the screen's full frame rate even while the
+  // page is busy, sits inside another page, or runs on a phone
   const wall = document.querySelector('.open-wall');
   if (wall) {
     const C = (n) => `assets/yta/cover_p${n}.jpg`, D = (n) => `assets/d23/${n}.jpg`;
@@ -52,23 +53,78 @@ const FOUNDING_PERK = 'Founding members get in before the rest of the list, and 
       [C(6), D('almost'), C(3), C(8)],
       [D('cover_c'), C(4), D('vote'), C(7)],
     ];
-    cols.forEach((list, i) => {
-      const col = document.createElement('div');
-      col.className = 'ow-col';
-      const track = document.createElement('div');
-      track.className = 'ow-track';
-      track.style.setProperty('--d', `${84 + i * 11}s`);
-      track.style.animationDelay = `${-17 * i}s`;
-      [...list, ...list].forEach((src) => {
-        const im = new Image(432, 768);
-        im.alt = '';
-        im.decoding = 'async';
-        im.src = src;
-        track.append(im);
-      });
-      col.append(track);
-      wall.append(col);
+    const box = wall.parentElement;
+    const imgs = new Map();
+    let W = 0, H = 0, dpr = 1, strips = [], onScreen = true, wait = 0;
+    const paint = (s, src) => {                            // one cover into every slot of a strip that shows it
+      const im = imgs.get(src);
+      if (!im || !im.complete || !im.naturalWidth) return;
+      const g = s.cv.getContext('2d'), { cw, ch, cell, shade } = s;
+      const w = Math.round(cw * dpr), h = Math.round(ch * dpr), r = Math.min(18, cw * 0.07) * dpr;
+      for (let k = 0; k < s.slots; k++) {
+        if (s.list[k % s.list.length] !== src) continue;
+        const y = Math.round(k * cell * dpr);
+        g.save();
+        g.beginPath();
+        if (g.roundRect) g.roundRect(0, y, w, h, r); else g.rect(0, y, w, h);
+        g.clip();
+        g.drawImage(im, 0, y, w, h);
+        g.fillStyle = `rgba(5, 5, 6, ${shade})`;
+        g.fillRect(0, y, w, h);
+        g.restore();
+      }
+    };
+    const run = () => strips.forEach((s) => s.anim && (onScreen ? s.anim.play() : s.anim.pause()));
+    const build = () => {
+      const r = box.getBoundingClientRect(), d = Math.min(1.5, window.devicePixelRatio || 1);
+      if (!r.width || !r.height) return;
+      if (r.width === W && d === dpr && r.height <= H * 1.15) return;   // a phone's address bar: the strips still reach
+      W = r.width;
+      H = r.height;
+      dpr = d;
+      strips.forEach((s) => s.anim && s.anim.cancel());
+      const n = W <= 680 ? 3 : W <= 980 ? 5 : W <= 1200 ? 6 : 7;
+      const shade = n === 3 ? 0.46 : 0.3;                  // phones: the line sits over more of the wall
+      const gap = Math.max(10, Math.min(20, W * 0.013));
+      const cw = (W * (n === 3 ? 1.48 : 1.2) - gap * (n - 1)) / n;   // wider than the screen, so the tilt never shows an edge
+      const ch = cw * 16 / 9, cell = ch + gap, x0 = (W - (n * cw + (n - 1) * gap)) / 2;
+      const tilt = document.createElement('div');
+      tilt.className = 'ow-tilt';
+      strips = [];
+      for (let c = 0; c < n; c++) {
+        const list = cols[c], loop = list.length * cell;
+        const slots = Math.ceil((1.9 * H + loop) / cell) + 1;
+        const cv = document.createElement('canvas');
+        cv.className = 'ow-strip';
+        cv.width = Math.round(cw * dpr);
+        cv.height = Math.round(slots * cell * dpr);
+        cv.style.cssText = `left:${x0 + c * (cw + gap)}px;top:${-0.45 * H}px;width:${cw}px;height:${slots * cell}px`;
+        tilt.appendChild(cv);
+        const s = { cv, list, slots, cw, ch, cell, shade, anim: null };
+        if (!reduce && cv.animate) {
+          const speed = 22 + c * 3, dur = loop / speed * 1000;   // px a second; neighbours run opposite ways
+          s.anim = cv.animate([{ transform: 'translate3d(0, 0, 0)' }, { transform: `translate3d(0, ${-loop}px, 0)` }],
+            { duration: dur, iterations: Infinity, easing: 'linear', direction: c % 2 ? 'reverse' : 'normal' });
+          s.anim.currentTime = (c * 211 / speed * 1000) % dur;
+        }
+        strips.push(s);
+        new Set(list).forEach((src) => paint(s, src));
+      }
+      wall.replaceChildren(tilt);
+      run();
+    };
+    [...new Set(cols.flat())].forEach((src) => {
+      const im = new Image();
+      im.decoding = 'async';
+      im.onload = () => strips.forEach((s) => { if (s.list.includes(src)) paint(s, src); });
+      im.src = src;
+      imgs.set(src, im);
     });
+    build();
+    const later = () => { clearTimeout(wait); wait = setTimeout(build, 150); };
+    if ('ResizeObserver' in window) new ResizeObserver(later).observe(box);
+    else addEventListener('resize', later);
+    if (hasIO) seen(box, (on) => { onScreen = on; run(); }, 0);   // the covers only move while you can see them
   }
 
   // the big numbers count up once, the first time they're on screen (ranges like 70-80% stay as they are)
@@ -122,7 +178,11 @@ const FOUNDING_PERK = 'Founding members get in before the rest of the list, and 
   const joinSec = document.getElementById('join');
   const sticky = document.querySelector('.sticky-cta');
   if (sticky && heroBtn && joinSec) sticky.hidden = false;
-  const onScroll = () => {
+  // runs at most once per frame, so scrolling never waits on it
+  let queued = false;
+  const onScroll = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
+  const update = () => {
+    queued = false;
     if (bar) bar.classList.toggle('solid', scrollY > 40);
     if (sticky && heroBtn && joinSec) {
       // phones: the join bar shows once the opening button has gone, and hides while the offer is on screen

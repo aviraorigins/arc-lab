@@ -28,9 +28,7 @@ body { margin: 0; background: var(--bg); color: var(--text); font: 400 1.0625rem
 body::before { content: ""; position: fixed; inset: -25%; z-index: -1; pointer-events: none;
   background: radial-gradient(32% 28% at 18% 22%, rgba(255, 216, 74, .12), transparent 70%),
               radial-gradient(36% 30% at 82% 70%, rgba(255, 128, 64, .1), transparent 70%),
-              radial-gradient(30% 26% at 68% 8%, rgba(96, 124, 255, .085), transparent 70%);
-  animation: leak 46s ease-in-out infinite alternate; }
-@keyframes leak { from { transform: translate3d(-4%, -3%, 0) rotate(0deg); } to { transform: translate3d(4%, 3%, 0) rotate(8deg); } }
+              radial-gradient(30% 26% at 68% 8%, rgba(96, 124, 255, .085), transparent 70%); }
 body::after { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .07;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") 0 0 / 180px; }
 img, svg, video { display: block; max-width: 100%; }
@@ -47,7 +45,7 @@ b { font-weight: 700; }
 
 /* the bar: nearly invisible over the opening, a dark glass once you scroll */
 .bar { position: fixed; top: 0; left: 0; right: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; padding: 16px var(--gutter); transition: background .6s var(--ease), box-shadow .6s var(--ease); }
-.bar.solid { background: rgba(5, 5, 6, .72); -webkit-backdrop-filter: blur(18px) saturate(140%); backdrop-filter: blur(18px) saturate(140%); box-shadow: 0 1px 0 var(--hair); }
+.bar.solid { background: rgba(5, 5, 6, .9); box-shadow: 0 1px 0 var(--hair); }
 .mark { display: inline-flex; align-items: center; gap: 9px; color: #fff; text-decoration: none; font: 700 1.0625rem/1 var(--sans); letter-spacing: -.01em; }
 .mark svg { color: var(--gold); }
 .mark-dot { fill: var(--red); }
@@ -74,19 +72,15 @@ b { font-weight: 700; }
 
 /* 1. the opening */
 .open { position: relative; min-height: 100svh; display: grid; place-items: center; text-align: center; overflow: hidden; isolation: isolate; }
-/* behind the line: a slow, tilted wall of real episode covers, columns drifting in turn up and down. The whole back
-   layer fades out at the bottom, and the covers blur as they go, so the opening melts into the page with no edge */
-.open-back { position: absolute; inset: 0; z-index: -1; overflow: hidden; isolation: isolate;
-  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 56%, transparent 100%); mask-image: linear-gradient(180deg, #000 0%, #000 56%, transparent 100%); }
-.open-soft { position: absolute; left: 0; right: 0; bottom: 0; height: 48%; z-index: 1; -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
-  -webkit-mask-image: linear-gradient(180deg, transparent, #000 75%); mask-image: linear-gradient(180deg, transparent, #000 75%); }
-.open-wall { --g: clamp(10px, 1.3vw, 20px); position: absolute; inset: -18% -10%; z-index: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: var(--g); transform: rotate(-8deg) scale(1.04); opacity: 0; animation: wall-in 2.2s var(--ease) .15s forwards; pointer-events: none; }
-@keyframes wall-in { from { opacity: 0; transform: rotate(-8deg) scale(1.16); } to { opacity: 1; transform: rotate(-8deg) scale(1.04); } }
-.ow-track { animation: ow-drift var(--d, 90s) linear infinite; will-change: transform; }
-.ow-col:nth-child(even) .ow-track { animation-direction: reverse; }
-@keyframes ow-drift { from { transform: translateY(0); } to { transform: translateY(-50%); } }
-.ow-track img { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; margin-bottom: var(--g); border-radius: clamp(10px, 1vw, 18px); object-fit: cover; filter: saturate(.8) brightness(.72); }
-.open-back::after { content: ""; position: absolute; inset: 0; z-index: 2;
+/* behind the line: a slow, tilted wall of real episode covers, columns drifting in turn up and down. site.js draws
+   each column once into a tall strip and the browser slides the strips (no per-frame drawing, nothing blurred);
+   the whole back fades out toward the bottom so the opening melts into the page */
+.open-back { position: absolute; inset: 0; z-index: -1; overflow: hidden; -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 50%, rgba(0, 0, 0, .55) 74%, transparent 100%); mask-image: linear-gradient(180deg, #000 0%, #000 50%, rgba(0, 0, 0, .55) 74%, transparent 100%); }
+.open-wall { position: absolute; inset: 0; opacity: 0; animation: wall-in 2.2s var(--ease) .15s forwards; }
+@keyframes wall-in { from { opacity: 0; transform: scale(1.08); } to { opacity: 1; transform: none; } }
+.ow-tilt { position: absolute; inset: 0; transform: rotate(-8deg); }
+.ow-strip { position: absolute; display: block; }
+.open-back::after { content: ""; position: absolute; inset: 0;
   background: radial-gradient(62% 56% at 50% 50%, rgba(5, 5, 6, .9) 0%, rgba(5, 5, 6, .72) 55%, rgba(5, 5, 6, .5) 100%),
               linear-gradient(180deg, rgba(5, 5, 6, .7) 0%, transparent 22%); }
 .open-in { max-width: 1040px; padding: 120px var(--gutter) 140px; }
@@ -126,7 +120,7 @@ b { font-weight: 700; }
 
 /* the join box at the top: email, then an optional "series you'd make" */
 .hero-join { margin: 36px auto 0; max-width: 560px; text-align: left; }
-.hj-row { display: flex; gap: 8px; padding: 6px; border-radius: 999px; background: rgba(8, 8, 12, .62); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .2); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); transition: box-shadow .4s var(--ease); }
+.hj-row { display: flex; gap: 8px; padding: 6px; border-radius: 999px; background: rgba(8, 8, 12, .86); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .2); transition: box-shadow .4s var(--ease); }
 .hj-row:focus-within { box-shadow: inset 0 0 0 1px var(--gold); }
 .hj-row.err { box-shadow: inset 0 0 0 1px var(--red); }
 .hj-row input { flex: 1; min-width: 0; border: 0; padding: 0 18px; background: transparent; color: #fff; font: 500 1.0625rem var(--sans); outline: 0; }
@@ -368,13 +362,7 @@ main > section { padding-left: var(--gutter); padding-right: var(--gutter); }
 .doc-foot { max-width: calc(760px + 2 * var(--gutter)); margin: 0 auto; }
 .todo { background: rgba(255, 59, 47, .18); color: #FF8A80; padding: 0 5px; border-radius: 4px; }
 
-@media (max-width: 1200px) {
-  .open-wall { grid-template-columns: repeat(6, minmax(0, 1fr)); }
-  .ow-col:nth-child(n + 7) { display: none; }
-}
 @media (max-width: 980px) {
-  .open-wall { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-  .ow-col:nth-child(n + 6) { display: none; }
   .figures { grid-auto-flow: row; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .wall { columns: 2; column-gap: 10px; }
   .figures li:nth-child(odd) { border-left: 0; }
@@ -398,9 +386,6 @@ main > section { padding-left: var(--gutter); padding-right: var(--gutter); }
   .vd-next .pill { justify-self: stretch; }
 }
 @media (max-width: 680px) {
-  .open-wall { grid-template-columns: repeat(3, minmax(0, 1fr)); inset: -12% -24%; }
-  .ow-track img { filter: saturate(.7) brightness(.56); }   /* small screens: the line sits over more of the wall */
-  .ow-col:nth-child(n + 4) { display: none; }
   .open h1 { font-size: clamp(2.5rem, 11.5vw, 3.25rem); line-height: 1; }
   .open-in { padding-bottom: 120px; }
   .open-cta .pill { width: 100%; max-width: 340px; }
@@ -443,9 +428,8 @@ main > section { padding-left: var(--gutter); padding-right: var(--gutter); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .open-wall, .ow-track, .hl > span, .open-in > *, .cue span, .join-dialog[open], .joined, .term.typing .t-typed::after, .live i::after { animation: none; }
+  .open-wall, .hl > span, .open-in > *, .cue span, .join-dialog[open], .joined, .term.typing .t-typed::after, .live i::after { animation: none; }
   .open-wall { opacity: 1; }
-  body::before { animation: none; }
   .js .rv, .js .term .t-ln { opacity: 1; transform: none; transition: none; }
   .pill, .pill-ic, .reel-row a, .wall a, .sticky-cta, .faq summary::after, .bar, .vd-fill, .vd-p, .fd-bar i { transition: none; }
   .vd-next { animation: none; }
