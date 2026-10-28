@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://tally.so; style-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src https://docs.google.com https://*.googleusercontent.com; frame-src https://tally.so; base-uri 'none'; form-action 'none'">
 <title>Arc Lab: the series skill behind Your Trainer Arc</title>
-<meta name="description" content="Type one idea and get a voted, animated story series. The skill behind Your Trainer Arc (1.5M Instagram views in its first week). Join the waitlist: a free playbook now, 40% off at launch.">
+<meta name="description" content="Type one idea and get a voted, animated story series. The Arc Lab Series Skill is the method behind Your Trainer Arc (1.5M Instagram views in its first week). $24, paid once, with a 14-day refund. Free playbook included.">
 <meta name="theme-color" content="#050506">
 <meta name="referrer" content="no-referrer">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/Satoshi-Variable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/site.css">
-<script defer src="assets/site.js"></script>
+<link rel="stylesheet" href="assets/site.css?v=7">
+<script defer src="assets/site.js?v=7"></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to the page</a>
@@ -26,9 +26,11 @@
     <a href="#watch">The series</a>
     <a href="#vote">Vote</a>
     <a href="#how">How it works</a>
+    <a href="#pricing">Pricing</a>
     <a href="#faq">Questions</a>
   </nav>
-  <a class="bar-cta" href="#join" data-join>Join the waitlist</a>
+  <a class="bar-cta" href="#join" data-join data-show="pre founders early">Join the waitlist</a>
+  <a class="bar-cta" href="#pricing" data-show="public" hidden>Get the skill</a>
 </header>
 
 <main id="main">
@@ -39,7 +41,7 @@
       <p class="kicker">The series skill behind Your Trainer Arc</p>
       <h1 id="open-h"><span class="hl"><span>Your idea.</span></span> <span class="hl"><span>A series people vote on.</span></span></h1>
       <p class="open-sub">Type one idea. The skill writes, voices, animates and checks every episode. You approve three times.</p>
-      <form class="hero-join" id="hero-join" novalidate>
+      <form class="hero-join" id="hero-join" novalidate data-show="pre founders early">
         <div class="hj-row">
           <label class="sr" for="hj-email">Your email</label>
           <input id="hj-email" type="email" placeholder="you@email.com" autocomplete="email" required>
@@ -49,8 +51,14 @@
         <input id="hj-idea" class="hj-idea-in" type="text" maxlength="140" placeholder="A cat runs a heist crew. Viewers vote who betrays who.">
         <p class="hj-err" aria-live="polite"></p>
       </form>
-      <p class="open-perk">Free playbook the moment you join. 40% off at launch.</p>
-      <p class="live" data-live="hero" hidden></p>
+      <div class="hero-buy" data-show="public" hidden>
+        <a class="pill pill-xl" href="#pricing" data-buy="public">Get the Series Skill<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <p class="hb-note"><b>$24</b>, paid once. Instant access and a 14-day refund.</p>
+      </div>
+      <p class="open-perk" data-show="pre">Free playbook the moment you join. 40% off at launch.</p>
+      <p class="open-perk" data-show="founders" hidden>Founding members are in. The rest of the list gets 40% off from <span data-time="early">Fri 30 Oct, 9 AM New York</span>.</p>
+      <p class="open-perk" data-show="early" hidden>Early access is open. Join now and you get the waitlist's 40% off, before everyone else.</p>
+      <p class="live" data-live="hero" data-show="pre founders early" hidden></p>
       <a class="link-play hero-vote" href="#vote">Vote on a real cliffhanger</a>
     </div>
     <a class="cue" href="#proof" aria-label="Scroll to the numbers"><span></span></a>
@@ -174,7 +182,7 @@
       <li class="rv"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="12" rx="2"/><path d="M8 20h8"/></svg><h3>The engine</h3><p>Characters, sets, camera, voices, sound and every-frame checks, all in code. No AI video.</p></li>
       <li class="rv"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="9" r="3.2"/><circle cx="16.5" cy="10.5" r="2.4"/><path d="M3.5 19c.8-3 3-4.5 5.5-4.5s4.7 1.5 5.5 4.5M14 18.5c.6-2 2-3 3.5-3s2.4.8 3 2.5"/></svg><h3>Original character kit</h3><p>A cast and a creature companion you can restyle, and the method to design your own.</p></li>
       <li class="rv"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h7l4 4V20.5H7z"/><path d="M14 3.5v4h4M10 12h5M10 15.5h5"/></svg><h3>Story templates</h3><p>The series bible, the episode script, the vote end card and the cover maker.</p></li>
-      <li class="rv"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M10.5 9.5v5l4-2.5z"/></svg><h3>Lessons</h3><p>Setup and "directing the skill" lessons, written and as short videos.</p></li>
+      <li class="rv"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M10.5 9.5v5l4-2.5z"/></svg><h3>Lessons</h3><p>Setup and "directing the skill" lessons: written by 2 Nov, short videos by 15 Nov.</p></li>
       <li class="rv"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v4.5h-4.5"/></svg><h3>Every v1 update</h3><p>New features and fixes as we keep making our own series with it.</p></li>
     </ul>
   </section>
@@ -182,22 +190,28 @@
   <!-- 6. the offer: what joining gets you -->
   <section class="offer" id="join" aria-labelledby="join-h">
     <div class="offer-card rv">
-      <h2 id="join-h">Join the waitlist.<br><span>Here's what you get.</span></h2>
-      <ol class="gets">
+      <h2 id="join-h"><span class="ph" data-show="pre founders early">Join the waitlist.<br><span>Here's what you get.</span></span><span class="ph" data-show="public" hidden>The free playbook.<br><span>Yours in a minute.</span></span></h2>
+      <p class="offer-sub" data-show="public" hidden>How Your Trainer Arc got 11,786 votes in a day: the hook, the vote end card, the pinned comment and the posting rhythm. Free, with an email when the Making-of Pack and Studio open.</p>
+      <ol class="gets" data-show="pre founders early">
         <li>
           <p class="when">Today, free</p>
           <p class="what">The Vote Loop Playbook</p>
           <p class="how">How Your Trainer Arc got 11,786 votes in a day: the hook, the vote end card, the pinned comment and the posting rhythm. Yours the moment you join.</p>
         </li>
         <li class="big-li">
-          <p class="when">At launch</p>
+          <p class="when" data-show="pre">At launch</p>
+          <p class="when" data-show="founders early" hidden>Open now</p>
           <p class="what"><span class="huge">40%</span> off</p>
-          <p class="how">Waitlist only, for the first 72 hours, on any tier.</p>
+          <p class="how" data-show="pre">Waitlist only, for the first 72 hours, on any tier.</p>
+          <p class="how" data-show="founders" hidden>For the whole list from <span data-time="early">Fri 30 Oct, 9 AM New York</span>, for 72 hours.</p>
+          <p class="how" data-show="early" data-has-link="waitlist" hidden>Join now and your 40% link appears right here. It ends <span data-time="listEnds">Mon 2 Nov, 8 AM New York</span>.</p>
+          <p class="how" data-show="early" data-no-link="waitlist" hidden>Join now and we'll email your 40% link. It ends <span data-time="listEnds">Mon 2 Nov, 8 AM New York</span>.</p>
         </li>
         <li>
           <p class="when">Before everyone</p>
           <p class="what">48 hours early</p>
-          <p class="how">You can buy two days before the public launch, while founding seats last.</p>
+          <p class="how" data-show="pre">You can buy two days before the public launch, while founding seats last.</p>
+          <p class="how" data-show="founders early" hidden>The public opens <span data-time="public">Sun 1 Nov, 9 AM New York</span>, at full price.</p>
         </li>
       </ol>
       <div class="founding" id="founding" hidden>
@@ -215,38 +229,56 @@
     </div>
   </section>
 
-  <!-- 7. tiers -->
-  <section class="tiers-sec" id="tiers" aria-labelledby="tiers-h">
-    <h2 id="tiers-h" class="statement-sm rv">Three ways in.</h2>
-    <p class="lead rv">Prices are set from the waitlist survey. Whatever they are, the waitlist pays 40% less.</p>
+  <!-- 7. pricing -->
+  <section class="tiers-sec" id="pricing" aria-labelledby="tiers-h">
+    <h2 id="tiers-h" class="statement-sm rv">Pricing.</h2>
+    <p class="lead rv">One tool, paid once. Extras when you want them.</p>
     <div class="tiers">
-      <article class="tier rv">
-        <h3>Making-of Pack</h3>
-        <p class="tier-for">See how it's made and back the studio.</p>
-        <ul><li>One episode taken apart, with the real files</li><li>The story templates</li><li>Your name on the founding wall</li></ul>
-        <a class="pill pill-line" href="#join" data-join>Join the waitlist</a>
-      </article>
       <article class="tier tier-main rv">
         <p class="tier-tag">Pay once</p>
         <h3>Series Skill</h3>
-        <p class="tier-for">Everything you need to make your own series.</p>
-        <ul><li>The skill and its engine</li><li>The original character kit and templates</li><li>Setup and directing lessons</li><li>Every v1 update, delivered automatically</li></ul>
-        <a class="pill" href="#join" data-join>Join the waitlist<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <p class="tier-for">Everything you need to make your own voted series.</p>
+        <p class="price"><b>$24</b><span>one-time</span></p>
+        <p class="price-note" data-show="pre">The waitlist pays $14.40 at launch.</p>
+        <p class="price-note" data-show="founders early" hidden>The waitlist pays $14.40 until <span data-time="listEnds">Mon 2 Nov, 8 AM New York</span>.</p>
+        <p class="price-note" data-show="public" data-list-price hidden>On the waitlist? Use the link in your email for 40% off, until <span data-time="listEnds">Mon 2 Nov, 8 AM New York</span>.</p>
+        <ul><li>The skill and its engine: characters, sets, camera, captions and sound, all drawn in code</li><li>An original character kit and the story templates</li><li>A complete example series: Day 23, episode 1</li><li>Setup and directing lessons</li><li>Every v1 update, and help on our Discord</li></ul>
+        <a class="pill" href="#join" data-join data-show="pre founders early">Join for early access<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <a class="pill" href="#pricing" data-buy="public" data-show="public" hidden>Get the Series Skill<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <p class="tier-fine">Instant download and private GitHub access. 14-day refund.</p>
       </article>
       <article class="tier rv">
+        <p class="tier-tag soon">Out 6 Nov</p>
+        <h3>Making-of Pack</h3>
+        <p class="tier-for">Day 23, episode 1, taken apart file by file.</p>
+        <p class="price"><b>$9</b><span>one-time</span></p>
+        <p class="price-note">The list gets 40% off for its first 72 hours.</p>
+        <ul><li>The series bible, beats, script and voice lines</li><li>The look test and every review round, with the fixes</li><li>The score, the covers and the posting pack</li><li>The real project files</li></ul>
+        <a class="pill pill-line" href="#join" data-join>Get an email when it's out</a>
+      </article>
+      <article class="tier rv">
+        <p class="tier-tag soon">Opens 30 Nov</p>
         <h3>Studio</h3>
-        <p class="tier-for">Monthly or yearly. A new pack every month.</p>
-        <ul><li>The Series Skill while you're a member</li><li>A new pack every month: characters, sets, genre kits</li><li>Every update, including v2</li><li>The members' Discord and a monthly teardown</li><li>Founding price locked for the first 50 yearly members</li></ul>
-        <a class="pill pill-line" href="#join" data-join>Join the waitlist</a>
+        <p class="tier-for">A monthly add-on for Series Skill owners.</p>
+        <p class="price"><b>$8</b><span>a month, or $69 a year</span></p>
+        <p class="price-note">The list gets 40% off the first payment.</p>
+        <ul><li>A new pack every month: characters, sets, a genre kit, score presets</li><li>The members' Discord and a recorded monthly teardown</li><li>Early access to v2</li><li>Keep every pack you download; cancel in two clicks</li><li>The first 50 yearly members keep their price</li></ul>
+        <a class="pill pill-line" href="#join" data-join>Get an email when it opens</a>
       </article>
     </div>
+    <ul class="trust rv" aria-label="How buying works">
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg><span><b>Secure checkout by Polar</b>Our shop handles the card, the receipt and any sales tax. We never see your card details.</span></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v4.5h-4.5"/></svg><span><b>14-day refund</b>If it isn't for you, reply to your receipt within 14 days. No questions asked.</span></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5v11M7.5 10l4.5 4.5 4.5-4.5M4.5 19.5h15"/></svg><span><b>Instant access</b>The download, the private repo and Discord help arrive the moment you pay. <a href="start.html">See the setup guide</a>.</span></li>
+    </ul>
+    <p class="fine reviews-note rv">Prices shown in US dollars. Checkout shows your local price where we have one (₹1,399 in India, €22 in Europe), plus any local tax. Every buyer is asked for a review, and we'll show all of them here, good and bad.</p>
   </section>
 
   <!-- 8. the honest part -->
   <section class="honest" aria-labelledby="honest-h">
     <h2 id="honest-h" class="statement-sm rv">The honest part.</h2>
     <dl class="honest-grid rv">
-      <div><dt>You'll need</dt><dd>A paid Claude plan with Claude Code, a Windows or Mac computer, an ElevenLabs account for the voices, and a few hours of render time per episode.</dd></div>
+      <div><dt>You'll need</dt><dd>A paid Claude plan with Claude Code, Windows 10/11 or macOS 12+ with about 2 GB free (no GPU), and an ElevenLabs account for the voices (a paid ElevenLabs plan if you'll publish commercially). Setup takes about 10 minutes: <a href="start.html">read the setup guide</a>.</dd></div>
       <div><dt>You still decide</dt><dd>The idea, the three approvals and when to post. The skill does the heavy lifting; you stay the director.</dd></div>
       <div><dt>It isn't a Pokémon kit</dt><dd>Your Trainer Arc is our unofficial fan series. The skill ships with original characters and contains no Pokémon characters, art or sounds.</dd></div>
       <div><dt>No promised views</dt><dd>No one can honestly promise a hit. We can show you the format, the process and our own numbers.</dd></div>
@@ -257,21 +289,30 @@
   <section class="faq-sec" id="faq" aria-labelledby="faq-h">
     <h2 id="faq-h" class="statement-sm rv">Questions.</h2>
     <div class="faq rv">
-      <details><summary>Do I need to know how to code?</summary><p>No. The skill writes and runs the code. You make the creative calls.</p></details>
-      <details><summary>Is Your Trainer Arc made this way?</summary><p>Yes. Every part was written, voiced, animated in code, mixed and checked using the same steps. The skill packages that process so it works for your own idea.</p></details>
-      <details><summary>Is this AI video?</summary><p>No. Everything is animated in code: characters, sets, camera and lighting. AI helps write the code and the voices, not the pictures.</p></details>
-      <details><summary>How long does an episode take?</summary><p>Most of the time is rendering, a few hours on a normal computer. Your part is the idea and three approvals.</p></details>
-      <details><summary>Can I make money with what I make?</summary><p>Yes, the original episodes you make are yours. The skill itself can't be resold.</p></details>
-      <details><summary>What if it doesn't work for me?</summary><p>You get a 14-day refund, no questions asked.</p></details>
-      <details><summary>When does it launch?</summary><p>We're finishing the skill now. Waitlist members get the date first, by email, with their 40% code.</p></details>
+      <details><summary>Do I need to know how to code?</summary><p>No. The skill writes and runs the code. You make the creative calls and approve three times per episode.</p></details>
+      <details><summary>What do I need?</summary><p>A paid Claude plan with Claude Code, Windows 10/11 or macOS 12+ with about 2 GB free, and an ElevenLabs account for the voices. No GPU. The <a href="start.html">setup guide</a> shows every step before you buy.</p></details>
+      <details><summary>Is this AI video?</summary><p>No. Our rendering code draws every frame: characters, sets, camera and lighting. No AI model makes the pictures. The narration uses stock voices from your own ElevenLabs account, with no voice cloning.</p></details>
+      <details><summary>Is Your Trainer Arc made this way?</summary><p>Yes. Every part was written, voiced, animated in code, mixed and checked using the same steps. The skill packages that process for your own original idea, and it contains no Pokémon characters, art or sounds.</p></details>
+      <details><summary>How do I get it after paying?</summary><p>Straight away. Polar emails your receipt, and your order page has the download, an invite to the private GitHub repo and the Discord link for help. Then the <a href="start.html">setup guide</a> takes about 10 minutes.</p></details>
+      <details><summary>Do I need GitHub?</summary><p>No. The zip download works the same. A free GitHub account only makes updates a one-line command.</p></details>
+      <details><summary>How long does an episode take?</summary><p>Most of the time is the computer working: a few hours for a 30 to 40 second episode, mostly without you. Your part is the idea and three approvals.</p></details>
+      <details><summary>Can I make money with what I make?</summary><p>Yes, the original episodes you make are yours. The skill itself can't be shared or resold.</p></details>
+      <details><summary>What if it doesn't work for me?</summary><p>Reply to your receipt within 14 days and you get a full refund, no questions asked.</p></details>
+      <details><summary>Is there a local price where I live?</summary><p>Yes, in many places. Checkout picks it from where you are: for example ₹1,399 in India, R$79 in Brazil, €22 in Europe and £18 in the UK. The waitlist's 40% works on every local price. Paying from India? Use a credit card, or a debit card with international payments turned on in your bank app.</p></details>
+      <details><summary>What will my card statement say?</summary><p>Polar, our shop, is the seller of record, so the charge may show Polar's name rather than Arc Lab.</p></details>
+      <details><summary>When can I buy?</summary><p>The waitlist gets early access from Fri 30 Oct, at 40% off for 72 hours. Everyone else can buy from Sun 1 Nov, 9 AM New York time.</p></details>
+      <details><summary>Can I cancel Studio?</summary><p>Yes, any time, in two clicks from your receipt email. You keep every pack you've downloaded.</p></details>
     </div>
   </section>
 
   <!-- 10. the close -->
   <section class="close" aria-labelledby="close-h">
     <h2 id="close-h" class="statement rv">Make yours.</h2>
-    <a class="pill pill-xl rv" href="#join" data-join>Join the waitlist<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-    <p class="fine rv">Free playbook today. 40% off at launch.</p>
+    <a class="pill pill-xl rv" href="#join" data-join data-show="pre founders early">Join the waitlist<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+    <a class="pill pill-xl rv" href="#pricing" data-buy="public" data-show="public" hidden>Get the Series Skill<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+    <p class="fine rv" data-show="pre">Free playbook today. 40% off at launch.</p>
+    <p class="fine rv" data-show="founders early" hidden>Free playbook today. 40% off while early access lasts.</p>
+    <p class="fine rv" data-show="public" hidden>$24, paid once. 14-day refund.</p>
   </section>
 </main>
 
@@ -281,22 +322,28 @@
       <svg viewBox="0 0 32 32" width="20" height="20" aria-hidden="true"><path d="M5 25 A11 15 0 0 1 27 25" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/><circle cx="23.6" cy="13.2" r="3.6" class="mark-dot"/></svg>
       Arc Lab
     </a>
-    <nav aria-label="Footer"><a href="https://www.youtube.com/@yourtrainerarc/shorts">Your Trainer Arc on YouTube</a><a href="https://www.instagram.com/yourtrainerarc/">Instagram</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav>
+    <nav aria-label="Footer"><a href="start.html">Setup guide</a><a href="https://www.youtube.com/@yourtrainerarc/shorts">Your Trainer Arc on YouTube</a><a href="https://www.instagram.com/yourtrainerarc/">Instagram</a><a href="terms.html">Terms and refunds</a><a href="privacy.html">Privacy</a><a href="mailto:contact@arclabstudios.com">contact@arclabstudios.com</a></nav>
   </div>
   <p class="legal">© 2026 Arc Lab. Your Trainer Arc is an unofficial, fan-made series and is free to watch. Pokémon © Nintendo / Creatures / GAME FREAK / The Pokémon Company. Arc Lab is not affiliated with or endorsed by them, and the Arc Lab Series Skill contains no Pokémon characters, art or sounds. View counts are from our Instagram insights on 27 October 2026.</p>
 </footer>
 
-<a class="sticky-cta" href="#join" data-join hidden>Join the waitlist <span>Free playbook, 40% off</span></a>
+<a class="sticky-cta" href="#join" data-join data-show="pre founders early" hidden>Join the waitlist <span>Free playbook, 40% off</span></a>
+<a class="sticky-cta" href="#pricing" data-buy="public" data-show="public" hidden>Get the Series Skill <span>$24, 14-day refund</span></a>
 
 <dialog class="join-dialog" id="join-dialog" aria-labelledby="jd-h">
   <div class="jd-head">
-    <h2 id="jd-h">Join the waitlist</h2>
+    <h2 id="jd-h"><span data-show="pre founders early">Join the waitlist</span><span data-show="public" hidden>Get the free playbook</span></h2>
     <button type="button" class="jd-close" aria-label="Close"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
   </div>
   <ul class="jd-gets">
     <li><b>Free today:</b> The Vote Loop Playbook</li>
-    <li><b>At launch:</b> 40% off any tier, for 72 hours</li>
-    <li><b>48 hours</b> before everyone else</li>
+    <li data-show="pre"><b>At launch:</b> 40% off any tier, for 72 hours</li>
+    <li data-show="pre"><b>48 hours</b> before everyone else</li>
+    <li data-show="founders" hidden><b>40% off</b> for the whole list from <span data-time="early">Fri 30 Oct, 9 AM New York</span></li>
+    <li data-show="early" data-has-link="waitlist" hidden><b>40% off now:</b> your link appears as soon as you join</li>
+    <li data-show="early" data-no-link="waitlist" hidden><b>40% off now:</b> we'll email your link</li>
+    <li data-show="founders early" hidden><b>Before everyone:</b> the public opens <span data-time="public">Sun 1 Nov, 9 AM New York</span></li>
+    <li data-show="public" hidden><b>An email</b> when the Making-of Pack (6 Nov) and Studio (30 Nov) open</li>
   </ul>
   <p class="live" data-live="dialog" hidden></p>
   <div class="form-slot">
@@ -310,11 +357,22 @@
   <div class="joined" tabindex="-1">
     <h3>You're on the list.</h3>
     <p>Your free Vote Loop Playbook is ready.</p>
+    <div class="joined-buy" data-show="early" data-no-link="waitlist" hidden>
+      <p><b>Your waitlist price is open:</b> $14.40 instead of $24. We'll email your link within a day; it works until <span data-time="listEnds">Mon 2 Nov, 8 AM New York</span>.</p>
+    </div>
+    <div class="joined-buy" data-show="early" data-has-link="waitlist" hidden>
+      <p><b>Your waitlist price is open:</b> the Series Skill for $14.40 instead of $24, until <span data-time="listEnds">Mon 2 Nov, 8 AM New York</span>.</p>
+      <a class="pill" href="#pricing" data-buy="waitlist">Get it for $14.40<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+    </div>
+    <div class="joined-buy" data-show="founders" hidden>
+      <p><b>Your 40% opens <span data-time="early">Fri 30 Oct, 9 AM New York</span>.</b> Come back to this page then and your link will be right here.</p>
+    </div>
     <div class="joined-cta">
       <a class="pill" href="vote-loop.html">Read the playbook</a>
       <a class="pill pill-line" href="assets/vote-loop-playbook.pdf" download>Download the PDF</a>
     </div>
-    <p class="fine">At launch you get 40% off any tier for 72 hours, 48 hours before everyone else. We'll email you the date first.</p>
+    <p class="fine" data-show="pre">At launch you get 40% off any tier for 72 hours, 48 hours before everyone else. We'll email you the date first.</p>
+    <p class="fine" data-show="public" hidden>We'll email you when the Making-of Pack and Studio open, with 40% off for the list.</p>
   </div>
 </template>
 </body>

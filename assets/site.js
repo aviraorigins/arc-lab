@@ -1,4 +1,4 @@
-// Arc Lab waitlist page: builds the opening's wall of episode covers, reveals sections as they arrive, counts up the big
+// Arc Lab's page (waitlist, then shop: it switches by itself at the launch times below): builds the opening's wall of episode covers, reveals sections as they arrive, counts up the big
 // numbers, shortens the screenshot wall, marks the menu, darkens the top bar once you scroll, plays the series reel
 // while it's on screen, types out the skill's run when it comes into view, opens the waitlist form in a pop-up from every
 // "Join the waitlist" button and from the email box at the top, shows the join bar on phones, embeds the Tally form and
@@ -14,8 +14,43 @@ const TALLY_ID = 'Qoo5r1';
 const FOUNDING_SPOTS = 500;
 const FOUNDING_PERK = 'Founding members get in before the rest of the list, and their name goes on the Arc Lab founding wall.';
 
+// The launch, in UTC (the gameplan's times). The page switches by itself: "pre" (waitlist), "founders" (founding members
+// are buying), "early" (the whole waitlist is buying; people who join now get the waitlist price), "public" (buy buttons
+// for everyone). If Thursday's gate moves the launch, move all four by 24 hours.
+const OPENS = { founders: '2026-10-30T01:00:00Z', early: '2026-10-30T13:00:00Z', public: '2026-11-01T14:00:00Z' };
+const LIST_PRICE_ENDS = '2026-11-02T13:00:00Z';   // when EARLY40 stops
+// Polar checkout links, pasted in on Thursday evening: "public" has no code, "waitlist" has EARLY40 already applied.
+// Until "public" is filled in, the page stays in early access even after Sunday, so no buy button ever points nowhere.
+const CHECKOUT = { public: '', waitlist: '' };
+
 (() => {
   document.documentElement.classList.add('js');
+
+  // which part of the launch we're in; ?phase=pre|founders|early|public previews one without waiting
+  const PHASES = ['pre', 'founders', 'early', 'public'];
+  const now = Date.now();
+  let PHASE = 'pre';
+  if (now >= Date.parse(OPENS.founders)) PHASE = 'founders';
+  if (now >= Date.parse(OPENS.early)) PHASE = 'early';
+  if (now >= Date.parse(OPENS.public) && CHECKOUT.public) PHASE = 'public';
+  const asked = new URLSearchParams(location.search).get('phase');
+  if (PHASES.includes(asked)) PHASE = asked;
+  const listPriceOn = PHASE === 'early' || (PHASE === 'public' && now < Date.parse(LIST_PRICE_ENDS));
+  document.documentElement.dataset.phase = PHASE;
+  // dates are shown in the visitor's own time zone
+  const TIMES = { ...OPENS, listEnds: LIST_PRICE_ENDS };
+  const fmt = (iso) => new Date(iso).toLocaleString(undefined, { weekday: 'short', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' }) + ' your time';
+  // data-has-link / data-no-link: show a piece only when that checkout link is (or isn't) filled in yet
+  const shows = (el) => !el.dataset.show || el.dataset.show.split(' ').includes(PHASE)
+    && (!el.hasAttribute('data-list-price') || listPriceOn)
+    && (!el.dataset.hasLink || Boolean(CHECKOUT[el.dataset.hasLink]))
+    && (!el.dataset.noLink || !CHECKOUT[el.dataset.noLink]);
+  const applyPhase = (root) => {
+    root.querySelectorAll('[data-show]').forEach((el) => { el.hidden = !shows(el); });
+    root.querySelectorAll('[data-buy]').forEach((a) => { const u = CHECKOUT[a.dataset.buy]; if (u) a.href = u; });
+    root.querySelectorAll('[data-time]').forEach((el) => { if (TIMES[el.dataset.time]) el.textContent = fmt(TIMES[el.dataset.time]); });
+  };
+  applyPhase(document);
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const hasIO = 'IntersectionObserver' in window;
   const seen = (el, fn, threshold = 0.4) => {
@@ -174,19 +209,21 @@ const FOUNDING_PERK = 'Founding members get in before the rest of the list, and 
 
   // the top bar turns to dark glass once the opening shot has scrolled a little
   const bar = document.querySelector('.bar');
-  const heroBtn = document.querySelector('.hero-join .pill');
+  const heroBtn = PHASE === 'public' ? document.querySelector('.hero-buy .pill') : document.querySelector('.hero-join .pill');
   const joinSec = document.getElementById('join');
-  const sticky = document.querySelector('.sticky-cta');
-  if (sticky && heroBtn && joinSec) sticky.hidden = false;
+  const sticky = [...document.querySelectorAll('.sticky-cta')].find(shows);
+  // phones: the bar hides while the part it points to is on screen (the offer, or the prices once the shop is open)
+  const stickyGoal = PHASE === 'public' ? document.getElementById('pricing') : joinSec;
+  if (sticky && heroBtn && stickyGoal) sticky.hidden = false;
   // runs at most once per frame, so scrolling never waits on it
   let queued = false;
   const onScroll = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
   const update = () => {
     queued = false;
     if (bar) bar.classList.toggle('solid', scrollY > 40);
-    if (sticky && heroBtn && joinSec) {
-      // phones: the join bar shows once the opening button has gone, and hides while the offer is on screen
-      const j = joinSec.getBoundingClientRect();
+    if (sticky && heroBtn && stickyGoal) {
+      // phones: the bar shows once the opening button has gone, and hides while its goal is on screen
+      const j = stickyGoal.getBoundingClientRect();
       const pastHero = heroBtn.getBoundingClientRect().bottom < 0;
       const atOffer = j.top < innerHeight && j.bottom > 0;
       sticky.classList.toggle('show', pastHero && !atOffer);
@@ -268,8 +305,11 @@ const FOUNDING_PERK = 'Founding members get in before the rest of the list, and 
     if (!joined) return;
     document.querySelectorAll('.form-slot').forEach((slot) => {
       slot.dataset.mounted = '1';
-      slot.replaceChildren(joined.content.cloneNode(true));
+      const panel = joined.content.cloneNode(true);
+      applyPhase(panel);
+      slot.replaceChildren(panel);
     });
+    try { localStorage.setItem('arclab-joined', '1'); } catch { /* private window: the panel just won't come back */ }
     frames.length = 0;
     const panel = from && from.querySelector('.joined');
     if (panel) panel.focus();
@@ -282,7 +322,11 @@ const FOUNDING_PERK = 'Founding members get in before the rest of the list, and 
     const f = frames.find((x) => x.contentWindow === e.source);
     if (f && d.event === 'Tally.FormSubmitted') showJoined(f.closest('.form-slot'));
   });
-  seen(joinSec, (on) => { if (on) mount(joinSec.querySelector('.form-slot')); }, 0.01);
+  // someone who joined earlier in this browser sees their playbook links (and, in early access, their 40% link) again
+  let joinedBefore = false;
+  try { joinedBefore = localStorage.getItem('arclab-joined') === '1'; } catch { /* storage blocked: show the form */ }
+  if (joinedBefore) showJoined();
+  else seen(joinSec, (on) => { if (on) mount(joinSec.querySelector('.form-slot')); }, 0.01);
 
   // every "Join the waitlist" opens the form in a pop-up (without dialog support it scrolls to the offer instead)
   const dlg = document.getElementById('join-dialog');
@@ -386,7 +430,7 @@ const FOUNDING_PERK = 'Founding members get in before the rest of the list, and 
   // founding spots left, from the same count: the bar fills as the list grows, and says so once they're all taken
   const founding = document.getElementById('founding');
   const showFounding = (n) => {
-    if (!founding || !(FOUNDING_SPOTS > 0) || !FOUNDING_PERK) return;
+    if (!founding || !(FOUNDING_SPOTS > 0) || !FOUNDING_PERK || PHASE === 'public') return;
     const left = Math.max(0, FOUNDING_SPOTS - n);
     founding.querySelector('.fd-cap').textContent = FOUNDING_SPOTS.toLocaleString('en-US');
     const b = document.createElement('b');
@@ -411,6 +455,7 @@ const FOUNDING_PERK = 'Founding members get in before the rest of the list, and 
       dialog: ['Join ', ' people already on the list.', ''],
     };
     lives.forEach((p) => {
+      if (!shows(p)) return;
       const [before, after, extra] = say[p.dataset.live] || say.offer;
       const dot = document.createElement('i');
       dot.setAttribute('aria-hidden', 'true');

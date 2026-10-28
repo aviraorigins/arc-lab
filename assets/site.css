@@ -434,3 +434,58 @@ main > section { padding-left: var(--gutter); padding-right: var(--gutter); }
   .pill, .pill-ic, .reel-row a, .wall a, .sticky-cta, .faq summary::after, .bar, .vd-fill, .vd-p, .fd-bar i { transition: none; }
   .vd-next { animation: none; }
 }
+
+/* ---- the shop (29 Oct): the page switches by itself from waitlist to early access to buy buttons (site.js) ---- */
+[hidden] { display: none !important; }
+
+/* from Sunday: the opening's buy button, with the price under it */
+.hero-buy { margin-top: 40px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.hb-note { color: rgba(255, 255, 255, .8); font-size: 1rem; }
+.hb-note b { color: #fff; }
+
+/* 7. pricing */
+.price { margin-top: 18px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.price b { font-size: clamp(2.6rem, 4.4vw, 3.4rem); font-weight: 800; letter-spacing: -.045em; line-height: 1; color: #fff; }
+.price span { color: var(--soft); font-size: .9375rem; }
+.price-note { margin-top: 10px; color: #FFE58A; font-size: .9375rem; font-weight: 500; }
+.tier-tag.soon { background: rgba(255, 255, 255, .1); color: #fff; }
+.tier-fine { margin-top: 12px; color: var(--dim); font-size: .8125rem; text-align: center; }
+.trust { list-style: none; max-width: 1120px; margin: 20px auto 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; text-align: left; }
+.trust li { display: flex; gap: 14px; align-items: flex-start; padding: 20px 22px; border-radius: 20px; box-shadow: inset 0 0 0 1px var(--hair); color: var(--soft); font-size: .9375rem; }
+.trust svg { flex: none; width: 24px; height: 24px; fill: none; stroke: var(--gold); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.trust b { display: block; margin-bottom: 2px; color: #fff; font-size: 1rem; }
+.reviews-note { margin: 26px auto 0; max-width: 62ch; }
+@media (max-width: 980px) { .trust { grid-template-columns: 1fr; max-width: 560px; } }
+
+/* the offer once the shop is open, and the 40% link after joining during early access */
+.offer-sub { margin: 18px auto 32px; max-width: 46ch; color: var(--soft); font-size: 1.0625rem; }
+.joined-buy { margin: 4px auto 18px; max-width: 440px; padding: 18px; border-radius: 18px; background: rgba(255, 216, 74, .08); box-shadow: inset 0 0 0 1px rgba(255, 216, 74, .3); }
+.joined-buy p { color: var(--soft); }
+.joined-buy b { color: #fff; }
+.joined-buy .pill { margin-top: 14px; }
+
+/* the setup guide and the thank-you page */
+.doc h3 { margin-top: 26px; font-weight: 700; font-size: 1.125rem; color: #fff; }
+.doc pre { max-width: 100%; margin: 14px 0 0; padding: 14px 16px; border-radius: 14px; background: #0B0C10; box-shadow: inset 0 0 0 1px var(--hair); overflow-x: auto; font: 500 .875rem/1.65 var(--mono); color: #E8E9EE; }
+.doc code { padding: 1px 6px; border-radius: 6px; background: rgba(255, 255, 255, .07); color: #fff; font: 500 .875em var(--mono); }
+.doc pre code { padding: 0; background: none; font-size: inherit; }
+.doc strong, .doc b { color: #fff; }
+.steps { list-style: none; counter-reset: step; margin: 30px 0 0; padding: 0 !important; display: grid; gap: 14px; }
+.steps > li { min-width: 0; counter-increment: step; position: relative; margin: 0; padding: 22px 22px 24px 72px; max-width: none; border-radius: 22px; background: var(--panel); box-shadow: inset 0 0 0 1px var(--hair); }
+.steps > li::before { content: counter(step); position: absolute; left: 20px; top: 20px; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--gold); color: #111; font-weight: 800; }
+.steps > li > h2, .steps > li > h3 { margin-top: 4px; }
+.steps > li > p:first-of-type { margin-top: 8px; }
+@media (max-width: 560px) { .steps > li { padding: 64px 18px 22px; } .steps > li::before { top: 18px; left: 18px; } }
+.callout { margin-top: 26px; padding: 18px 20px; border-radius: 18px; background: rgba(255, 216, 74, .07); box-shadow: inset 0 0 0 1px rgba(255, 216, 74, .28); }
+.callout p:first-child { margin-top: 0; }
+.doc .pill { margin-top: 18px; }
+.doc .tbl { margin-top: 16px; overflow-x: auto; border-radius: 16px; box-shadow: inset 0 0 0 1px var(--hair); }
+.doc table { width: 100%; min-width: 0; border-collapse: collapse; font-size: .9375rem; }
+.doc th, .doc td { padding: 12px 14px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--hair); color: var(--soft); }
+.doc th { color: #fff; font-weight: 600; background: rgba(255, 255, 255, .03); }
+.doc tr:last-child td { border-bottom: 0; }
+.toc { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { padding: 7px 14px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--hair-2); color: var(--soft); text-decoration: none; font-size: .875rem; }
+.toc a:hover { color: #fff; box-shadow: inset 0 0 0 1px var(--gold); }
+.offer-card h2 .ph { color: inherit; }
+.offer-card h2 .ph span { color: var(--dim); }

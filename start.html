@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; base-uri 'none'; form-action 'none'">
+<title>Setup guide | Arc Lab</title>
+<meta name="description" content="How to set up the Arc Lab Series Skill in about 10 minutes: what you need, where the files go, and how to make your first episode.">
+<meta name="theme-color" content="#050506">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/Satoshi-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/site.css?v=7">
+</head>
+<body>
+<a class="skip" href="#main">Skip to the guide</a>
+<header class="bar solid">
+  <a class="mark" href="./" aria-label="Arc Lab, home">
+    <svg viewBox="0 0 32 32" width="22" height="22" aria-hidden="true"><path d="M5 25 A11 15 0 0 1 27 25" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/><circle cx="23.6" cy="13.2" r="3.6" class="mark-dot"/></svg>
+    Arc Lab
+  </a>
+  <a class="bar-cta" href="./#pricing">Pricing</a>
+</header>
+
+<main id="main" class="doc">
+  <h1>Set up the Series Skill</h1>
+  <p class="lede">About 10 minutes, and Claude does most of it. Everything here is public, so you can check it suits your computer before you buy.</p>
+  <nav class="toc" aria-label="On this page">
+    <a href="#need">What you need</a>
+    <a href="#files">Get your files</a>
+    <a href="#place">Put it in place</a>
+    <a href="#setup">Let Claude set it up</a>
+    <a href="#key">Your voice key</a>
+    <a href="#first">Your first episode</a>
+    <a href="#stuck">If something's stuck</a>
+    <a href="#help">Help</a>
+  </nav>
+
+  <h2 id="need">What you need</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>What</th><th>What it's for</th></tr></thead>
+      <tbody>
+        <tr><td>A paid Claude plan with Claude Code</td><td>Runs the skill. Use the desktop app's Code tab or the <code>claude</code> terminal app.</td></tr>
+        <tr><td>Windows 10/11 or macOS 12+</td><td>About 2 GB free and any modern processor. No GPU needed: our code draws every frame, and no AI model makes the pictures.</td></tr>
+        <tr><td>An ElevenLabs account</td><td>The narration, with its stock voices. Free to try; you need a paid ElevenLabs plan if you'll publish commercially.</td></tr>
+        <tr><td>Node.js, Python and ffmpeg</td><td>The engine's free tools. You don't need to install them yourself: Claude does it in step 3, with your OK.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ol class="steps">
+    <li>
+      <h2 id="files">Get your files</h2>
+      <p>Right after you pay, Polar emails your receipt with a link to your order page. It gives you two ways to get the skill:</p>
+      <ul>
+        <li><b>The zip</b>, the easiest: click "Series Skill zip" to download it.</li>
+        <li><b>GitHub</b>, best for updates: connect your free GitHub account and accept the invite to the private <code>arclab-studio/series-skill</code> repository.</li>
+      </ul>
+      <p>The order page also has the button to join our Discord, where the #help channel is.</p>
+    </li>
+    <li>
+      <h2 id="place">Put it where Claude Code finds it</h2>
+      <p>The skill lives in a folder called <code>arc-lab-series</code> inside your skills folder, with <code>SKILL.md</code> directly inside it:</p>
+      <pre><code>Windows   C:\Users\&lt;you&gt;\.claude\skills\arc-lab-series\SKILL.md
+Mac       ~/.claude/skills/arc-lab-series/SKILL.md</code></pre>
+      <h3>With the zip</h3>
+      <p>Unzip it into your skills folder; the zip already contains the <code>arc-lab-series</code> folder. If there's no <code>skills</code> folder yet, make one.</p>
+      <ul>
+        <li><b>Windows:</b> type <code>%USERPROFILE%\.claude\skills</code> into File Explorer's address bar.</li>
+        <li><b>Mac:</b> in Finder, choose Go, then Go to Folder, and type <code>~/.claude/skills</code>. The <code>.claude</code> folder is hidden, so this is the easiest way in.</li>
+      </ul>
+      <h3>With GitHub</h3>
+      <p>One line. On Windows, in PowerShell:</p>
+      <pre><code>git clone https://github.com/arclab-studio/series-skill "$HOME\.claude\skills\arc-lab-series"</code></pre>
+      <p>On a Mac, in Terminal:</p>
+      <pre><code>git clone https://github.com/arclab-studio/series-skill ~/.claude/skills/arc-lab-series</code></pre>
+    </li>
+    <li>
+      <h2 id="setup">Let Claude finish the setup</h2>
+      <p>Make an empty folder for your series, open Claude Code in it, and type:</p>
+      <pre><code>set up the Arc Lab series skill</code></pre>
+      <p>Claude runs the setup check, tells you what's missing (Node.js, Python, ffmpeg, the drawing library) and installs it with your OK. You're done when it says <b>"ready to make episodes"</b>.</p>
+    </li>
+    <li>
+      <h2 id="key">Add your voice key</h2>
+      <p>When Claude makes your series folder, it asks you to paste your ElevenLabs key into a file called <code>.env</code>. You'll find the key at elevenlabs.io, under your profile, in API keys.</p>
+      <p>The key stays on your computer. The skill never prints, shares or uploads it.</p>
+    </li>
+    <li>
+      <h2 id="first">Make your first episode</h2>
+      <p>Give Claude your idea in a sentence or two:</p>
+      <pre><code>Make me a series: a kid and their robot run a night-shift repair shop, and viewers vote each episode.</code></pre>
+      <p>Then you approve three times:</p>
+      <ul>
+        <li><b>The words:</b> the series bible and episode 1's script.</li>
+        <li><b>The look:</b> the voices, then the characters and sets.</li>
+        <li><b>The draft:</b> every shot, with captions, sound and an original score, checked frame by frame, including that nothing sits under the app's buttons.</li>
+      </ul>
+      <p>After your OK, Claude renders the final, makes cover options and writes the post text. Expect a few hours of the computer working for a 30 to 40 second episode, mostly without you. You post it, and the votes decide episode 2.</p>
+    </li>
+  </ol>
+
+  <h2 id="updates">Getting updates</h2>
+  <p><b>With GitHub:</b> ask Claude to "update the Arc Lab skill". <b>With the zip:</b> download the new zip from your order page and replace the <code>arc-lab-series</code> folder. Your series live in their own folders, so nothing of yours is lost either way.</p>
+
+  <h2 id="stuck">If something's stuck</h2>
+  <ul>
+    <li>Ask Claude to run the Arc Lab setup check. It lists exactly what's missing and how to fix it. You can also run it yourself:
+      <pre><code>python ~/.claude/skills/arc-lab-series/engine/arclab.py doctor</code></pre></li>
+    <li>Moved the skill folder? Ask Claude to re-link your series to the engine.</li>
+    <li>Your computer feels slow while rendering? Ask Claude to use fewer parallel workers.</li>
+  </ul>
+
+  <h2 id="help">Help</h2>
+  <div class="callout">
+    <p><b>Ask in #help on our Discord.</b> We answer within 24 hours. You can also email <a href="mailto:contact@arclabstudios.com">contact@arclabstudios.com</a>.</p>
+    <p><b>Changed your mind?</b> Reply to your receipt within 14 days for a full refund, no questions asked.</p>
+  </div>
+  <a class="pill" href="./#pricing">See pricing</a>
+</main>
+
+<div class="doc-foot">
+  <footer class="foot">
+    <div class="foot-row">
+      <p>© 2026 Arc Lab</p>
+      <nav aria-label="Footer"><a href="./">Home</a><a href="start.html" aria-current="page">Setup guide</a><a href="terms.html">Terms and refunds</a><a href="privacy.html">Privacy</a></nav>
+    </div>
+    <p class="legal">The Arc Lab Series Skill is a code toolkit you run on your own computer. It contains original characters only, and no Pokémon characters, art or sounds.</p>
+  </footer>
+</div>
+</body>
+</html>
