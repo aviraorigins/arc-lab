@@ -65,16 +65,20 @@
       <pre><code>Windows   C:\Users\&lt;you&gt;\.claude\skills\arc-lab-series\SKILL.md
 Mac       ~/.claude/skills/arc-lab-series/SKILL.md</code></pre>
       <h3>With the zip</h3>
-      <p>Unzip it into your skills folder; the zip already contains the <code>arc-lab-series</code> folder. If there's no <code>skills</code> folder yet, make one.</p>
+      <p><b>Easiest: let Claude do it.</b> Open Claude Code and type:</p>
+      <pre><code>Unzip arc-lab-series-v1.0.0.zip from my Downloads into my Claude skills folder, so the file ends up at .claude/skills/arc-lab-series/SKILL.md in my home folder</code></pre>
+      <p>Or by hand:</p>
       <ul>
-        <li><b>Windows:</b> type <code>%USERPROFILE%\.claude\skills</code> into File Explorer's address bar.</li>
-        <li><b>Mac:</b> in Finder, choose Go, then Go to Folder, and type <code>~/.claude/skills</code>. The <code>.claude</code> folder is hidden, so this is the easiest way in.</li>
+        <li><b>Windows:</b> right-click the zip and choose Extract All. Replace the whole suggested path with <code>%USERPROFILE%\.claude\skills</code>, then click Extract. Don't keep Windows' suggested folder name, or the skill ends up one folder too deep.</li>
+        <li><b>Mac:</b> double-click the zip. In Finder, choose Go, then Go to Folder, type <code>~/.claude</code>, open the <code>skills</code> folder (make it if it isn't there), and drag the <code>arc-lab-series</code> folder into it.</li>
       </ul>
       <h3>With GitHub</h3>
+      <p>You need git. On Windows, install Git for Windows from git-scm.com; on a Mac, the first time you type <code>git</code> it offers to install it. The repository is private, so git asks you to sign in to GitHub the first time. You can also ask Claude to clone it and help you sign in.</p>
       <p>One line. On Windows, in PowerShell:</p>
       <pre><code>git clone https://github.com/arclab-studio/series-skill "$HOME\.claude\skills\arc-lab-series"</code></pre>
       <p>On a Mac, in Terminal:</p>
       <pre><code>git clone https://github.com/arclab-studio/series-skill ~/.claude/skills/arc-lab-series</code></pre>
+      <p><b>Then start a new Claude Code session</b> (a new chat, or reopen the app), so it sees the skill.</p>
     </li>
     <li>
       <h2 id="setup">Let Claude finish the setup</h2>
@@ -106,8 +110,11 @@ Mac       ~/.claude/skills/arc-lab-series/SKILL.md</code></pre>
 
   <h2 id="stuck">If something's stuck</h2>
   <ul>
-    <li>Ask Claude to run the Arc Lab setup check. It lists exactly what's missing and how to fix it. You can also run it yourself:
-      <pre><code>python ~/.claude/skills/arc-lab-series/engine/arclab.py doctor</code></pre></li>
+    <li>Ask Claude to run the Arc Lab setup check. It lists exactly what's missing and how to fix it, including a skill folder unzipped one level too deep. You can also run it yourself. On Windows, in PowerShell:
+      <pre><code>python "$HOME\.claude\skills\arc-lab-series\engine\arclab.py" doctor</code></pre>
+      On a Mac, in Terminal:
+      <pre><code>python3 ~/.claude/skills/arc-lab-series/engine/arclab.py doctor</code></pre></li>
+    <li>Claude doesn't seem to know the skill? Start a new Claude Code session; it only looks for skills when a session starts.</li>
     <li>Moved the skill folder? Ask Claude to re-link your series to the engine.</li>
     <li>Your computer feels slow while rendering? Ask Claude to use fewer parallel workers.</li>
   </ul>
