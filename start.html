@@ -6,9 +6,22 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; base-uri 'none'; form-action 'none'">
 <title>Setup guide | Arc Lab</title>
 <meta name="description" content="How to set up the Arc Lab Series Skill in about 10 minutes: what you need, where the files go, and how to make your first episode.">
+<link rel="canonical" href="https://arclabstudios.com/start.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Arc Lab">
+<meta property="og:title" content="Setup guide | Arc Lab">
+<meta property="og:description" content="How to set up the Arc Lab Series Skill in about 10 minutes: what you need, where the files go, and how to make your first episode.">
+<meta property="og:url" content="https://arclabstudios.com/start.html">
+<meta property="og:image" content="https://arclabstudios.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Arc Lab. Your idea. A series people vote on.">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#050506">
 <meta name="referrer" content="no-referrer">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="assets/favicon.svg?v=2" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/Satoshi-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/site.css?v=7">
 </head>
@@ -16,7 +29,7 @@
 <a class="skip" href="#main">Skip to the guide</a>
 <header class="bar solid">
   <a class="mark" href="./" aria-label="Arc Lab, home">
-    <svg viewBox="0 0 32 32" width="22" height="22" aria-hidden="true"><path d="M5 25 A11 15 0 0 1 27 25" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/><circle cx="23.6" cy="13.2" r="3.6" class="mark-dot"/></svg>
+    <svg viewBox="14 0 36 64" width="13.5" height="24" aria-hidden="true"><g transform="translate(-0.875 -1.75)"><path d="M45 53 V27 A12.5 12.5 0 0 0 20.75 22.72" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"/><circle cx="29.5" cy="47.2" r="9.6" class="mark-dot"/></g></svg>
     Arc Lab
   </a>
   <a class="bar-cta" href="./#pricing">Pricing</a>
@@ -41,9 +54,10 @@
     <table>
       <thead><tr><th>What</th><th>What it's for</th></tr></thead>
       <tbody>
-        <tr><td>A paid Claude plan with Claude Code</td><td>Runs the skill. Use the desktop app's Code tab or the <code>claude</code> terminal app.</td></tr>
+        <tr><td>Claude Code with a paid Claude plan (Pro or Max) or a pay-as-you-go Claude API key</td><td>Runs the skill. With a plan, use the desktop app's Code tab or the <code>claude</code> terminal app. With an API key, use the <code>claude</code> terminal app: when it first asks how to sign in, choose the option with API usage billing, and add credit to that account first. You pay for what you use: an episode takes a few hours of the skill working, so the usage adds up, and we haven't measured what one episode costs, so set a spending limit in your API account.</td></tr>
         <tr><td>Windows 10/11 or macOS 12+</td><td>About 2 GB free and any modern processor. No GPU needed: our code draws every frame, and no AI model makes the pictures.</td></tr>
-        <tr><td>An ElevenLabs account</td><td>The narration, with its stock voices. Free to try; you need a paid ElevenLabs plan if you'll publish commercially.</td></tr>
+        <tr><td>An ElevenLabs account</td><td>The narration, with its stock voices. Needed for every episode in this version: without your ElevenLabs key, the skill can't build one. Free to try; you need a paid ElevenLabs plan if you'll publish commercially. We're testing a free voice that runs on your computer, but it isn't in this version, so plan on ElevenLabs. If the free voice passes our tests, it will come as a free update.</td></tr>
+        <tr><td>Nothing extra for music or sound effects</td><td>The skill writes an original score in code and has its own sound-effects library made in code, plus free Pixabay sounds you can choose to fetch. No music service or extra account.</td></tr>
         <tr><td>Node.js, Python and ffmpeg</td><td>The engine's free tools. You don't need to install them yourself: Claude does it in step 3, with your OK.</td></tr>
       </tbody>
     </table>
@@ -101,7 +115,7 @@ Mac       ~/.claude/skills/arc-lab-series/SKILL.md</code></pre>
         <li><b>The look:</b> the voices, then the characters and sets.</li>
         <li><b>The draft:</b> every shot, with captions, sound and an original score, checked frame by frame, including that nothing sits under the app's buttons.</li>
       </ul>
-      <p>After your OK, Claude renders the final, makes cover options and writes the post text. Expect a few hours of the computer working for a 30 to 40 second episode, mostly without you. You post it, and the votes decide episode 2.</p>
+      <p>After your OK, Claude renders the final, makes cover options and writes the post text. Expect a few hours of the skill working for a 30 to 40 second episode, mostly without you. You post it, and the votes decide episode 2.</p>
     </li>
   </ol>
 

@@ -17,10 +17,10 @@ const FOUNDING_PERK = 'Founding members get in before the rest of the list, and 
 // The launch, in UTC (the gameplan's times). The page switches by itself: "pre" (waitlist), "founders" (founding members
 // are buying), "early" (the whole waitlist is buying; people who join now get the waitlist price), "public" (buy buttons
 // for everyone). If Thursday's gate moves the launch, move all four by 24 hours.
-const OPENS = { founders: '2026-10-30T01:00:00Z', early: '2026-10-30T13:00:00Z', public: '2026-11-01T14:00:00Z' };
-const LIST_PRICE_ENDS = '2026-11-02T13:00:00Z';   // when EARLY40 stops
+const OPENS = { founders: '2026-11-01T01:00:00Z', early: '2026-11-01T14:00:00Z', public: '2026-11-03T14:00:00Z' };  // moved 48 h on 30 Oct
+const LIST_PRICE_ENDS = '2026-11-04T14:00:00Z';   // when EARLY40 stops
 // Polar checkout links, pasted in on Thursday evening: "public" has no code, "waitlist" has EARLY40 already applied.
-// Until "public" is filled in, the page stays in early access even after Sunday, so no buy button ever points nowhere.
+// Until "public" is filled in, the page stays in early access even after Tuesday, so no buy button ever points nowhere.
 const CHECKOUT = { public: '', waitlist: '' };
 
 (() => {

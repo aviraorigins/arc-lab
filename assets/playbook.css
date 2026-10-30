@@ -326,6 +326,6 @@
   .back-in .credit .credit-fine { margin-top: 3mm; font-size: 8pt; }
   .pf a { text-decoration: none; }
   /* the watermark: down the right margin of every page, and on every template box */
-  .page::before { content: "Free from Arc Lab  ·  aviraorigins.github.io/arc-lab  ·  Share it, credit us"; position: absolute; top: 0; bottom: 0; right: 6mm; z-index: 3; display: flex; align-items: center; justify-content: center; writing-mode: vertical-rl; transform: rotate(180deg); font-size: 7pt; font-weight: 600; letter-spacing: .04em; color: rgba(255, 255, 255, .24); pointer-events: none; }
-  .tpl-head::after { content: "Arc Lab · aviraorigins.github.io/arc-lab"; font-size: 7pt; color: var(--dim); }
+  .page::before { content: "Free from Arc Lab  ·  arclabstudios.com  ·  Share it, credit us"; position: absolute; top: 0; bottom: 0; right: 6mm; z-index: 3; display: flex; align-items: center; justify-content: center; writing-mode: vertical-rl; transform: rotate(180deg); font-size: 7pt; font-weight: 600; letter-spacing: .04em; color: rgba(255, 255, 255, .24); pointer-events: none; }
+  .tpl-head::after { content: "Arc Lab · arclabstudios.com"; font-size: 7pt; color: var(--dim); }
 }

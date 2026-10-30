@@ -23,7 +23,7 @@
   document.addEventListener('copy', (e) => {
     const text = String(getSelection());
     if (viaButton || text.length < 200 || !e.clipboardData) return;
-    e.clipboardData.setData('text/plain', `${text}\n\nFrom The Vote Loop Playbook by Arc Lab: https://aviraorigins.github.io/arc-lab/ (free, CC BY-NC 4.0)`);
+    e.clipboardData.setData('text/plain', `${text}\n\nFrom The Vote Loop Playbook by Arc Lab: https://arclabstudios.com/ (free, CC BY-NC 4.0)`);
     e.preventDefault();
   });
 })();
