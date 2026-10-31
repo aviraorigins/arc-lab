@@ -19,6 +19,7 @@ const FOUNDING_PERK = 'Founding members get in before the rest of the list, and 
 // for everyone). If the launch moves again, move all four together.
 const OPENS = { founders: '2026-11-01T01:00:00Z', early: '2026-11-01T14:00:00Z', public: '2026-11-03T14:00:00Z' };  // moved 48 h on 30 Oct
 const LIST_PRICE_ENDS = '2026-11-04T14:00:00Z';   // when EARLY40 stops
+const FOUNDERS_PRICE_ENDS = '2026-11-04T01:00:00Z';   // when FOUNDING40 stops (Tue 3 Nov, 8 PM New York), 13 hours earlier
 // Polar checkout links (made 31 Oct): "public" has no code, "waitlist" has EARLY40 already applied (live from early).
 // Without "public", the page would stay in early access even after Tuesday, so no buy button ever points nowhere.
 const CHECKOUT = {
@@ -41,7 +42,7 @@ const CHECKOUT = {
   const listPriceOn = PHASE === 'early' || (PHASE === 'public' && now < Date.parse(LIST_PRICE_ENDS));
   document.documentElement.dataset.phase = PHASE;
   // dates are shown in the visitor's own time zone
-  const TIMES = { ...OPENS, listEnds: LIST_PRICE_ENDS };
+  const TIMES = { ...OPENS, listEnds: LIST_PRICE_ENDS, foundersEnds: FOUNDERS_PRICE_ENDS };
   const fmt = (iso) => new Date(iso).toLocaleString(undefined, { weekday: 'short', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' }) + ' your time';
   // data-has-link / data-no-link: show a piece only when that checkout link is (or isn't) filled in yet
   const shows = (el) => !el.dataset.show || el.dataset.show.split(' ').includes(PHASE)

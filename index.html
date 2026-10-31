@@ -23,8 +23,8 @@
 <link rel="icon" href="assets/favicon.svg?v=2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/Satoshi-Variable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/site.css?v=8">
-<script defer src="assets/site.js?v=9"></script>
+<link rel="stylesheet" href="assets/site.css?v=9">
+<script defer src="assets/site.js?v=10"></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to the page</a>
@@ -251,6 +251,7 @@
           <p class="when" data-show="pre">At launch</p>
           <p class="when" data-show="founders early" hidden>Open now</p>
           <p class="what"><span class="huge">40%</span> off</p>
+          <p class="was-now">The Series Skill: <s><span class="sr">public price </span>$24</s> <b><span class="sr">, the list's price </span>$14.40</b></p>
           <p class="how" data-show="pre">Waitlist only, for the first 72 hours, on any tier.</p>
           <p class="how" data-show="founders" hidden>For the whole list from <span data-time="early">Sun 1 Nov, 9 AM New York</span>, for 72 hours.</p>
           <p class="how" data-show="early" data-has-link="waitlist" hidden>Join now and your 40% link appears right here. It ends <span data-time="listEnds">Wed 4 Nov, 9 AM New York</span>.</p>
@@ -287,10 +288,12 @@
         <p class="tier-tag">Pay once</p>
         <h3>Series Skill</h3>
         <p class="tier-for">The skill and engine to make your own voted series.</p>
-        <p class="price"><b>$24</b><span>one-time</span></p>
-        <p class="price-note" data-show="pre">The waitlist pays $14.40 at launch.</p>
-        <p class="price-note" data-show="founders early" hidden>The waitlist pays $14.40 until <span data-time="listEnds">Wed 4 Nov, 9 AM New York</span>.</p>
-        <p class="price-note" data-show="public" data-list-price hidden>On the waitlist? Use the link in your email for 40% off, until <span data-time="listEnds">Wed 4 Nov, 9 AM New York</span>.</p>
+        <p class="price price-list" data-show="pre founders early"><s><span class="sr">Public price </span>$24</s> <b><span class="sr">The list's price </span>$14.40</b><span>one-time, 40% off for the list</span></p>
+        <p class="price" data-show="public" hidden><b>$24</b><span>one-time</span></p>
+        <p class="price-note" data-show="pre">Founding members and the waitlist pay $14.40 for 72 hours from launch. Then it's $24.</p>
+        <p class="price-note" data-show="founders" hidden>Founding members pay $14.40 now, until <span data-time="foundersEnds">Tue 3 Nov, 8 PM New York</span>. The rest of the list pays it from <span data-time="early">Sun 1 Nov, 9 AM New York</span> until <span data-time="listEnds">Wed 4 Nov, 9 AM New York</span>. Then it's $24.</p>
+        <p class="price-note" data-show="early" hidden>The list pays $14.40: founding members until <span data-time="foundersEnds">Tue 3 Nov, 8 PM New York</span>, the waitlist until <span data-time="listEnds">Wed 4 Nov, 9 AM New York</span>. Then it's $24.</p>
+        <p class="price-note" data-show="public" data-list-price hidden>On the list? Use the link in your email for 40% off: founding members until <span data-time="foundersEnds">Tue 3 Nov, 8 PM New York</span>, the waitlist until <span data-time="listEnds">Wed 4 Nov, 9 AM New York</span>.</p>
         <ul><li>The skill and its engine: characters, sets, camera and captions drawn in code, plus an original score and a built-in sound library</li><li>An original character kit and the story templates</li><li>A complete example series: Day 23, episode 1</li><li>Setup and directing lessons</li><li>Every v1 update, and help on our Discord</li></ul>
         <a class="pill" href="#join" data-join data-show="pre founders early">Join for early access<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
         <a class="pill" href="#pricing" data-buy="public" data-show="public" hidden>Get the Series Skill<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>

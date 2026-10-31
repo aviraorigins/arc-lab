@@ -479,6 +479,13 @@ main > section { padding-left: var(--gutter); padding-right: var(--gutter); }
 .price b { font-size: clamp(2.6rem, 4.4vw, 3.4rem); font-weight: 800; letter-spacing: -.045em; line-height: 1; color: #fff; }
 .price span { color: var(--soft); font-size: .9375rem; }
 .price-note { margin-top: 10px; color: #FFE58A; font-size: .9375rem; font-weight: 500; }
+/* the list's price: the usual $24 struck out beside the $14.40 in gold, larger than the plain price */
+.price s { color: var(--dim); font-size: clamp(1.5rem, 2.4vw, 2rem); font-weight: 700; letter-spacing: -.03em; text-decoration: line-through 3px var(--red); }
+.price-list b { color: var(--gold); font-size: clamp(3.2rem, 5.6vw, 4.4rem); }
+.price-list > span:last-child { flex-basis: 100%; }
+.was-now { margin-top: 10px; color: var(--soft); font-size: 1rem; }
+.was-now s { color: #8A8C96; text-decoration: line-through 2px var(--red); }
+.was-now b { color: #fff; font-size: 1.25rem; }
 .tier-tag.soon { background: rgba(255, 255, 255, .1); color: #fff; }
 .tier-fine { margin-top: 12px; color: var(--dim); font-size: .8125rem; text-align: center; }
 .trust { list-style: none; max-width: 1120px; margin: 20px auto 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; text-align: left; }
