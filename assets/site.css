@@ -170,6 +170,28 @@ main > section { padding-left: var(--gutter); padding-right: var(--gutter); }
 .wall-more:hover { background-color: rgba(255, 255, 255, .06); box-shadow: inset 0 0 0 1px var(--gold); }
 .wall-more[hidden] { display: none; }
 .receipts > .fine { margin-top: 8px; }
+/* the proof's middle: what the views turned into, step by step (gold only on the last number), then part after part */
+.proof-block { max-width: 1240px; margin: clamp(80px, 10vw, 128px) auto 0; }
+.proof-block .proof-note { max-width: 56ch; margin-left: auto; margin-right: auto; }
+.proof-block .figures { margin-top: 44px; }
+.path { list-style: none; margin: 44px auto 0; padding: 0; display: grid; border-top: 1px solid var(--hair); }
+.path li { position: relative; padding: 30px 8px 28px; }
+.path li + li { border-top: 1px solid var(--hair); }
+.path li + li::before { content: ""; position: absolute; top: -6px; left: 50%; margin-left: -5px; width: 10px; height: 10px; border: solid var(--soft); border-width: 0 1.5px 1.5px 0; background: var(--bg); transform: rotate(45deg); }
+.path small { display: block; color: var(--soft); font-size: .875rem; }
+.path b { display: block; margin-top: 8px; font-weight: 800; font-size: clamp(2rem, 3vw, 3rem); line-height: 1; letter-spacing: -.035em; white-space: nowrap; }
+.path li:last-child b { color: var(--gold); }
+.path span { display: block; max-width: 30ch; margin: 12px auto 0; color: var(--soft); font-size: .9375rem; line-height: 1.45; }
+.path-cta { margin-top: 34px; }
+.tally { max-width: 60ch; margin: 28px auto 0; color: var(--soft); font-size: .9375rem; line-height: 1.6; }
+.tally + .tally { margin-top: 12px; }
+.tally b { color: var(--text); }
+@media (min-width: 960px) {
+  .path { grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); }
+  .path li { padding: 30px 16px 8px; }
+  .path li + li { border-top: 0; border-left: 1px solid var(--hair); }
+  .path li + li::before { top: 78px; left: -6px; margin-left: 0; transform: rotate(-45deg); }
+}
 
 /* 3. the series */
 .watch { padding-top: clamp(90px, 11vw, 150px); }
@@ -178,12 +200,21 @@ main > section { padding-left: var(--gutter); padding-right: var(--gutter); }
 .device-screen { aspect-ratio: 9 / 16; border-radius: 44px; overflow: hidden; background: #000; }
 .device video { width: 100%; height: 100%; object-fit: cover; }
 .device figcaption { margin-top: 18px; font-size: .875rem; color: var(--dim); }
-.reel-row { list-style: none; margin: clamp(56px, 7vw, 88px) auto 0; padding: 0; max-width: 1200px; display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 14px; }
+.reel-row { list-style: none; margin: clamp(56px, 7vw, 88px) auto 0; padding: 0; max-width: 1200px; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 14px; }
+/* wide screens: Part 1, the one that broke out, takes a double cell and Parts 2 to 11 fill two rows beside it */
+@media (min-width: 981px) {
+  .reel-row li:first-child { grid-column: span 2; grid-row: span 2; }
+  .reel-row li:first-child a { height: 100%; }
+  .reel-row li:first-child img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .reel-row li:first-child span { left: 14px; bottom: 14px; padding: 7px 14px; font-size: .875rem; }
+  .reel-row li:first-child span b { font-size: 1.125rem; }
+}
 .reel-row a { position: relative; display: block; border-radius: 18px; overflow: hidden; box-shadow: 0 0 0 1px var(--hair); transition: transform .8s var(--ease), box-shadow .8s var(--ease); }
 .reel-row a:hover { transform: translateY(-6px); box-shadow: 0 0 0 1px var(--hair-2), 0 30px 60px -30px rgba(0, 0, 0, .9); }
 .reel-row span { position: absolute; left: 10px; bottom: 10px; padding: 5px 10px; border-radius: 999px; background: rgba(5, 5, 6, .78); color: var(--soft); font-size: .75rem; line-height: 1.2; }
 .reel-row span b { color: #fff; font-size: .875rem; }
 .reel-row .new { background: var(--red); color: #fff; font-weight: 700; }
+.reel-note { margin-top: 18px; }
 
 /* 3b. you vote: the real end of Part 1 */
 .vote-demo { padding-top: clamp(110px, 14vw, 180px); text-align: center; }
