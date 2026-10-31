@@ -16,12 +16,15 @@ const FOUNDING_PERK = 'Founding members get in before the rest of the list, and 
 
 // The launch, in UTC (the gameplan's times). The page switches by itself: "pre" (waitlist), "founders" (founding members
 // are buying), "early" (the whole waitlist is buying; people who join now get the waitlist price), "public" (buy buttons
-// for everyone). If Thursday's gate moves the launch, move all four by 24 hours.
+// for everyone). If the launch moves again, move all four together.
 const OPENS = { founders: '2026-11-01T01:00:00Z', early: '2026-11-01T14:00:00Z', public: '2026-11-03T14:00:00Z' };  // moved 48 h on 30 Oct
 const LIST_PRICE_ENDS = '2026-11-04T14:00:00Z';   // when EARLY40 stops
-// Polar checkout links, pasted in on Thursday evening: "public" has no code, "waitlist" has EARLY40 already applied.
-// Until "public" is filled in, the page stays in early access even after Tuesday, so no buy button ever points nowhere.
-const CHECKOUT = { public: '', waitlist: '' };
+// Polar checkout links (made 31 Oct): "public" has no code, "waitlist" has EARLY40 already applied (live from early).
+// Without "public", the page would stay in early access even after Tuesday, so no buy button ever points nowhere.
+const CHECKOUT = {
+  public: 'https://buy.polar.sh/polar_cl_jbAcECVbqxzap3ZvJ99XsjXOGW1Ku7urjULQC0KKYJp',
+  waitlist: 'https://buy.polar.sh/polar_cl_W72qfFpWLHVZDWIWxKQZL6HpGsBNHC5uV6ptT2r0EHQ',
+};
 
 (() => {
   document.documentElement.classList.add('js');
@@ -45,9 +48,12 @@ const CHECKOUT = { public: '', waitlist: '' };
     && (!el.hasAttribute('data-list-price') || listPriceOn)
     && (!el.dataset.hasLink || Boolean(CHECKOUT[el.dataset.hasLink]))
     && (!el.dataset.noLink || !CHECKOUT[el.dataset.noLink]);
+  // a visitor's utm_* tags (from a Story or email link) ride along to Polar, which records them on the order
+  const utm = [...new URLSearchParams(location.search)].filter(([k]) => k.startsWith('utm_'));
+  const tagged = (u) => (utm.length ? `${u}${u.includes('?') ? '&' : '?'}${new URLSearchParams(utm)}` : u);
   const applyPhase = (root) => {
     root.querySelectorAll('[data-show]').forEach((el) => { el.hidden = !shows(el); });
-    root.querySelectorAll('[data-buy]').forEach((a) => { const u = CHECKOUT[a.dataset.buy]; if (u) a.href = u; });
+    root.querySelectorAll('[data-buy]').forEach((a) => { const u = CHECKOUT[a.dataset.buy]; if (u) a.href = tagged(u); });
     root.querySelectorAll('[data-time]').forEach((el) => { if (TIMES[el.dataset.time]) el.textContent = fmt(TIMES[el.dataset.time]); });
   };
   applyPhase(document);
