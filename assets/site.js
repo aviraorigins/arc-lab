@@ -25,6 +25,7 @@ const FOUNDERS_PRICE_ENDS = '2026-11-04T01:00:00Z';   // when FOUNDING40 stops (
 const CHECKOUT = {
   public: 'https://buy.polar.sh/polar_cl_jbAcECVbqxzap3ZvJ99XsjXOGW1Ku7urjULQC0KKYJp',
   waitlist: 'https://buy.polar.sh/polar_cl_W72qfFpWLHVZDWIWxKQZL6HpGsBNHC5uV6ptT2r0EHQ',
+  makingof: '',   // the $9 DIY Kit (Fri 6 Nov): paste its Polar checkout link here and its card becomes a buy button
 };
 
 (() => {
@@ -45,7 +46,7 @@ const CHECKOUT = {
   const TIMES = { ...OPENS, listEnds: LIST_PRICE_ENDS, foundersEnds: FOUNDERS_PRICE_ENDS };
   const fmt = (iso) => new Date(iso).toLocaleString(undefined, { weekday: 'short', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' }) + ' your time';
   // data-has-link / data-no-link: show a piece only when that checkout link is (or isn't) filled in yet
-  const shows = (el) => !el.dataset.show || el.dataset.show.split(' ').includes(PHASE)
+  const shows = (el) => (!el.dataset.show || el.dataset.show.split(' ').includes(PHASE))
     && (!el.hasAttribute('data-list-price') || listPriceOn)
     && (!el.dataset.hasLink || Boolean(CHECKOUT[el.dataset.hasLink]))
     && (!el.dataset.noLink || !CHECKOUT[el.dataset.noLink]);
@@ -53,7 +54,7 @@ const CHECKOUT = {
   const utm = [...new URLSearchParams(location.search)].filter(([k]) => k.startsWith('utm_'));
   const tagged = (u) => (utm.length ? `${u}${u.includes('?') ? '&' : '?'}${new URLSearchParams(utm)}` : u);
   const applyPhase = (root) => {
-    root.querySelectorAll('[data-show]').forEach((el) => { el.hidden = !shows(el); });
+    root.querySelectorAll('[data-show], [data-has-link], [data-no-link]').forEach((el) => { el.hidden = !shows(el); });
     root.querySelectorAll('[data-buy]').forEach((a) => { const u = CHECKOUT[a.dataset.buy]; if (u) a.href = tagged(u); });
     root.querySelectorAll('[data-time]').forEach((el) => { if (TIMES[el.dataset.time]) el.textContent = fmt(TIMES[el.dataset.time]); });
   };
@@ -369,10 +370,11 @@ const CHECKOUT = {
     });
   }
 
-  // vote on the real end of Part 1: the bars fill to the real poll, then Part 2 shows what the vote made
-  const vd = document.querySelector('.vd');
-  if (vd) {
+  // vote on a real ending (Your Trainer Arc Part 1, Day 23 episode 1): the bars fill to the real poll, then the next part
+  // shows what the vote made. data-voters on a .vd gives the poll's size where we know it ("" = not known).
+  document.querySelectorAll('.vd').forEach((vd) => {
     const opts = [...vd.querySelectorAll('.vd-opt')], verdict = vd.querySelector('.vd-verdict'), next = vd.querySelector('.vd-next');
+    const voters = vd.dataset.voters === undefined ? '14,400 people' : vd.dataset.voters;
     opts.forEach((b) => b.addEventListener('click', () => {
       if (vd.classList.contains('voted')) return;
       vd.classList.add('voted');
@@ -382,12 +384,13 @@ const CHECKOUT = {
         o.querySelector('.vd-fill').style.width = o.dataset.pct + '%';
       });
       const pct = Number(b.dataset.pct);
+      const of = voters ? ` of ${voters}` : ' of voters';
       verdict.innerHTML = pct >= 50
-        ? `You voted with <b>${pct}%</b> of 14,400 people.`
-        : `Bold. Only <b>${pct}%</b> of 14,400 people voted with you.`;
+        ? `You voted with <b>${pct}%</b>${of}.`
+        : `Bold. Only <b>${pct}%</b>${of} voted with you.`;
       setTimeout(() => { next.hidden = false; }, reduce ? 0 : 900);
     }));
-  }
+  });
 
   // how many people have joined. Tally copies every sign-up into the founder's Google Sheet; one small tab of it, holding
   // only the total (first line) and the join times in UTC (newest first, "2026-10-27 09:12"), is published as CSV.

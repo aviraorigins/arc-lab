@@ -23,9 +23,10 @@
 <link rel="icon" href="assets/favicon.svg?v=2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/Satoshi-Variable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/site.css?v=11">
-<script defer src="assets/site.js?v=11"></script>
+<link rel="stylesheet" href="assets/site.css?v=12">
+<script defer src="assets/site.js?v=12"></script>
 <script defer src="assets/wall.js?v=1"></script>
+<script defer src="assets/idea.js?v=1"></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to the page</a>
@@ -199,6 +200,39 @@
     <p class="fine rv">The real poll under Part 1 on Instagram: 14.4K responses, 91% "Cut it free".</p>
   </section>
 
+  <!-- 3c. what the skill itself made: Day 23, episode 1, playable up to its real vote -->
+  <section class="made" id="made" aria-labelledby="made-h">
+    <h2 id="made-h" class="statement-sm rv">This one the skill made.</h2>
+    <p class="lead rv">Day 23 is our own series, made with the Series Skill from one idea: the story, the voices, every drawing and every check. Play episode 1. It stops on its real vote.</p>
+    <div class="vd made-vd rv" data-voters="">
+      <figure class="made-shot">
+        <div class="device-frame"><div class="device-screen">
+          <video src="assets/d23/ep1.mp4" poster="assets/d23/ep1_poster.jpg" playsinline preload="none" controls aria-label="Day 23, episode 1, with sound"></video>
+        </div></div>
+        <figcaption>Day 23, episode 1. 38 seconds, sound on.</figcaption>
+      </figure>
+      <div class="vd-panel">
+        <p class="vd-tag">Episode 1 ends here</p>
+        <p class="vd-scene">On Main Street, one of the dead turns, then all of them. The dog is waiting. What do you do?</p>
+        <div class="vd-opts" role="group" aria-label="Your vote">
+          <button type="button" class="vd-opt" data-pct="67" aria-pressed="false"><i class="vd-fill"></i><span class="vd-n">1</span><span class="vd-l">The police car</span><span class="vd-p">67%</span></button>
+          <button type="button" class="vd-opt" data-pct="17" aria-pressed="false"><i class="vd-fill"></i><span class="vd-n">2</span><span class="vd-l">The bus</span><span class="vd-p">17%</span></button>
+          <button type="button" class="vd-opt" data-pct="17" aria-pressed="false"><i class="vd-fill"></i><span class="vd-n">3</span><span class="vd-l">Back inside</span><span class="vd-p">17%</span></button>
+        </div>
+        <p class="vd-verdict" aria-live="polite"></p>
+        <div class="vd-next vd-next-text" hidden>
+          <div>
+            <p class="vd-tag">So episode 2 was written from the vote</p>
+            <p class="vd-title">You run for the police car.</p>
+            <p class="vd-meta">Every Day 23 episode since starts from the last one's vote.</p>
+          </div>
+          <a class="pill" href="#idea">Try it with your idea<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        </div>
+      </div>
+    </div>
+    <p class="fine rv">Day 23 is a new page on Instagram, @day23.series. This is episode 1's re-cut: it opens on the street scene under a title card and has a shorter vote. The poll is from the first post of episode 1, which had 1.6K views, so it was a small poll: 67% the police car, 17% the bus, 17% back inside (rounded).</p>
+  </section>
+
   <!-- 4. the product: the skill running -->
 
   <section class="run" id="how" aria-labelledby="run-h">
@@ -220,6 +254,29 @@
       <p class="sr">A run of the skill: you type an idea, then the skill builds the series bible, the script (you approve), the voices, the look (you approve), the shots, the sound and a frame check (you approve), and hands you a finished episode with its posting pack.</p>
       <figcaption>An illustration of one run. The next episode is written from your audience's votes.</figcaption>
     </figure>
+    <div class="idea rv" id="idea">
+      <div class="idea-head">
+        <h3>Try it with your own idea.</h3>
+        <p>Type your idea in one line. This page fills in a small taste of the skill's first two steps, the series bible and the episode 1 script, from our templates. Nothing is sent anywhere, and no AI runs on this page.</p>
+      </div>
+      <form class="idea-form" novalidate>
+        <label class="sr" for="idea-in">Your series idea, in one line</label>
+        <input id="idea-in" type="text" maxlength="140" autocomplete="off" aria-describedby="idea-err" placeholder="A cat runs a heist crew.">
+        <button type="submit" class="pill">Fill in my sample</button>
+      </form>
+      <p class="idea-err" id="idea-err" aria-live="polite"></p>
+      <p class="sr" id="idea-status" role="status"></p>
+      <div class="idea-out" hidden>
+        <p class="idea-tag">A sample, filled in from templates</p>
+        <dl>
+          <div><dt>Premise</dt><dd data-f="premise"></dd></div>
+          <div><dt>The cast</dt><dd><ul data-f="cast"></ul></dd></div>
+          <div><dt>Episode 1 ends</dt><dd data-f="cliff"></dd></div>
+          <div><dt>The vote</dt><dd><ol data-f="vote"></ol></dd></div>
+        </dl>
+        <p class="fine">A preview of the shape only. In the skill, the real bible and script are written from your idea, and nothing goes further until you approve them. Original ideas only: if yours borrows someone else's characters, the skill suggests an original take.</p>
+      </div>
+    </div>
   </section>
 
   <!-- 5. what's in the box -->
@@ -239,7 +296,8 @@
   <section class="offer" id="join" aria-labelledby="join-h">
     <div class="offer-card rv">
       <h2 id="join-h"><span class="ph" data-show="pre founders early">Join the waitlist.<br><span>Here's what you get.</span></span><span class="ph" data-show="public" hidden>The free playbook.<br><span>Yours in a minute.</span></span></h2>
-      <p class="offer-sub" data-show="public" hidden>How Your Trainer Arc got 11,786 votes in a day: the hook, the vote end card, the pinned comment and the posting rhythm. Free, with an email when the Making-of Pack and Studio open.</p>
+      <p class="offer-sub" data-show="public" data-no-link="makingof" hidden>How Your Trainer Arc got 11,786 votes in a day: the hook, the vote end card, the pinned comment and the posting rhythm. Free, with an email when the DIY Kit and Studio open.</p>
+      <p class="offer-sub" data-show="public" data-has-link="makingof" hidden>How Your Trainer Arc got 11,786 votes in a day: the hook, the vote end card, the pinned comment and the posting rhythm. Free, with an email when Studio opens.</p>
       <ol class="gets" data-show="pre founders early">
         <li>
           <p class="when">Today, free</p>
@@ -281,7 +339,7 @@
   <!-- 7. pricing -->
   <section class="tiers-sec" id="pricing" aria-labelledby="tiers-h">
     <h2 id="tiers-h" class="statement-sm rv">Pricing.</h2>
-    <p class="lead rv">One tool, paid once. Extras when you want them.</p>
+    <p class="lead rv">Two ways in. Have Claude Code? The Series Skill makes your series on your own computer, drawn in code. No Claude Code? The DIY Kit walks you through making your own, step by step.</p>
     <div class="tiers">
       <article class="tier tier-main rv">
         <p class="tier-tag">Pay once</p>
@@ -299,13 +357,18 @@
         <p class="tier-fine">Instant download and private GitHub access. 14-day refund. <a href="#need">Check what you'll need</a> before you buy.</p>
       </article>
       <article class="tier rv">
-        <p class="tier-tag soon">Out 6 Nov</p>
-        <h3>Making-of Pack</h3>
-        <p class="tier-for">Day 23, episode 1, taken apart file by file.</p>
+        <p class="tier-tag soon" data-no-link="makingof">Out 6 Nov</p>
+        <p class="tier-tag" data-has-link="makingof" hidden>No install needed</p>
+        <h3>DIY Kit</h3>
+        <p class="tier-for">Plan, write and make your own voted series, one step at a time. No Claude Code needed.</p>
+        <p class="tier-plain">The free playbook explains the vote loop; this kit walks you through doing it. It's a PDF workbook with fill-in templates: do each step by hand, or paste its prompt into a chat assistant you already use. You make the video yourself (pictures, voice, editing), with a short chapter on putting it together in a free editor. No software, video or sound files.</p>
         <p class="price"><b>$9</b><span>one-time</span></p>
-        <p class="price-note">The list gets 40% off for its first 72 hours.</p>
-        <ul><li>The series bible, beats, script and voice lines</li><li>The look test and every review round, with the fixes</li><li>The score, the covers and the posting pack</li><li>The real project files</li></ul>
-        <a class="pill pill-line" href="#join" data-join>Get an email when it's out</a>
+        <p class="price-note" data-no-link="makingof">The list gets 40% off for its first 72 hours.</p>
+        <p class="price-note" data-has-link="makingof" hidden>On the list? Use the 40% link we emailed you, until Mon 9 Nov, 9 AM New York.</p>
+        <ul><li>Step by step, from one idea to episode 2: your series plan (the "bible"), episode 1 scene by scene, a script timed to the second, the vote, then episode 2's script written from the result</li><li>A written prompt for every step, to paste into a chat assistant, or skip it and fill in the template by hand</li><li>Fill-in templates that open in Word, Google Docs or Pages, from the series plan to the vote count</li><li>How to write your caption, poll and pinned comment and plan your cover, plus a guide to where text sits on a phone screen</li><li>A worked example: Day 23's episode 1 from the idea to the vote, every note we gave on it and what we did about each, and the honest result. Its animation was made with the Series Skill, which isn't included.</li></ul>
+        <a class="pill pill-line" href="#join" data-join data-no-link="makingof">Get an email when it's out</a>
+        <a class="pill" href="#pricing" data-buy="makingof" data-has-link="makingof" hidden>Get the DIY Kit<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <p class="tier-fine" data-has-link="makingof" hidden>Instant download. 14-day refund.</p>
       </article>
       <article class="tier rv">
         <p class="tier-tag soon">Opens 30 Nov</p>
@@ -330,7 +393,7 @@
   <section class="honest" aria-labelledby="honest-h">
     <h2 id="honest-h" class="statement-sm rv">The honest part.</h2>
     <dl class="honest-grid rv">
-      <div id="need"><dt>You'll need</dt><dd>Claude Code with a paid Claude plan (Pro or Max) or a pay-as-you-go Claude API key; Windows 10/11 or macOS 13+ with about 2 GB free (no GPU); and an ElevenLabs account for the voices (a paid ElevenLabs plan if you'll publish commercially). Music and sound effects need nothing extra. Setup takes about 10 minutes: <a href="start.html">read the setup guide</a>.</dd></div>
+      <div id="need"><dt>You'll need</dt><dd>For the Series Skill: Claude Code with a paid Claude plan (Pro or Max) or a pay-as-you-go Claude API key; Windows 10/11 or macOS 13+ with about 2 GB free (no GPU); and an ElevenLabs account for the voices (a paid ElevenLabs plan if you'll publish commercially). Music and sound effects need nothing extra. Setup takes about 10 minutes: <a href="start.html">read the setup guide</a>.</dd></div>
       <div><dt>You still decide</dt><dd>The idea, the three approvals and when to post. The skill does the heavy lifting; you stay the director.</dd></div>
       <div><dt>It isn't a Pokémon kit</dt><dd>Your Trainer Arc is our unofficial fan series. The skill ships with original characters and contains no Pokémon characters, art or sounds.</dd></div>
       <div><dt>No promised views</dt><dd>No one can honestly promise a hit. We can show you the format, the process and our own numbers.</dd></div>
@@ -342,8 +405,8 @@
     <h2 id="faq-h" class="statement-sm rv">Questions.</h2>
     <div class="faq rv">
       <details><summary>Do I need to know how to code?</summary><p>No. The skill writes and runs the code. You make the creative calls and approve three times per episode.</p></details>
-      <details><summary>What do I need?</summary><p>Claude Code with a paid Claude plan (Pro or Max) or a pay-as-you-go Claude API key; Windows 10/11 or macOS 13+ with about 2 GB free; and an ElevenLabs account for the voices (a paid ElevenLabs plan if you'll publish commercially). No GPU, and nothing extra for music or sound effects. The <a href="start.html">setup guide</a> shows every step before you buy.</p></details>
-      <details><summary>Can I use it without a paid Claude plan?</summary><p>Yes: instead of a paid Claude plan (Pro or Max), you can use a pay-as-you-go Claude API key. An episode takes a few hours of the skill working, so the usage adds up, and we haven't measured what one episode costs: set a spending limit in your API account and check your usage after your first episode. We only list setups we know work: other AI apps and free AI services aren't supported.</p></details>
+      <details><summary>What do I need?</summary><p>For the Series Skill: Claude Code with a paid Claude plan (Pro or Max) or a pay-as-you-go Claude API key; Windows 10/11 or macOS 13+ with about 2 GB free; and an ElevenLabs account for the voices (a paid ElevenLabs plan if you'll publish commercially). No GPU, and nothing extra for music or sound effects. The <a href="start.html">setup guide</a> shows every step before you buy.</p></details>
+      <details><summary>Can I use it without a paid Claude plan?</summary><p>Yes: instead of a paid Claude plan (Pro or Max), you can use a pay-as-you-go Claude API key. An episode takes a few hours of the skill working, so the usage adds up, and we haven't measured what one episode costs: set a spending limit in your API account and check your usage after your first episode. We only list setups we know work: for the Series Skill, other AI apps and free AI services aren't supported. No Claude Code at all? The DIY Kit (out 6 Nov) is a PDF workbook for making a series yourself: do each step by hand, or paste its prompts into a chat assistant.</p></details>
       <details><summary>Do I need ElevenLabs?</summary><p>Yes. This version can't make an episode without your ElevenLabs key: every episode is built around its narration, voiced with ElevenLabs stock voices. It's free to try, and you need a paid ElevenLabs plan if you'll publish commercially. We're testing a free voice that runs on your own computer, but it isn't in this version, so plan on ElevenLabs. If the free voice passes our tests, it will come as a free update. Music and sound effects never need ElevenLabs: the music is an original score made in code, and sound effects come from the skill's built-in library, plus free Pixabay sounds you can choose to fetch.</p></details>
       <details><summary>Is this AI video?</summary><p>No. Our rendering code draws every frame: characters, sets, camera and lighting. No AI model makes the pictures. The narration uses stock voices from your own ElevenLabs account, with no voice cloning.</p></details>
       <details><summary>Is Your Trainer Arc made this way?</summary><p>Yes. Every part was written, voiced, animated in code, mixed and checked using the same steps. The skill packages that process for your own original idea, and it contains no Pokémon characters, art or sounds.</p></details>
@@ -397,7 +460,8 @@
     <li data-show="early" data-has-link="waitlist" hidden><b>40% off now:</b> your link appears as soon as you join</li>
     <li data-show="early" data-no-link="waitlist" hidden><b>40% off now:</b> we'll email your link</li>
     <li data-show="founders early" hidden><b>Before everyone:</b> the public opens <span data-time="public">Tue 3 Nov, 9 AM New York</span></li>
-    <li data-show="public" hidden><b>An email</b> when the Making-of Pack (6 Nov) and Studio (30 Nov) open</li>
+    <li data-show="public" data-no-link="makingof" hidden><b>An email</b> when the DIY Kit (6 Nov) and Studio (30 Nov) open</li>
+    <li data-show="public" data-has-link="makingof" hidden><b>An email</b> when Studio opens (30 Nov)</li>
   </ul>
   <p class="live" data-live="dialog" hidden></p>
   <div class="form-slot">
@@ -426,7 +490,8 @@
       <a class="pill pill-line" href="assets/vote-loop-playbook.pdf" download>Download the PDF</a>
     </div>
     <p class="fine" data-show="pre">At launch you get 40% off any tier for 72 hours, 48 hours before everyone else. We'll email you the date first.</p>
-    <p class="fine" data-show="public" hidden>We'll email you when the Making-of Pack and Studio open, with 40% off for the list.</p>
+    <p class="fine" data-show="public" data-no-link="makingof" hidden>We'll email you when the DIY Kit and Studio open, with 40% off for the list.</p>
+    <p class="fine" data-show="public" data-has-link="makingof" hidden>We'll email you when Studio opens, with 40% off for the list.</p>
   </div>
 </template>
 </body>

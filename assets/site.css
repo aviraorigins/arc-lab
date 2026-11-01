@@ -228,15 +228,15 @@ main > section { padding-left: var(--gutter); padding-right: var(--gutter); }
 .vd-n, .vd-l, .vd-p { position: relative; }
 .vd-n { display: grid; flex: none; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: rgba(255, 255, 255, .1); font-size: .9375rem; }
 .vd-l { flex: 1; }
-.vd-p { color: var(--soft); font-variant-numeric: tabular-nums; opacity: 0; transition: opacity .5s var(--ease) .35s; }
+.vd-p { color: var(--soft); font-variant-numeric: tabular-nums; opacity: 0; visibility: hidden; transition: opacity .5s var(--ease) .35s, visibility 0s .35s; }
 .vd.voted .vd-opt { cursor: default; }
 .vd.voted .vd-opt:hover { background-color: rgba(255, 255, 255, .05); box-shadow: inset 0 0 0 1px var(--hair-2); }
-.vd.voted .vd-p { opacity: 1; }
+.vd.voted .vd-p { visibility: visible; opacity: 1; }
 .vd .vd-opt.mine, .vd.voted .vd-opt.mine:hover { box-shadow: inset 0 0 0 1.5px var(--gold); }
 .vd-opt.mine .vd-n { background: var(--gold); color: #111; }
 .vd-opt.mine .vd-fill { background: rgba(255, 216, 74, .18); }
 .vd-verdict { margin-top: 16px; color: var(--soft); }
-.vd-verdict:empty { display: none; }
+.vd-verdict:empty { margin: 0; }
 .vd-verdict b { color: #fff; }
 .vd-next { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 16px 18px; align-items: center; margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--hair); animation: rise .8s var(--ease) both; }
 .vd-next[hidden] { display: none; }
@@ -528,3 +528,46 @@ main > section { padding-left: var(--gutter); padding-right: var(--gutter); }
 .doc .wall-names li { margin: 0; max-width: 100%; padding: 9px 16px; border-radius: 999px; background: rgba(255, 216, 74, .07); box-shadow: inset 0 0 0 1px rgba(255, 216, 74, .28); color: #fff; font-weight: 600; overflow-wrap: anywhere; }
 .wall-strip { max-width: 62ch; margin: 26px auto 0; text-align: center; color: var(--soft); }
 .wall-strip b { color: #fff; }
+
+/* Day 23, made by the skill: episode 1 playable up to its real vote (the phone frame is the .device look, sized to
+   the .vd column), and the "Try it with your own idea" sample box. Live 1 Nov (moves 1 and 2, DIY Kit card). */
+.made { padding-top: clamp(110px, 14vw, 180px); text-align: center; }
+.made-shot { margin: 0; }
+.made-shot video { width: 100%; height: 100%; object-fit: cover; }
+.made-shot figcaption { margin-top: 14px; color: var(--dim); font-size: .875rem; text-align: center; }
+.made-vd .vd-scene { font-size: clamp(1.125rem, 1.8vw, 1.4375rem); }
+.made > .fine { margin: 18px auto 0; max-width: 72ch; }
+.vd-next-text { grid-template-columns: minmax(0, 1fr); }
+
+.idea { scroll-margin-top: 96px; max-width: 960px; margin: clamp(40px, 5vw, 56px) auto 0; padding: clamp(22px, 4vw, 40px); border-radius: 28px; background: var(--panel); box-shadow: 0 0 0 1px var(--hair); text-align: left; }
+.idea-head h3 { font-size: clamp(1.375rem, 2.2vw, 1.75rem); font-weight: 800; letter-spacing: -.02em; }
+.idea-head p { margin-top: 8px; max-width: 62ch; color: var(--soft); }
+.idea-form { display: flex; gap: 8px; margin-top: 22px; padding: 6px; border-radius: 999px; background: rgba(8, 8, 12, .86); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .2); transition: box-shadow .4s var(--ease); }
+.idea-form:focus-within { box-shadow: inset 0 0 0 1px var(--gold); }
+.idea-form input { flex: 1; min-width: 0; border: 0; padding: 0 18px; background: transparent; color: #fff; font: 500 1.0625rem var(--sans); outline: 0; }
+.idea-form input::placeholder { color: rgba(255, 255, 255, .45); }
+.idea-form .pill { flex: none; border: 0; cursor: pointer; }
+.idea-err { margin: 8px 0 0 20px; color: #FF8A80; font-size: .875rem; }
+.idea-err:empty { margin: 0; }
+.idea-out { margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--hair); }
+.idea-out.fresh { animation: rise .8s var(--ease) both; }
+.idea-tag { color: var(--gold); font-size: .875rem; font-weight: 600; }
+.idea-out dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 28px; margin: 14px 0 0; }
+.idea-out dl > div { min-width: 0; }
+.idea-out dt { color: var(--dim); font-size: .8125rem; font-weight: 600; letter-spacing: .02em; }
+.idea-out dd { margin: 6px 0 0; color: var(--text); line-height: 1.5; overflow-wrap: anywhere; }
+.idea-out ul, .idea-out ol { margin: 0; padding-left: 1.2em; }
+.idea-out li + li { margin-top: 4px; }
+.idea-out > .fine { margin-top: 18px; }
+.tier-plain { margin-top: 10px; color: var(--soft); font-size: .9375rem; }
+@media (prefers-reduced-motion: reduce) { .idea-out.fresh { animation: none; } }
+@media (max-width: 680px) {
+  .idea-form { flex-direction: column; padding: 8px; border-radius: 24px; }
+  .idea-form input { min-height: 50px; text-align: center; }
+  .idea-form .pill { width: 100%; }
+  .idea-err { margin-left: 0; text-align: center; }
+  .idea-out dl { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .made-shot { width: 70%; max-width: 260px; margin: 0 auto; }
+}
