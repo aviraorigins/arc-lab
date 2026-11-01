@@ -55,7 +55,7 @@
       <thead><tr><th>What</th><th>What it's for</th></tr></thead>
       <tbody>
         <tr><td>Claude Code with a paid Claude plan (Pro or Max) or a pay-as-you-go Claude API key</td><td>Runs the skill. With a plan, use the desktop app's Code tab or the <code>claude</code> terminal app. With an API key, use the <code>claude</code> terminal app: when it first asks how to sign in, choose the option with API usage billing, and add credit to that account first. You pay for what you use: an episode takes a few hours of the skill working, so the usage adds up, and we haven't measured what one episode costs, so set a spending limit in your API account.</td></tr>
-        <tr><td>Windows 10/11 or macOS 12+</td><td>About 2 GB free and any modern processor. No GPU needed: our code draws every frame, and no AI model makes the pictures.</td></tr>
+        <tr><td>Windows 10/11 or macOS 13+</td><td>About 2 GB free and any modern processor. No GPU needed: our code draws every frame, and no AI model makes the pictures.</td></tr>
         <tr><td>An ElevenLabs account</td><td>The narration, with its stock voices. Needed for every episode in this version: without your ElevenLabs key, the skill can't build one. Free to try; you need a paid ElevenLabs plan if you'll publish commercially. We're testing a free voice that runs on your computer, but it isn't in this version, so plan on ElevenLabs. If the free voice passes our tests, it will come as a free update.</td></tr>
         <tr><td>Nothing extra for music or sound effects</td><td>The skill writes an original score in code and has its own sound-effects library made in code, plus free Pixabay sounds you can choose to fetch. No music service or extra account.</td></tr>
         <tr><td>Node.js, Python and ffmpeg</td><td>The engine's free tools. You don't need to install them yourself: Claude does it in step 3, with your OK.</td></tr>
@@ -80,7 +80,7 @@
 Mac       ~/.claude/skills/arc-lab-series/SKILL.md</code></pre>
       <h3>With the zip</h3>
       <p><b>Easiest: let Claude do it.</b> Open Claude Code and type:</p>
-      <pre><code>Unzip arc-lab-series-v1.0.0.zip from my Downloads into my Claude skills folder, so the file ends up at .claude/skills/arc-lab-series/SKILL.md in my home folder</code></pre>
+      <pre><code>Unzip the arc-lab-series zip from my Downloads into my Claude skills folder, so the file ends up at .claude/skills/arc-lab-series/SKILL.md in my home folder</code></pre>
       <p>Or by hand:</p>
       <ul>
         <li><b>Windows:</b> right-click the zip and choose Extract All. Replace the whole suggested path with <code>%USERPROFILE%\.claude\skills</code>, then click Extract. Don't keep Windows' suggested folder name, or the skill ends up one folder too deep.</li>

@@ -297,7 +297,7 @@ const CHECKOUT = {
     const f = document.createElement('iframe');
     f.dataset.tallySrc = FORM_URL + prefill;
     f.title = 'Join the Arc Lab waitlist';
-    f.height = '560';
+    f.height = '240';
     slot.replaceChildren(f);
     frames.push(f);
     if (window.Tally || document.querySelector(`script[src="${EMBED_JS}"]`)) { loadEmbeds(); return; }
@@ -349,11 +349,11 @@ const CHECKOUT = {
     dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });   // a tap on the backdrop
   }
 
-  // the email box at the top: check the email, then open the form with it (and the series idea, if any) filled in
+  // the email box at the top: check the email, then open the form with it filled in
   const heroJoin = document.getElementById('hero-join');
   if (heroJoin) {
     const row = heroJoin.querySelector('.hj-row'), email = heroJoin.querySelector('#hj-email');
-    const idea = heroJoin.querySelector('#hj-idea'), err = heroJoin.querySelector('.hj-err');
+    const err = heroJoin.querySelector('.hj-err');
     heroJoin.addEventListener('submit', (e) => {
       e.preventDefault();
       const v = email.value.trim();
@@ -365,9 +365,7 @@ const CHECKOUT = {
       }
       err.textContent = '';
       row.classList.remove('err');
-      const fill = { email: v };
-      if (idea.value.trim()) fill.idea = idea.value.trim();
-      openJoin('&' + new URLSearchParams(fill).toString());
+      openJoin('&' + new URLSearchParams({ email: v }).toString());
     });
   }
 

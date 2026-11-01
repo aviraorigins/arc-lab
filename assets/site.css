@@ -124,12 +124,8 @@ b { font-weight: 700; }
 .hj-row:focus-within { box-shadow: inset 0 0 0 1px var(--gold); }
 .hj-row.err { box-shadow: inset 0 0 0 1px var(--red); }
 .hj-row input { flex: 1; min-width: 0; border: 0; padding: 0 18px; background: transparent; color: #fff; font: 500 1.0625rem var(--sans); outline: 0; }
-.hj-row input::placeholder, .hj-idea-in::placeholder { color: rgba(255, 255, 255, .45); }
+.hj-row input::placeholder { color: rgba(255, 255, 255, .45); }
 .hj-row .pill { flex: none; border: 0; cursor: pointer; }
-.hj-idea { display: block; margin: 16px 0 8px 20px; color: rgba(255, 255, 255, .72); font-size: .8125rem; font-weight: 600; }
-.hj-idea span { color: rgba(255, 255, 255, .45); font-weight: 500; }
-.hj-idea-in { width: 100%; min-height: 50px; padding: 0 20px; border: 0; border-radius: 16px; background: rgba(8, 8, 12, .5); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .12); color: #fff; font: 500 1rem var(--sans); outline: 0; }
-.hj-idea-in:focus { box-shadow: inset 0 0 0 1px rgba(255, 216, 74, .6); }
 .hj-err { margin: 8px 0 0 20px; color: #FF8A80; font-size: .875rem; }
 .hj-err:empty { display: none; }
 .hero-vote { margin-top: 22px; }
@@ -423,8 +419,7 @@ main > section { padding-left: var(--gutter); padding-right: var(--gutter); }
   .hj-row { flex-direction: column; padding: 8px; border-radius: 24px; }
   .hj-row input { min-height: 50px; text-align: center; }
   .hj-row .pill { width: 100%; }
-  .hj-idea, .hj-err { margin-left: 0; text-align: center; }
-  .hj-idea-in { text-align: center; }
+  .hj-err { margin-left: 0; text-align: center; }
   .live-more { display: block; margin-top: 2px; }
   .live-more::before { content: none; }
   .gets { grid-template-columns: 1fr; }
@@ -527,3 +522,9 @@ main > section { padding-left: var(--gutter); padding-right: var(--gutter); }
 .toc a:hover { color: #fff; box-shadow: inset 0 0 0 1px var(--gold); }
 .offer-card h2 .ph { color: inherit; }
 .offer-card h2 .ph span { color: var(--dim); }
+/* the founding wall: names founding members chose to show (wall.html), and its one line under the pricing cards */
+.doc .wall-count { color: #fff; font-weight: 600; }
+.doc .wall-names { list-style: none; margin-top: 18px; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.doc .wall-names li { margin: 0; max-width: 100%; padding: 9px 16px; border-radius: 999px; background: rgba(255, 216, 74, .07); box-shadow: inset 0 0 0 1px rgba(255, 216, 74, .28); color: #fff; font-weight: 600; overflow-wrap: anywhere; }
+.wall-strip { max-width: 62ch; margin: 26px auto 0; text-align: center; color: var(--soft); }
+.wall-strip b { color: #fff; }
