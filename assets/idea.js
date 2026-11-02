@@ -1,6 +1,6 @@
 // "Try it with your own idea": fills a small sample of the skill's first two steps (a series bible and how episode 1
-// ends) from fixed templates, picked by the kind of story the idea sounds like. Nothing leaves the page and no AI runs
-// here; the skill writes the real ones. Text goes in with textContent, never as HTML. The templates are original and
+// ends) from fixed templates, picked by the kind of story the idea sounds like. What's typed never leaves the page (only
+// "an idea was tried" is counted) and no AI runs here; the skill writes the real ones. Text goes in with textContent, never as HTML. The templates are original and
 // stay clear of Day 23's own story, posted or not.
 (() => {
   const box = document.getElementById('idea');
@@ -119,5 +119,6 @@
     out.hidden = false;
     out.classList.remove('fresh'); void out.offsetWidth; out.classList.add('fresh');
     if (status) status.textContent = 'Sample ready below: the premise, the cast, how episode 1 ends, and the vote.';
+    if (window.arcCount) window.arcCount('idea-try');
   });
 })();

@@ -1,5 +1,5 @@
 // The Vote Loop Playbook: sizes the votes chart and copies templates to the clipboard. The PDF is a prebuilt file
-// (tools/make_playbook_pdf.cjs), so there's no print button. No trackers, nothing loaded from other sites.
+// (tools/make_playbook_pdf.cjs), so there's no print button. Visits and copies are counted by assets/links.js.
 (() => {
   // the votes chart: each bar is its share of the biggest vote
   const bars = [...document.querySelectorAll('.vb i')];
@@ -16,6 +16,7 @@
       viaButton = true; document.execCommand('copy'); viaButton = false; s.removeAllRanges();
     }
     btn.textContent = 'Copied'; btn.classList.add('done');
+    if (window.arcCount) window.arcCount('template-copy', { id: btn.dataset.copy });
     setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('done'); }, 1600);
   }));
 

@@ -3,8 +3,8 @@
 // while it's on screen, types out the skill's run when it comes into view, opens the waitlist form in a pop-up from every
 // "Join the waitlist" button and from the email box at the top, shows the join bar on phones, embeds the Tally form and
 // swaps it for the playbook links once you've joined, lets you vote on the real end of Part 1, and shows how many people
-// are on the waitlist and how many founding spots are left. No trackers, no other sites except tally.so for the form
-// and Google Sheets for the waitlist count.
+// are on the waitlist and how many founding spots are left. Other sites: tally.so for the form and Google Sheets for the
+// waitlist count. Counting and link tags live in assets/links.js, which loads first.
 
 // The Tally form's id (the part after tally.so/r/).
 const TALLY_ID = 'Qoo5r1';
@@ -50,12 +50,15 @@ const CHECKOUT = {
     && (!el.hasAttribute('data-list-price') || listPriceOn)
     && (!el.dataset.hasLink || Boolean(CHECKOUT[el.dataset.hasLink]))
     && (!el.dataset.noLink || !CHECKOUT[el.dataset.noLink]);
-  // a visitor's utm_* tags (from a Story or email link) ride along to Polar, which records them on the order
-  const utm = [...new URLSearchParams(location.search)].filter(([k]) => k.startsWith('utm_'));
-  const tagged = (u) => (utm.length ? `${u}${u.includes('?') ? '&' : '?'}${new URLSearchParams(utm)}` : u);
+  // the visit's link tags (assets/links.js: from a Story, email or DM link, or the site that sent the visitor) ride
+  // along to Polar, which records them on the order, with the tapped button's place as utm_content (just the place if
+  // links.js didn't load)
+  const tagged = (u, place) => (window.arcTags ? window.arcTags.withTags(u, place)
+    : place ? `${u}${u.includes('?') ? '&' : '?'}utm_content=${encodeURIComponent(place)}` : u);
+  const count = (name, data) => { if (window.arcCount) window.arcCount(name, data); };
   const applyPhase = (root) => {
     root.querySelectorAll('[data-show], [data-has-link], [data-no-link]').forEach((el) => { el.hidden = !shows(el); });
-    root.querySelectorAll('[data-buy]').forEach((a) => { const u = CHECKOUT[a.dataset.buy]; if (u) a.href = tagged(u); });
+    root.querySelectorAll('[data-buy]').forEach((a) => { const u = CHECKOUT[a.dataset.buy]; if (u) a.href = tagged(u, a.dataset.place); });
     root.querySelectorAll('[data-time]').forEach((el) => { if (TIMES[el.dataset.time]) el.textContent = fmt(TIMES[el.dataset.time]); });
   };
   applyPhase(document);
@@ -286,7 +289,9 @@ const CHECKOUT = {
     if (window.Tally) window.Tally.loadEmbeds();
     else document.querySelectorAll('iframe[data-tally-src]:not([src])').forEach((f) => { f.src = f.dataset.tallySrc; });
   };
-  const FORM_URL = `https://tally.so/embed/${TALLY_ID}?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1`;
+  // the visit's link tags go into the form's hidden fields (utm_source, utm_medium, utm_campaign, utm_content)
+  const formTags = window.arcTags ? String(window.arcTags.linkTags()) : '';
+  const FORM_URL = `https://tally.so/embed/${TALLY_ID}?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1${formTags ? '&' + formTags : ''}`;
   function mount(slot, prefill = '') {
     if (!ready || !slot) return;
     if (slot.dataset.mounted) {                       // already there: reload it with the new answers filled in
@@ -328,7 +333,10 @@ const CHECKOUT = {
     let d;
     try { d = JSON.parse(e.data); } catch { return; }
     const f = frames.find((x) => x.contentWindow === e.source);
-    if (f && d.event === 'Tally.FormSubmitted') showJoined(f.closest('.form-slot'));
+    if (f && d.event === 'Tally.FormSubmitted') {
+      count('signup', { place: f.closest('dialog') ? 'pop-up' : 'offer', phase: PHASE });
+      showJoined(f.closest('.form-slot'));
+    }
   });
   // someone who joined earlier in this browser sees their playbook links (and, in early access, their 40% link) again
   let joinedBefore = false;
@@ -366,6 +374,7 @@ const CHECKOUT = {
       }
       err.textContent = '';
       row.classList.remove('err');
+      count('join-open', { place: 'hero-email', phase: PHASE });
       openJoin('&' + new URLSearchParams({ email: v }).toString());
     });
   }
@@ -384,6 +393,7 @@ const CHECKOUT = {
         o.querySelector('.vd-fill').style.width = o.dataset.pct + '%';
       });
       const pct = Number(b.dataset.pct);
+      count('vote-demo', { demo: vd.closest('#made') ? 'day23' : 'yta', pick: opts.indexOf(b) + 1 });
       const of = voters ? ` of ${voters}` : ' of voters';
       verdict.innerHTML = pct >= 50
         ? `You voted with <b>${pct}%</b>${of}.`
@@ -391,6 +401,13 @@ const CHECKOUT = {
       setTimeout(() => { next.hidden = false; }, reduce ? 0 : 900);
     }));
   });
+
+  // Day 23 episode 1: counted once when it starts, and once if it's watched to its vote
+  const ep1 = document.querySelector('#made video');
+  if (ep1) {
+    ep1.addEventListener('play', () => count('ep1-play'), { once: true });
+    ep1.addEventListener('ended', () => count('ep1-watched'), { once: true });
+  }
 
   // how many people have joined. Tally copies every sign-up into the founder's Google Sheet; one small tab of it, holding
   // only the total (first line) and the join times in UTC (newest first, "2026-10-27 09:12"), is published as CSV.

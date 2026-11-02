@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://cloud.umami.is; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src https://gateway.umami.is; base-uri 'none'; form-action 'none'">
 <title>Privacy | Arc Lab</title>
 <meta name="description" content="What the Arc Lab waitlist keeps, why, and how to be removed.">
 <link rel="canonical" href="https://arclabstudios.com/privacy.html">
@@ -24,6 +24,7 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/Satoshi-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/site.css?v=7">
+<script defer src="assets/links.js?v=1"></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to the privacy note</a>
@@ -37,12 +38,13 @@
 
 <main id="main" class="doc">
   <h1>Privacy</h1>
-  <p class="lede">Short version: we keep your email and any survey answers you give, to run Arc Lab and to email you about it. If you buy, our shop handles the payment and we never see your card. We never sell your details. Ask, and we delete them.</p>
+  <p class="lede">Short version: we keep your email and any survey answers you give, to run Arc Lab and to email you about it. If you buy, our shop handles the payment and we never see your card. We never sell your details. Ask, and we delete them. We also count visits to this site, without cookies.</p>
 
   <h2>What we keep</h2>
   <ul>
     <li><b>Your email</b> (and your first name, if you give it), so we can write to you about the waitlist and the launch.</li>
     <li><b>Your survey answers</b> (the tier you'd pick, the price that feels fair, your series idea, your setup and how you heard about us), so we can set fair prices and decide what to build first.</li>
+    <li><b>Where you came from</b>: the link tag (like "instagram") kept with your sign-up, and with your order along with which buy button you tapped.</li>
     <li><b>Your consent</b> to the launch emails, and when you gave it.</li>
     <li><b>Your founding wall name</b>, if you're a founding member and add one. We show that name on our <a href="wall.html">founding wall</a>, never your email, and take it down when you ask.</li>
   </ul>
@@ -50,6 +52,7 @@
 
   <h2>Who handles it</h2>
   <ul>
+    <li><b>Umami</b> (umami.is) counts visits to this site for us, as described below, under its <a href="https://umami.is/dpa">data processing agreement</a>. Its servers are in the US and the EU.</li>
     <li><b>Tally</b> (tally.so) runs the sign-up form on our page and stores the answers for us. Tally's own <a href="https://tally.so/help/privacy-policy">privacy policy</a> covers what Tally itself logs when you use the form.</li>
     <li><b>Google Sheets</b>: we may copy the sign-up and founding wall answers into private Google spreadsheets that only Arc Lab can open, for example to work out the prices. Two small tabs are published so this site can read them: the waitlist count with join times, and the founding wall names. Neither has any email in it.</li>
     <li><b>Kit</b> (kit.com) sends our emails. It holds your email, your first name if you gave it, and labels such as "waitlist" or "customer", only to deliver our emails.</li>
@@ -61,24 +64,31 @@
 
   <h2>This website</h2>
   <ul>
-    <li>It has no cookies, ads, analytics or trackers of its own, and it never asks you to sign in.</li>
-    <li>It loads nothing from other sites, except the Tally form (and Tally's small script that fits it to the page) when you open the sign-up form, and two small files published from our Google Sheets: the waitlist count (numbers and join times only) and the founding wall names (only the names founding members chose to show, never emails). The videos and pictures are stored on this site. The "Try it with your own idea" box runs only in your browser: what you type is never sent or saved. Links to YouTube, Instagram and Polar's checkout only open those sites when you tap them.</li>
+    <li>It sets no cookies, shows no ads and never asks you to sign in.</li>
+    <li><b>Visit counting.</b> We count visits with <a href="https://umami.is">Umami</a>. It sets no cookies and saves nothing on your device. For each visit it records the page, the link or site that sent you here, your rough location (country, region and city, worked out from your IP address), your type of device, operating system, browser and screen size, your language, and a few taps on this site: the buy and "Join the waitlist" buttons, sending the sign-up form, opening or downloading the playbook, copying a playbook template, opening a question below the prices, voting in the sample polls on the home page, using the "Try it with your own idea" box, starting or finishing the Day 23 episode, and tapping our links to YouTube, Instagram, Discord or Tally. With a tap it notes which button or poll option it was, never what you type. It can tell a repeat visit from the same browser and network for about a month, without saving anything on your device. It doesn't store your IP address with the counts (like any web service, its servers may log it for security). We look at the results as totals. If your browser sends a "Do Not Track" or "Global Privacy Control" signal, your visits aren't counted.</li>
+    <li><b>Link tags.</b> Our links in posts, Stories, messages and emails carry a short tag, like "instagram". If a link has no tag, we use the name of the site or app that sent you instead. When you open a checkout from this site, the tag and which buy button you tapped go along with it, and Polar keeps them with your order. The sign-up form gets the tag too, and Tally keeps it with your sign-up. That's how we see which post led to a sign-up or a sale. We don't store the tag on your device; it only rides along in our links.</li>
+    <li>It loads nothing from other sites, except Umami's small counting script, the Tally form (and Tally's small script that fits it to the page) when the sign-up form comes into view or you open it, and two small files published from our Google Sheets: the waitlist count (numbers and join times only) and the founding wall names (only the names founding members chose to show, never emails). The videos and pictures are stored on this site. The "Try it with your own idea" box runs only in your browser: what you type is never sent or saved. Links to YouTube, Instagram and Polar's checkout only open those sites when you tap them.</li>
     <li>If you join the waitlist, this browser remembers that you joined, so the page can show your playbook links again. That note stays on your device; clear your browser's site data to remove it.</li>
     <li>It is hosted on GitHub Pages. Like every web host, GitHub logs visitors' IP addresses and browser details to keep the service secure. We don't use those logs.</li>
   </ul>
+
+  <h2>Turn visit counting off</h2>
+  <p data-count-state>Counting is on unless you turn it off. The switch needs this page's script to run.</p>
+  <p><button type="button" class="pill pill-line" data-count-switch hidden>Turn counting off for this browser</button></p>
+  <p class="small">Your choice is kept in this browser only (clearing its site data resets it), and it's the one thing this site saves for counting.</p>
 
   <h2>Emails</h2>
   <p>If you ticked "launch emails", you get the launch emails, and later news about new packs and lessons. If you buy, you also get getting-started emails, and you stop getting sales emails for what you already own. Every email has an unsubscribe link that works straight away, or you can reply "stop".</p>
 
   <h2>How long we keep it</h2>
-  <p>We delete the survey answers 6 months after launch. Your email and name stay on the list until you ask us to remove them, or until we close the list.</p>
+  <p>We delete the survey answers, and the link tags kept with sign-ups, 6 months after launch. Your email and name stay on the list until you ask us to remove them, or until we close the list. Umami keeps the visit counts for 6 months.</p>
 
   <h2>Your choices</h2>
   <p>You can ask to see what we hold about you, to correct it, or to delete all of it, at any time. Email <a href="mailto:contact@arclabstudios.com">contact@arclabstudios.com</a> and we'll do it within 7 days. The waitlist is for people aged 16 and over.</p>
 
   <h2>Who we are</h2>
   <p>Arc Lab is a small independent studio. Questions about this page: <a href="mailto:contact@arclabstudios.com">contact@arclabstudios.com</a>.</p>
-  <p class="small">Last updated 1 November 2026.</p>
+  <p class="small">Last updated 2 November 2026.</p>
 </main>
 
 <div class="doc-foot">

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://tally.so; style-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src https://docs.google.com https://*.googleusercontent.com; frame-src https://tally.so; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://tally.so https://cloud.umami.is; style-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src https://docs.google.com https://*.googleusercontent.com https://gateway.umami.is; frame-src https://tally.so; base-uri 'none'; form-action 'none'">
 <title>Arc Lab: the series skill behind Your Trainer Arc</title>
 <meta name="description" content="A code toolkit for voted, animated story series: our code draws every frame. The method behind Your Trainer Arc, whose Instagram account got 2M+ views in 12 days. $24 once, works-or-refund guarantee, free playbook.">
 <link rel="canonical" href="https://arclabstudios.com/">
@@ -24,9 +24,10 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/Satoshi-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/site.css?v=12">
-<script defer src="assets/site.js?v=12"></script>
+<script defer src="assets/links.js?v=1"></script>
+<script defer src="assets/site.js?v=13"></script>
 <script defer src="assets/wall.js?v=1"></script>
-<script defer src="assets/idea.js?v=1"></script>
+<script defer src="assets/idea.js?v=2"></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to the page</a>
@@ -44,7 +45,7 @@
     <a href="#pricing">Pricing</a>
     <a href="#faq">Questions</a>
   </nav>
-  <a class="bar-cta" href="#join" data-join data-show="pre founders early">Join the waitlist</a>
+  <a class="bar-cta" href="#join" data-join data-place="bar" data-show="pre founders early">Join the waitlist</a>
   <a class="bar-cta" href="#pricing" data-show="public" hidden>Get the skill</a>
 </header>
 
@@ -65,7 +66,7 @@
         <p class="hj-err" aria-live="polite"></p>
       </form>
       <div class="hero-buy" data-show="public" hidden>
-        <a class="pill pill-xl" href="#pricing" data-buy="public">Get the Series Skill<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <a class="pill pill-xl" href="#pricing" data-buy="public" data-place="hero">Get the Series Skill<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
         <p class="hb-note"><b>$24</b>, paid once. Instant access, and it works or you get your money back.</p>
       </div>
       <p class="open-perk" data-show="pre">Free playbook the moment you join. 40% off at launch.</p>
@@ -93,8 +94,8 @@
       <p class="lead rv">That's what an audience gives you: people to tell when you make the next thing, whether it's a guide, a product or your next series.</p>
       <p class="proof-note rv">No one can honestly promise you views, and we won't. These are our numbers, not a forecast of yours, and none of them are sales. The Instagram screenshots are below; the list numbers come from our sign-up records.</p>
       <div class="path-cta rv">
-        <a class="pill" href="#join" data-join data-show="pre founders early">Start your own series<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-        <a class="pill" href="#pricing" data-buy="public" data-show="public" hidden>Start your own series<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <a class="pill" href="#join" data-join data-place="proof" data-show="pre founders early">Start your own series<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <a class="pill" href="#pricing" data-buy="public" data-place="proof" data-show="public" hidden>Start your own series<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
       </div>
     </div>
 
@@ -193,7 +194,7 @@
             <p class="vd-title">"23 seconds to free it."</p>
             <p class="vd-meta">220K views. Its poll got 15.4K votes.</p>
           </div>
-          <a class="pill" href="#join" data-join>Make your own voted series<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+          <a class="pill" href="#join" data-join data-place="vote">Make your own voted series<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
         </div>
       </div>
     </div>
@@ -257,7 +258,7 @@
     <div class="idea rv" id="idea">
       <div class="idea-head">
         <h3>Try it with your own idea.</h3>
-        <p>Type your idea in one line. This page fills in a small taste of the skill's first two steps, the series bible and the episode 1 script, from our templates. Nothing is sent anywhere, and no AI runs on this page.</p>
+        <p>Type your idea in one line. This page fills in a small taste of the skill's first two steps, the series bible and the episode 1 script, from our templates. What you type never leaves this page, and no AI runs on it.</p>
       </div>
       <form class="idea-form" novalidate>
         <label class="sr" for="idea-in">Your series idea, in one line</label>
@@ -352,8 +353,8 @@
         <p class="price-note" data-show="early" hidden>The list pays $14.40: founding members until <span data-time="foundersEnds">Tue 3 Nov, 8 PM New York</span>, the waitlist until <span data-time="listEnds">Wed 4 Nov, 9 AM New York</span>. Then it's $24.</p>
         <p class="price-note" data-show="public" data-list-price hidden>On the list? Use the link in your email for 40% off: founding members until <span data-time="foundersEnds">Tue 3 Nov, 8 PM New York</span>, the waitlist until <span data-time="listEnds">Wed 4 Nov, 9 AM New York</span>.</p>
         <ul><li>The skill and its engine: characters, sets, camera and captions drawn in code, plus an original score and a built-in sound library</li><li>An original character kit and the story templates</li><li>A complete example series: Day 23, episode 1</li><li>Setup and directing lessons</li><li>Every v1 update, and help on our Discord</li></ul>
-        <a class="pill" href="#join" data-join data-show="pre founders early">Join for early access<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-        <a class="pill" href="#pricing" data-buy="public" data-show="public" hidden>Get the Series Skill<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <a class="pill" href="#join" data-join data-place="pricing" data-show="pre founders early">Join for early access<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <a class="pill" href="#pricing" data-buy="public" data-place="pricing" data-show="public" hidden>Get the Series Skill<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
         <p class="tier-fine" data-show="pre founders early">Instant download and private GitHub access. 14-day refund. <a href="#need">Check what you'll need</a> before you buy.</p>
         <p class="tier-fine" data-show="public" hidden>Instant download and private GitHub access. It works or your money back: <a href="#need">check what you'll need</a> before you buy.</p>
       </article>
@@ -366,9 +367,9 @@
         <p class="price"><b>$9</b><span>one-time</span></p>
         <p class="price-note" data-no-link="makingof">The list gets 40% off for its first 72 hours.</p>
         <p class="price-note" data-has-link="makingof" hidden>On the list? Use the 40% link we emailed you, until Mon 9 Nov, 9 AM New York.</p>
-        <ul><li>Step by step, from one idea to episode 2: your series plan (the "bible"), episode 1 scene by scene, a script timed to the second, the vote, then episode 2's script written from the result</li><li>A written prompt for every step, to paste into a chat assistant, or skip it and fill in the template by hand</li><li>Fill-in templates that open in Word, Google Docs or Pages, from the series plan to the vote count</li><li>How to write your caption, poll and pinned comment and plan your cover, plus a guide to where text sits on a phone screen</li><li>A worked example: Day 23's episode 1 from the idea to the vote, every note we gave on it and what we did about each, and the honest result. Its animation was made with the Series Skill, which isn't included.</li></ul>
-        <a class="pill pill-line" href="#join" data-join data-no-link="makingof">Get an email when it's out</a>
-        <a class="pill" href="#pricing" data-buy="makingof" data-has-link="makingof" hidden>Get the DIY Kit<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <ul><li>Step by step, from one idea to episode 2: your series plan (the "bible"), episode 1 scene by scene, a script timed to the second, the vote, then episode 2's script written from the result</li><li>A written prompt for every step, to paste into a chat assistant, or skip it and fill in the template by hand</li><li>Fill-in templates that open in Word, Google Docs or Pages, from the series plan to the vote count</li><li>How to write your caption, poll and pinned comment and plan your cover, plus a guide to where text sits on a phone screen</li><li>A worked example: Day 23's episode 1 from the idea to the vote, the main notes we gave on it and what we did about each, and the honest result. Its animation was made with the Series Skill, which isn't included.</li></ul>
+        <a class="pill pill-line" href="#join" data-join data-place="kit" data-no-link="makingof">Get an email when it's out</a>
+        <a class="pill" href="#pricing" data-buy="makingof" data-place="kit" data-has-link="makingof" hidden>Get the DIY Kit<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
         <p class="tier-fine" data-has-link="makingof" hidden>Instant download. Working files or your money back.</p>
       </article>
       <article class="tier rv">
@@ -378,7 +379,7 @@
         <p class="price"><b>$8</b><span>a month, or $69 a year</span></p>
         <p class="price-note">The list gets 40% off the first payment.</p>
         <ul><li>A new pack every month: characters, sets, a genre kit, score presets</li><li>The members' Discord and a recorded monthly teardown</li><li>Early access to v2</li><li>Keep every pack you download; cancel in two clicks</li><li>The first 50 yearly members keep their price</li></ul>
-        <a class="pill pill-line" href="#join" data-join>Get an email when it opens</a>
+        <a class="pill pill-line" href="#join" data-join data-place="studio">Get an email when it opens</a>
       </article>
     </div>
     <p class="wall-strip" data-wall-strip hidden><span data-wall-names></span> are on our <a href="wall.html">founding wall</a>.</p>
@@ -427,8 +428,8 @@
   <!-- 10. the close -->
   <section class="close" aria-labelledby="close-h">
     <h2 id="close-h" class="statement rv">Make yours.</h2>
-    <a class="pill pill-xl rv" href="#join" data-join data-show="pre founders early">Join the waitlist<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-    <a class="pill pill-xl rv" href="#pricing" data-buy="public" data-show="public" hidden>Get the Series Skill<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+    <a class="pill pill-xl rv" href="#join" data-join data-place="close" data-show="pre founders early">Join the waitlist<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+    <a class="pill pill-xl rv" href="#pricing" data-buy="public" data-place="close" data-show="public" hidden>Get the Series Skill<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
     <p class="fine rv" data-show="pre">Free playbook today. 40% off at launch.</p>
     <p class="fine rv" data-show="founders early" hidden>Free playbook today. 40% off while early access lasts.</p>
     <p class="fine rv" data-show="public" hidden>$24, paid once. It works or your money back.</p>
@@ -446,8 +447,8 @@
   <p class="legal">© 2026 Arc Lab. Your Trainer Arc is an unofficial, fan-made series and is free to watch. Pokémon © Nintendo / Creatures / GAME FREAK / The Pokémon Company. Arc Lab is not affiliated with or endorsed by them, and the Arc Lab Series Skill contains no Pokémon characters, art or sounds. View and follower counts are from our Instagram insights on 31 October 2026; poll counts are from 26 and 27 October.</p>
 </footer>
 
-<a class="sticky-cta" href="#join" data-join data-show="pre founders early" hidden>Join the waitlist <span>Free playbook, 40% off</span></a>
-<a class="sticky-cta" href="#pricing" data-buy="public" data-show="public" hidden>Get the Series Skill <span>$24, works or money back</span></a>
+<a class="sticky-cta" href="#join" data-join data-place="sticky" data-show="pre founders early" hidden>Join the waitlist <span>Free playbook, 40% off</span></a>
+<a class="sticky-cta" href="#pricing" data-buy="public" data-place="sticky" data-show="public" hidden>Get the Series Skill <span>$24, works or money back</span></a>
 
 <dialog class="join-dialog" id="join-dialog" aria-labelledby="jd-h">
   <div class="jd-head">
@@ -482,7 +483,7 @@
     </div>
     <div class="joined-buy" data-show="early" data-has-link="waitlist" hidden>
       <p><b>Your waitlist price is open:</b> the Series Skill for $14.40 instead of $24, until <span data-time="listEnds">Wed 4 Nov, 9 AM New York</span>.</p>
-      <a class="pill" href="#pricing" data-buy="waitlist">Get it for $14.40<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <a class="pill" href="#pricing" data-buy="waitlist" data-place="joined">Get it for $14.40<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
     </div>
     <div class="joined-buy" data-show="founders" hidden>
       <p><b>Your 40% opens <span data-time="early">Sun 1 Nov, 9 AM New York</span>.</b> Come back to this page then and your link will be right here.</p>
