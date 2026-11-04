@@ -523,4 +523,37 @@ const CHECKOUT = {
       p.hidden = false;
     });
   });
+
+  // how many people have bought the skill. A GitHub job reads the paid orders in Polar every 10 minutes and saves only
+  // the buyer count, the number of countries and when the newest order came in (.github/workflows/buyers.yml).
+  // Until it has run, or if it can't be read, the numbers written into the page stay and the live lines stay hidden
+  const BUYERS_JSON = 'https://raw.githubusercontent.com/aviraorigins/arc-lab/live/buyers.json';
+  const buyerLines = PHASE === 'public' ? [...document.querySelectorAll('[data-live-buyers]')] : [];
+  const buyerNums = [...document.querySelectorAll('[data-buyers]')];
+  if (buyerLines.length || buyerNums.length) fetch(BUYERS_JSON, { cache: 'no-cache' })
+    .then((r) => (r.ok ? r.json() : null)).catch(() => null).then((d) => {
+      if (!d || !Number.isInteger(d.buyers) || d.buyers < 1) return;
+      buyerNums.forEach((el) => {
+        const v = d[el.dataset.buyers === 'n' ? 'buyers' : el.dataset.buyers];
+        if (Number.isInteger(v) && v > 0) el.textContent = v.toLocaleString('en-US');
+      });
+      const t = Date.parse(d.last);
+      const last = t && t <= Date.now() && Date.now() - t < 864e5 ? ago(Date.now() - t) : '';
+      buyerLines.forEach((p) => {
+        const dot = document.createElement('i');
+        dot.setAttribute('aria-hidden', 'true');
+        const b = document.createElement('b');
+        const text = document.createElement('span');
+        text.append(b, d.buyers === 1 ? ' person has bought the skill' : ' people have bought the skill');
+        if (last) {
+          const more = document.createElement('span');
+          more.className = 'live-more';
+          more.textContent = `the last one ${last}`;
+          text.append(' ', more);
+        }
+        p.replaceChildren(dot, text);
+        countUp(b, d.buyers);
+        p.hidden = false;
+      });
+    });
 })();

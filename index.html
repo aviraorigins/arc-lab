@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://tally.so https://cloud.umami.is; style-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src https://docs.google.com https://*.googleusercontent.com https://gateway.umami.is https://app.kit.com; frame-src https://tally.so; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://tally.so https://cloud.umami.is; style-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src https://raw.githubusercontent.com https://docs.google.com https://*.googleusercontent.com https://gateway.umami.is https://app.kit.com; frame-src https://tally.so; base-uri 'none'; form-action 'none'">
 <title>Arc Lab: the series skill behind Your Trainer Arc</title>
 <meta name="description" content="A code toolkit for voted, animated story series: our code draws every frame. The method behind Your Trainer Arc, whose Instagram account got 2.7M views in 16 days. $24 once, works-or-refund guarantee, free playbook.">
 <link rel="canonical" href="https://arclabstudios.com/">
@@ -23,9 +23,9 @@
 <link rel="icon" href="assets/favicon.svg?v=2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/Satoshi-Variable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/site.css?v=14">
+<link rel="stylesheet" href="assets/site.css?v=15">
 <script defer src="assets/links.js?v=1"></script>
-<script defer src="assets/site.js?v=16"></script>
+<script defer src="assets/site.js?v=17"></script>
 <script defer src="assets/wall.js?v=1"></script>
 <script defer src="assets/idea.js?v=2"></script>
 </head>
@@ -68,6 +68,7 @@
       <p class="open-perk dm-perk" data-dm-playbook hidden><a href="#join" data-join data-place="dm-banner">Here for the free playbook? Get it here</a></p>
       <div class="hero-buy" data-show="public" hidden>
         <a class="pill pill-xl" href="#pricing" data-buy="public" data-place="hero">Get the Series Skill<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <p class="live" data-live-buyers hidden></p>
         <p class="hb-note"><b>$24</b>, paid once. Instant access, and it works or you get your money back.</p>
         <p class="hb-need">Runs on your computer with Claude Code and a paid Claude plan. <a href="#need">What you'll need</a></p>
         <p class="hb-need"><a href="#join" data-join data-place="hero-free">Only on your phone? Get the free playbook</a></p>
@@ -92,7 +93,7 @@
         <li class="rv"><small>Watched</small><b>666,759</b><span>different accounts. Views count plays; viewers count each account once.</span></li>
         <li class="rv"><small>Followed</small><b>17,244</b><span>followers on 4&nbsp;November, up from 690 on 1&nbsp;October. Best day: +3,269 on 25&nbsp;October.</span></li>
         <li class="rv"><small>Joined our list</small><b>1,420</b><span>people by 4&nbsp;November. The first 500 founding spots filled in about 46&nbsp;hours.</span></li>
-        <li class="rv"><small>Bought the skill</small><b>27</b><span>people in 13 countries in its first four days on sale.</span></li>
+        <li class="rv"><small>Bought the skill</small><b data-buyers="n">34</b><span>people in <span data-buyers="countries">16</span> countries since it went on sale on 1&nbsp;November.</span></li>
       </ol>
       <p class="lead rv">That's what an audience gives you: people to tell when you make the next thing, whether it's a guide, a product or your next series.</p>
       <p class="proof-note rv">No one can honestly promise you views, and we won't. These are our numbers, not a forecast of yours. The Instagram screenshots are below; the list and sales numbers come from our sign-up and order records.</p>
@@ -335,6 +336,7 @@
           <p class="need-alt">Only on your phone? The <a href="#join" data-join data-place="need">free playbook</a> and the $9 DIY Kit are for you.</p>
         </div>
         <a class="pill" href="#join" data-join data-place="pricing" data-show="pre founders early">Join for early access<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <p class="live live-tier" data-live-buyers hidden></p>
         <a class="pill" href="#pricing" data-buy="public" data-place="pricing" data-show="public" hidden>Get the Series Skill<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
         <p class="tier-fine" data-show="pre founders early">Instant download and private GitHub access. 14-day refund. <a href="#need">Check what you'll need</a> before you buy.</p>
         <p class="tier-fine" data-show="public" hidden>Instant download and private GitHub access. It works or your money back: <a href="#need">check what you'll need</a> before you buy.</p>
@@ -363,7 +365,7 @@
         <a class="pill pill-line" href="#join" data-join data-place="studio">Get an email when it opens</a>
       </article>
     </div>
-    <p class="wall-strip sold-strip rv" data-show="public" hidden>Bought by creators in <b>12 countries</b> in its first four days.</p>
+    <p class="wall-strip sold-strip rv" data-show="public" hidden>Bought by <b><span data-buyers="n">34</span> creators</b> in <b><span data-buyers="countries">16</span> countries</b> so far.</p>
     <p class="wall-strip" data-wall-strip hidden><span data-wall-names></span> are on our <a href="wall.html">founding wall</a>.</p>
     <ul class="trust rv" aria-label="How buying works">
       <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg><span><b>Secure checkout by Polar</b>Our shop handles the payment (card, or UPI in India), the receipt and any sales tax. We never see your card details.</span></li>
