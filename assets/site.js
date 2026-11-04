@@ -62,6 +62,11 @@ const CHECKOUT = {
     root.querySelectorAll('[data-time]').forEach((el) => { if (TIMES[el.dataset.time]) el.textContent = fmt(TIMES[el.dataset.time]); });
   };
   applyPhase(document);
+  // visitors from the PLAYBOOK DM asked for the free playbook: point them to it at the top
+  const from = new URLSearchParams(location.search);
+  if (from.get('utm_medium') === 'dm' && (from.get('utm_campaign') || '').split('#')[0] === 'yta') {
+    document.querySelectorAll('[data-dm-playbook]').forEach((el) => { el.hidden = false; });
+  }
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const hasIO = 'IntersectionObserver' in window;
   const seen = (el, fn, threshold = 0.4) => {

@@ -468,6 +468,10 @@ main > section { padding-left: var(--gutter); padding-right: var(--gutter); }
 .hero-buy { margin-top: 40px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
 .hb-note { color: rgba(255, 255, 255, .8); font-size: 1rem; }
 .hb-note b { color: #fff; }
+.hb-need { margin-top: -6px; color: var(--soft); font-size: .9375rem; }
+.hb-need a { color: #fff; text-underline-offset: 3px; }
+.hb-need a:hover { color: var(--gold); }
+.dm-perk a { color: inherit; text-underline-offset: 3px; }
 
 /* 7. pricing */
 .price { margin-top: 18px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
