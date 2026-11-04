@@ -196,8 +196,8 @@ main > section { padding-left: var(--gutter); padding-right: var(--gutter); }
 .device-screen { aspect-ratio: 9 / 16; border-radius: 44px; overflow: hidden; background: #000; }
 .device video { width: 100%; height: 100%; object-fit: cover; }
 .device figcaption { margin-top: 18px; font-size: .875rem; color: var(--dim); }
-.reel-row { list-style: none; margin: clamp(56px, 7vw, 88px) auto 0; padding: 0; max-width: 1200px; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 14px; }
-/* wide screens: Part 1, the one that broke out, takes a double cell and Parts 2 to 11 fill two rows beside it */
+.reel-row { list-style: none; margin: clamp(56px, 7vw, 88px) auto 0; padding: 0; max-width: 1200px; display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 14px; }
+/* wide screens: Part 1, the one that broke out, takes a double cell and Parts 2 to 15 fill two rows beside it */
 @media (min-width: 981px) {
   .reel-row li:first-child { grid-column: span 2; grid-row: span 2; }
   .reel-row li:first-child a { height: 100%; }
@@ -575,3 +575,22 @@ main > section { padding-left: var(--gutter); padding-right: var(--gutter); }
 @media (max-width: 760px) {
   .made-shot { width: 70%; max-width: 260px; margin: 0 auto; }
 }
+
+/* Day 23: the six episodes the skill made, one even row (no double cell) */
+.d23-shelf { max-width: 1200px; margin: clamp(72px, 9vw, 110px) auto 0; }
+.d23-shelf .proof-note { margin-left: auto; margin-right: auto; }
+.reel-row.d23-row { margin-top: 34px; max-width: 900px; grid-template-columns: repeat(6, minmax(0, 1fr)); }
+@media (min-width: 981px) {
+  .reel-row.d23-row li:first-child { grid-column: auto; grid-row: auto; }
+  .reel-row.d23-row li:first-child a { height: auto; }
+  .reel-row.d23-row li:first-child img { position: static; }
+  .reel-row.d23-row li:first-child span { left: 10px; bottom: 10px; padding: 5px 10px; font-size: .75rem; }
+  .reel-row.d23-row li:first-child span b { font-size: .875rem; }
+}
+/* pricing: what you need, checked before checkout */
+.need-check { margin: 0 0 26px; padding: 18px 18px 16px; border-radius: 16px; background: rgba(255, 255, 255, .035); box-shadow: inset 0 0 0 1px var(--hair); }
+.need-h { color: #fff; font-weight: 600; font-size: .9375rem; }
+.tier .need-list { margin: 10px 0 0; flex: none; }
+.tier .need-list li { border-top: 0; padding: 6px 0 6px 26px; font-size: .9063rem; }
+.tier .need-list li::before { top: 10px; width: 14px; height: 14px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--soft); background: none; }
+.need-alt { margin-top: 10px; color: var(--dim); font-size: .875rem; }
