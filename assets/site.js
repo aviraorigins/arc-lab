@@ -332,6 +332,25 @@ const CHECKOUT = {
     const panel = from && from.querySelector('.joined');
     if (panel) panel.focus();
   }
+  // a new sign-up who ticked "Arc Lab emails" also goes to Kit's hidden form 10142995 ("Site sign-up (instant welcome)"),
+  // whose own welcome email sends the playbook straight away (free on Kit's plan). Fire and forget: the batch imports
+  // stay the safety net and add the tags, and nobody who left the box unticked is sent to Kit.
+  const KIT_WELCOME_FORM = '10142995';
+  const sendWelcome = (fields) => {
+    if (!KIT_WELCOME_FORM || !Array.isArray(fields)) return;
+    // Tally sends each answer as { title, type, answer: { value } } (older embeds: { label, value })
+    const label = (x) => x.title || x.label || '';
+    const value = (x) => (x && x.answer && 'value' in x.answer ? x.answer.value : x && x.value);
+    const field = (re) => fields.find((x) => re.test(label(x)));
+    const email = value(fields.find((x) => x.type === 'INPUT_EMAIL') || field(/^email/i));
+    const tick = value(field(/Arc Lab emails|Launch emails|unsubscribe any time/i));
+    const agreed = Array.isArray(tick) ? tick.length > 0 : Boolean(tick);
+    if (!agreed || typeof email !== 'string' || !email.includes('@')) return;
+    const body = new URLSearchParams({ email_address: email.trim() });
+    const first = value(field(/first name/i));
+    if (typeof first === 'string' && first.trim()) body.set('fields[first_name]', first.trim());
+    fetch(`https://app.kit.com/forms/${KIT_WELCOME_FORM}/subscriptions`, { method: 'POST', mode: 'no-cors', body }).catch(() => {});
+  };
   // Tally says when a form has been sent
   addEventListener('message', (e) => {
     if (e.origin !== 'https://tally.so' || typeof e.data !== 'string' || !e.data.includes('Tally.FormSubmitted')) return;
@@ -340,6 +359,7 @@ const CHECKOUT = {
     const f = frames.find((x) => x.contentWindow === e.source);
     if (f && d.event === 'Tally.FormSubmitted') {
       count('signup', { place: f.closest('dialog') ? 'pop-up' : 'offer', phase: PHASE });
+      sendWelcome(d.payload && d.payload.fields);
       showJoined(f.closest('.form-slot'));
     }
   });
