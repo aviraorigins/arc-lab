@@ -638,3 +638,20 @@ main > section { padding-left: var(--gutter); padding-right: var(--gutter); }
   .cmp-list li { padding-left: 18px; }
   .cmp-screen { border-radius: 12px; }
 }
+
+/* made by buyers (with their OK) */
+.byyou-sec { padding-top: clamp(110px, 14vw, 180px); text-align: center; }
+.byyou { list-style: none; max-width: 980px; margin: clamp(36px, 5vw, 56px) auto 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 3vw, 32px); text-align: left; }
+.byyou a { display: grid; gap: 8px; color: inherit; text-decoration: none; }
+.byyou img { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 16px; box-shadow: inset 0 0 0 1px var(--hair-2); transition: transform .5s var(--ease); }
+.byyou a:hover img { transform: translateY(-4px); }
+.by-who { margin-top: 6px; font-weight: 800; font-size: 1.0625rem; color: #fff; overflow-wrap: anywhere; }
+.byyou a:hover .by-who { color: var(--gold); }
+.by-what { color: var(--soft); font-size: .9375rem; line-height: 1.45; }
+.by-views { color: var(--dim); font-size: .875rem; }
+.by-views b { color: #fff; }
+.byyou-sec > .fine { margin: 26px auto 0; max-width: 64ch; }
+@media (max-width: 680px) {
+  .byyou { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 62%; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; }
+  .byyou li { scroll-snap-align: start; }
+}
