@@ -1,13 +1,11 @@
 // Arc Lab's page (waitlist, then shop: it switches by itself at the launch times below): builds the opening's wall of episode covers, reveals sections as they arrive, counts up the big
 // numbers, shortens the screenshot wall, marks the menu, darkens the top bar once you scroll, plays the series reel
 // while it's on screen, types out the skill's run when it comes into view, opens the waitlist form in a pop-up from every
-// "Join the waitlist" button and from the email box at the top, shows the join bar on phones, embeds the Tally form and
+// "Join the waitlist" button and from the email box at the top, shows the join bar on phones, builds the sign-up form and
 // swaps it for the playbook links once you've joined, lets you vote on the real end of Part 1, and shows how many people
-// are on the waitlist and how many founding spots are left. Other sites: tally.so for the form and Google Sheets for the
-// waitlist count. Counting and link tags live in assets/links.js, which loads first.
+// are on the waitlist and how many founding spots are left. Other sites: Google Forms takes the sign-ups and Google Sheets
+// gives the waitlist count. Counting and link tags live in assets/links.js, which loads first.
 
-// The Tally form's id (the part after tally.so/r/).
-const TALLY_ID = 'Qoo5r1';
 
 // Founding spots: the first FOUNDING_SPOTS people on the waitlist get FOUNDING_PERK (the founder's promise, shown as
 // written). 0 hides the meter.
@@ -285,39 +283,56 @@ const CHECKOUT = {
     }
   }
 
-  // the Tally form, put into a slot the first time it's needed. Tally's own embed script (fetched then, not before)
-  // sizes the frame to the form; if it can't load, the form still shows at a fixed height
-  const frames = [];
-  const ready = TALLY_ID && /^[A-Za-z0-9]+$/.test(TALLY_ID);
-  const EMBED_JS = 'https://tally.so/widgets/embed.js';
-  const loadEmbeds = () => {
-    if (window.Tally) window.Tally.loadEmbeds();
-    else document.querySelectorAll('iframe[data-tally-src]:not([src])').forEach((f) => { f.src = f.dataset.tallySrc; });
-  };
-  // the visit's link tags go into the form's hidden fields (utm_source, utm_medium, utm_campaign, utm_content)
+  // our own sign-up form, built into a slot the first time it's needed (it used to be a Tally frame, which phones that
+  // force dark mode painted brown and grey). Each sign-up goes to the founder's Google Form, whose answers land in a tab
+  // of the same Google Sheet as the Tally sign-ups, so the count below adds both. No-JS visitors keep the Tally link.
+  const SIGNUP_FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSewkPRQWSLJ-YFXJQhqC8vCXSqQUzKB2HUtBGYMsRI-ACy_Cw/formResponse';
+  const ENTRY = { email: 'entry.1251555446', emails: 'entry.1006105774', source: 'entry.1430600887' };
+  // the visit's link tags go in with the sign-up (utm_source, utm_medium, utm_campaign, utm_content)
   const formTags = window.arcTags ? String(window.arcTags.linkTags()) : '';
-  const FORM_URL = `https://tally.so/embed/${TALLY_ID}?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1${formTags ? '&' + formTags : ''}`;
+  const signupTpl = document.getElementById('signup');
+  let formN = 0;
   function mount(slot, prefill = '') {
-    if (!ready || !slot) return;
-    if (slot.dataset.mounted) {                       // already there: reload it with the new answers filled in
-      const old = slot.querySelector('iframe');
-      if (old && prefill) { if (old.getAttribute('src')) old.src = FORM_URL + prefill; else old.dataset.tallySrc = FORM_URL + prefill; }
+    if (!slot || !signupTpl) return;
+    const given = new URLSearchParams(prefill.replace(/^&/, '')).get('email') || '';
+    if (slot.dataset.mounted) {                       // already there: fill in the email from the box at the top
+      const input = slot.querySelector('input[type=email]');
+      if (input && given) input.value = given;
       return;
     }
     slot.dataset.mounted = '1';
-    const f = document.createElement('iframe');
-    f.dataset.tallySrc = FORM_URL + prefill;
-    f.title = 'Join the Arc Lab waitlist';
-    f.height = '240';
-    slot.replaceChildren(f);
-    frames.push(f);
-    if (window.Tally || document.querySelector(`script[src="${EMBED_JS}"]`)) { loadEmbeds(); return; }
-    const s = document.createElement('script');
-    s.src = EMBED_JS;
-    s.onload = s.onerror = loadEmbeds;
-    document.head.append(s);
+    const form = signupTpl.content.firstElementChild.cloneNode(true);
+    const n = ++formN;
+    form.querySelectorAll('[id]').forEach((el) => { el.id += '-' + n; });
+    form.querySelectorAll('label[for]').forEach((el) => { el.htmlFor += '-' + n; });
+    const email = form.querySelector('input[type=email]'), tick = form.querySelector('input[type=checkbox]');
+    const err = form.querySelector('.su-err'), btn = form.querySelector('button');
+    if (given) email.value = given;
+    const fail = (msg, el) => { err.textContent = msg; if (el) el.focus(); };
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const v = email.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) { form.classList.add('bad-email'); fail('Type your email first.', email); return; }
+      form.classList.remove('bad-email');
+      if (!tick.checked) { form.classList.add('bad-tick'); fail('Tick the box so we can email you the playbook.', tick); return; }
+      form.classList.remove('bad-tick');
+      err.textContent = '';
+      btn.disabled = true;
+      const place = slot.closest('dialog') ? 'pop-up' : 'offer';
+      const body = new URLSearchParams({ [ENTRY.email]: v, [ENTRY.emails]: 'Yes', [ENTRY.source]: [formTags, 'place=' + place].filter(Boolean).join('&') });
+      // Google answers without the headers a page could read, so a sent form is all we can know (no-cors)
+      fetch(SIGNUP_FORM, { method: 'POST', mode: 'no-cors', body }).then(() => {
+        count('signup', { place, phase: PHASE });
+        sendWelcome(v);
+        showJoined(slot);
+      }, () => {
+        btn.disabled = false;
+        fail("That didn't send. Check your connection and try again.");
+      });
+    });
+    slot.replaceChildren(form);
   }
-  // once someone joins, every form on the page becomes the playbook links (Tally's free plan can't email them)
+  // once someone joins, every form on the page becomes the playbook links
   const joined = document.getElementById('joined');
   function showJoined(from) {
     if (!joined) return;
@@ -328,41 +343,18 @@ const CHECKOUT = {
       slot.replaceChildren(panel);
     });
     try { localStorage.setItem('arclab-joined', '1'); } catch { /* private window: the panel just won't come back */ }
-    frames.length = 0;
     const panel = from && from.querySelector('.joined');
     if (panel) panel.focus();
   }
-  // a new sign-up who ticked "Arc Lab emails" also goes to Kit's hidden form 10142995 ("Site sign-up (instant welcome)"),
+  // every sign-up (the box is required) also goes to Kit's hidden form 10142995 ("Site sign-up (instant welcome)"),
   // whose own welcome email sends the playbook straight away (free on Kit's plan). Fire and forget: the batch imports
-  // stay the safety net and add the tags, and nobody who left the box unticked is sent to Kit.
+  // stay the safety net and add the tags.
   const KIT_WELCOME_FORM = '10142995';
-  const sendWelcome = (fields) => {
-    if (!KIT_WELCOME_FORM || !Array.isArray(fields)) return;
-    // Tally sends each answer as { title, type, answer: { value } } (older embeds: { label, value })
-    const label = (x) => x.title || x.label || '';
-    const value = (x) => (x && x.answer && 'value' in x.answer ? x.answer.value : x && x.value);
-    const field = (re) => fields.find((x) => re.test(label(x)));
-    const email = value(fields.find((x) => x.type === 'INPUT_EMAIL') || field(/^email/i));
-    const tick = value(field(/Arc Lab emails|Launch emails|unsubscribe any time/i));
-    const agreed = Array.isArray(tick) ? tick.length > 0 : Boolean(tick);
-    if (!agreed || typeof email !== 'string' || !email.includes('@')) return;
-    const body = new URLSearchParams({ email_address: email.trim() });
-    const first = value(field(/first name/i));
-    if (typeof first === 'string' && first.trim()) body.set('fields[first_name]', first.trim());
+  const sendWelcome = (email) => {
+    if (!KIT_WELCOME_FORM) return;
+    const body = new URLSearchParams({ email_address: email });
     fetch(`https://app.kit.com/forms/${KIT_WELCOME_FORM}/subscriptions`, { method: 'POST', mode: 'no-cors', body }).catch(() => {});
   };
-  // Tally says when a form has been sent
-  addEventListener('message', (e) => {
-    if (e.origin !== 'https://tally.so' || typeof e.data !== 'string' || !e.data.includes('Tally.FormSubmitted')) return;
-    let d;
-    try { d = JSON.parse(e.data); } catch { return; }
-    const f = frames.find((x) => x.contentWindow === e.source);
-    if (f && d.event === 'Tally.FormSubmitted') {
-      count('signup', { place: f.closest('dialog') ? 'pop-up' : 'offer', phase: PHASE });
-      sendWelcome(d.payload && d.payload.fields);
-      showJoined(f.closest('.form-slot'));
-    }
-  });
   // someone who joined earlier in this browser sees their playbook links (and, in early access, their 40% link) again
   let joinedBefore = false;
   try { joinedBefore = localStorage.getItem('arclab-joined') === '1'; } catch { /* storage blocked: show the form */ }
