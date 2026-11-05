@@ -319,7 +319,9 @@ const CHECKOUT = {
       err.textContent = '';
       btn.disabled = true;
       const place = slot.closest('dialog') ? 'pop-up' : 'offer';
-      const body = new URLSearchParams({ [ENTRY.email]: v, [ENTRY.emails]: 'Yes', [ENTRY.source]: [formTags, 'place=' + place].filter(Boolean).join('&') });
+      // which button opened the pop-up (e.g. not-ready under the buy button), so those sign-ups can be tagged on import
+      const from = slot.closest('dialog') ? slot.closest('dialog').dataset.from : '';
+      const body = new URLSearchParams({ [ENTRY.email]: v, [ENTRY.emails]: 'Yes', [ENTRY.source]: [formTags, 'place=' + place, from && 'from=' + from].filter(Boolean).join('&') });
       // Google answers without the headers a page could read, so a sent form is all we can know (no-cors)
       fetch(SIGNUP_FORM, { method: 'POST', mode: 'no-cors', body }).then(() => {
         count('signup', { place, phase: PHASE });
@@ -364,13 +366,13 @@ const CHECKOUT = {
   // every "Join the waitlist" opens the form in a pop-up (without dialog support it scrolls to the offer instead)
   const dlg = document.getElementById('join-dialog');
   const hasDialog = dlg && typeof dlg.showModal === 'function';
-  const openJoin = (prefill = '') => {
-    if (hasDialog) { mount(dlg.querySelector('.form-slot'), prefill); dlg.showModal(); return; }
+  const openJoin = (prefill = '', from = '') => {
+    if (hasDialog) { dlg.dataset.from = from; mount(dlg.querySelector('.form-slot'), prefill); dlg.showModal(); return; }
     mount(joinSec.querySelector('.form-slot'), prefill);
     joinSec.scrollIntoView();
   };
   if (hasDialog) {
-    document.querySelectorAll('[data-join]').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); openJoin(); }));
+    document.querySelectorAll('[data-join]').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); openJoin('', a.dataset.place); }));
     dlg.querySelector('.jd-close').addEventListener('click', () => dlg.close());
     dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });   // a tap on the backdrop
   }

@@ -674,3 +674,7 @@ main > section { padding-left: var(--gutter); padding-right: var(--gutter); }
 .give-go { justify-self: start; }
 .give-go[aria-disabled="true"] { opacity: .45; pointer-events: none; }
 .give-qr img { display: block; width: 180px; height: auto; margin-top: 8px; border-radius: 12px; background: #fff; }
+
+/* "Not ready yet?" line under the buy button (free playbook sign-up) */
+.not-ready { margin-top: 12px; color: var(--soft); font-size: .875rem; text-align: center; }
+.not-ready a { color: #fff; }
