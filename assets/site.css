@@ -655,3 +655,22 @@ main > section { padding-left: var(--gutter); padding-right: var(--gutter); }
   .byyou { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 62%; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; }
   .byyou li { scroll-snap-align: start; }
 }
+
+/* support page (tips: UPI in India, Ko-fi elsewhere) */
+.give { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 18px; margin: 32px 0; }
+.give-card { min-width: 0; padding: 22px; border-radius: 18px; background: var(--panel); box-shadow: inset 0 0 0 1px var(--hair-2); display: grid; gap: 12px; align-content: start; }
+.give-card h2 { margin: 0; font-size: 1.25rem; }
+.give-sub, .give-note, .give-wait, .give-qr p { margin: 0; color: var(--soft); font-size: .9375rem; }
+.give-note { color: var(--dim); font-size: .8125rem; }
+.give-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.give .chip { font: inherit; font-weight: 700; color: var(--text); background: transparent; border: 0; border-radius: 999px; padding: 9px 16px; box-shadow: inset 0 0 0 1px var(--hair-2); cursor: pointer; }
+.give .chip.on { color: #000; background: var(--gold); box-shadow: none; }
+.give .chip:focus-visible, .give-field input:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.give-own { display: grid; gap: 6px; color: var(--soft); font-size: .875rem; }
+.give-field { display: flex; align-items: center; gap: 6px; padding: 0 14px; border-radius: 12px; box-shadow: inset 0 0 0 1px var(--hair-2); color: var(--soft); }
+.give-field.bad { box-shadow: inset 0 0 0 1px #FF8A80; }
+.give-field input { flex: 1; min-width: 0; padding: 11px 0; font: inherit; font-size: 1rem; color: var(--text); background: transparent; border: 0; }
+.give-field input:focus { outline: none; }
+.give-go { justify-self: start; }
+.give-go[aria-disabled="true"] { opacity: .45; pointer-events: none; }
+.give-qr img { display: block; width: 180px; height: auto; margin-top: 8px; border-radius: 12px; background: #fff; }
