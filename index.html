@@ -23,7 +23,7 @@
 <link rel="icon" href="assets/favicon.svg?v=2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/Satoshi-Variable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/site.css?v=16">
+<link rel="stylesheet" href="assets/site.css?v=17">
 <script defer src="assets/links.js?v=1"></script>
 <script defer src="assets/site.js?v=18"></script>
 <script defer src="assets/wall.js?v=1"></script>
@@ -253,6 +253,77 @@
       </ol>
     </div>
     <p class="fine rv">Day 23 is a new page on Instagram, @day23.series. The episode 1 above is a re-cut: it opens on the street scene under a title card and has a shorter vote. The poll is from the first post of episode 1, which had 1.6K views, so it was a small poll: 67% the police car, 17% the bus, 17% back inside (rounded). Views are from the page's Reels tab on 4&nbsp;November 2026.</p>
+  </section>
+
+  <!-- 5b. plain Claude vs the skill: a real test, 5 Nov -->
+  <section class="cmp-sec" id="compare" aria-labelledby="cmp-h">
+    <h2 id="cmp-h" class="statement-sm rv">Plain Claude makes a clip. The skill makes a series.</h2>
+    <p class="lead rv">We gave plain Claude Code, with no skill, two scenes from our own shows. It did better than you might expect. Here's what each one still didn't have.</p>
+
+    <div class="cmp rv">
+      <h3 class="cmp-h">A gym battle from Your Trainer Arc</h3>
+      <div class="cmp-pair">
+        <figure class="cmp-side">
+          <p class="cmp-who">Plain Claude Code</p>
+          <div class="cmp-screen"><video src="assets/compare/plain_pokemon.mp4" poster="assets/compare/plain_pokemon.jpg" playsinline preload="none" controls aria-label="Plain Claude Code's gym battle, with sound"></video></div>
+          <figcaption><b>A 15-second clip</b>, made in 6&frac12; minutes.</figcaption>
+          <ul class="cmp-list cmp-no">
+            <li>No voice: no narrator, nobody calls the attack</li>
+            <li>No trainer or partner on screen</li>
+            <li>Poliwag reads as a blue blob</li>
+            <li>The bottom third of the screen is empty</li>
+            <li>Nothing carries into a next part</li>
+          </ul>
+        </figure>
+        <figure class="cmp-side cmp-ours">
+          <p class="cmp-who">With the Series Skill</p>
+          <div class="cmp-screen"><video src="assets/compare/skill_pokemon.mp4" poster="assets/compare/skill_pokemon.jpg" playsinline preload="none" controls aria-label="The same battle in Your Trainer Arc Part 15, with sound"></video></div>
+          <figcaption><b>Part 15 of a 16-part series</b>, a 3-minute episode.</figcaption>
+          <ul class="cmp-list cmp-yes">
+            <li>A narrator, and Red calls every attack</li>
+            <li>The same Red and Pikachu as in every part</li>
+            <li>The tip on screen: two weaknesses stack, &times;4</li>
+            <li>Captions, and the day and time in the corner</li>
+            <li>Ends on a vote for the next part</li>
+          </ul>
+        </figure>
+      </div>
+    </div>
+
+    <div class="cmp rv">
+      <h3 class="cmp-h">The opening of Day 23, episode 6</h3>
+      <div class="cmp-pair">
+        <figure class="cmp-side">
+          <p class="cmp-who">Plain Claude Code</p>
+          <div class="cmp-screen"><video src="assets/compare/plain_day23.mp4" poster="assets/compare/plain_day23.jpg" playsinline preload="none" controls aria-label="Plain Claude Code's Day 23 opening, with sound"></video></div>
+          <figcaption><b>A 15-second clip</b>, made in 12 minutes. It looks good.</figcaption>
+          <ul class="cmp-list cmp-no">
+            <li>No voice at all</li>
+            <li>Characters only ever seen from the side</li>
+            <li>One long shot, no cuts</li>
+            <li>New characters, not the ones from episodes 1 to 5</li>
+          </ul>
+        </figure>
+        <figure class="cmp-side cmp-ours">
+          <p class="cmp-who">With the Series Skill</p>
+          <div class="cmp-screen"><video src="assets/compare/skill_day23.mp4" poster="assets/compare/skill_day23.jpg" playsinline preload="none" controls aria-label="The opening of Day 23 episode 6, with sound"></video></div>
+          <figcaption><b>Episode 6 of Day 23</b>, a 3-minute episode.</figcaption>
+          <ul class="cmp-list cmp-yes">
+            <li>Narrated, with voiced characters</li>
+            <li>The same characters and places as episodes 1 to 5</li>
+            <li>Shots that cut and move with the story</li>
+            <li>Opens on episode 5's vote and ends on a new one</li>
+          </ul>
+        </figure>
+      </div>
+    </div>
+
+    <details class="cmp-how rv">
+      <summary>How we ran the test</summary>
+      <p>On 5 November 2026 we asked plain Claude Code (the same model, Claude Opus) for each scene in an empty folder, with no skill and no voice service, and allowed it an hour. It finished both on its own, in 6&frac12; and 12 minutes. It could still read our computer's own short notes, such as where Instagram's buttons sit, so it had a little more help than a fresh install would. The plain videos are shown whole. Ours are 15-second cuts from the posted episodes.</p>
+      <p>What we typed for the battle: <q>A Pok&eacute;mon gym battle in the style of the Game Boy Advance games (FireRed). Leader Brock sends out Geodude, I send out my Poliwag, Poliwag uses Water Gun, it's super effective (x4, because Geodude is Rock and Ground), and Geodude faints. Include the battle HUD, the text box messages, and make it look good enough to post.</q></p>
+      <p>What we typed for Day 23: <q>The first 15 seconds of an episode of my zombie survival series Day 23. A boy, a girl and their dog push off from a wooden creek house in a small rowboat at dawn while zombies stumble out of the house behind them. Open with a hook card, show a DAY 23 &middot; 8:08 AM corner label and last episode's vote result, add captions. Make it look good enough to post.</q></p>
+    </details>
   </section>
 
   <!-- 4. the product: the skill running -->
