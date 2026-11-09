@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://cloud.umami.is; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src https://gateway.umami.is; base-uri 'none'; form-action 'none'">
+<title>Try your idea | Arc Lab</title>
+<meta name="description" content="Type your series idea in one line and see a small sample of the Arc Lab Series Skill's first steps: a series bible and how episode 1 ends.">
+<meta name="theme-color" content="#050506">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="assets/favicon.svg?v=2" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/Satoshi-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/site.css?v=26">
+<script defer src="assets/links.js?v=1"></script>
+<script defer src="assets/idea.js?v=2"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the sample</a>
+<header class="bar solid">
+  <a class="mark" href="./" aria-label="Arc Lab, home">
+    <svg viewBox="14 0 36 64" width="13.5" height="24" aria-hidden="true"><g transform="translate(-0.875 -1.75)"><path d="M45 53 V27 A12.5 12.5 0 0 0 20.75 22.72" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"/><circle cx="29.5" cy="47.2" r="9.6" class="mark-dot"/></g></svg>
+    Arc Lab
+  </a>
+  <a class="bar-cta" href="./">Home</a>
+</header>
+
+<main id="main" class="doc doc-wide try-page">
+  <h1>Try your idea.</h1>
+  <p class="lede">The Series Skill starts every series the same way: your idea becomes a series bible, then an episode 1 that ends on a vote. Type yours below for a small taste.</p>
+    <div class="idea" id="idea">
+      <div class="idea-head">
+        <h3>Try it with your own idea.</h3>
+        <p>Type your idea in one line. This page fills in a small taste of the skill's first two steps, the series bible and the episode 1 script, from our templates. What you type never leaves this page, and no AI runs on it.</p>
+      </div>
+      <form class="idea-form" novalidate>
+        <label class="sr" for="idea-in">Your series idea, in one line</label>
+        <input id="idea-in" type="text" maxlength="140" autocomplete="off" aria-describedby="idea-err" placeholder="A cat runs a heist crew.">
+        <button type="submit" class="pill">Fill in my sample</button>
+      </form>
+      <p class="idea-err" id="idea-err" aria-live="polite"></p>
+      <p class="sr" id="idea-status" role="status"></p>
+      <div class="idea-out" hidden>
+        <p class="idea-tag">A sample, filled in from templates</p>
+        <dl>
+          <div><dt>Premise</dt><dd data-f="premise"></dd></div>
+          <div><dt>The cast</dt><dd><ul data-f="cast"></ul></dd></div>
+          <div><dt>Episode 1 ends</dt><dd data-f="cliff"></dd></div>
+          <div><dt>The vote</dt><dd><ol data-f="vote"></ol></dd></div>
+        </dl>
+        <p class="fine">A preview of the shape only. In the skill, the real bible and script are written from your idea, and nothing goes further until you approve them. Original ideas only: if yours borrows someone else's characters, the skill suggests an original take.</p>
+      </div>
+    </div>
+  <p class="try-back"><a class="pill" href="./#pricing">See what the Series Skill costs</a> <a class="pill pill-line" href="./#made">Watch Day 23, made with it</a></p>
+</main>
+
+<div class="doc-foot">
+  <footer class="foot">
+    <div class="foot-row">
+      <p>© 2026 Arc Lab</p>
+      <nav aria-label="Footer"><a href="./">Home</a><a href="vote-loop.html">Free playbook</a><a href="support.html">Tip Arc Lab</a><a href="terms.html">Terms and refunds</a><a href="privacy.html">Privacy</a></nav>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
