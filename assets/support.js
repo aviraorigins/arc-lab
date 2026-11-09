@@ -1,6 +1,6 @@
-// Support page: Ko-fi (worldwide) and Razorpay (India). Both pages ask the supporter for the amount themselves.
+// Support page: PayPal (worldwide) and Razorpay (India). Both pages ask the supporter for the amount themselves.
 // An empty link shows "opens soon" instead of a dead button.
-const KOFI_URL = '';      // e.g. 'https://ko-fi.com/arclab' (set the Ko-fi coffee price to $5, so tips start at $5)
+const PAYPAL_URL = 'https://paypal.me/arclabstudios';
 const RAZORPAY_URL = 'https://razorpay.me/@jashmehtaarclab';
 
 (() => {
@@ -15,6 +15,6 @@ const RAZORPAY_URL = 'https://razorpay.me/@jashmehtaarclab';
       go.closest('.give-card').hidden = true;
     }
   };
-  wire('kofi-go', KOFI_URL, 'support_kofi');
+  wire('pp-go', PAYPAL_URL, 'support_paypal');
   wire('rzp-go', RAZORPAY_URL, 'support_razorpay');
 })();
