@@ -133,7 +133,7 @@ const CHECKOUT = {
       dpr = d;
       strips.forEach((s) => s.anim && s.anim.cancel());
       const n = W <= 680 ? 3 : W <= 980 ? 5 : W <= 1200 ? 6 : 7;
-      const shade = n === 3 ? 0.46 : 0.3;                  // phones: the line sits over more of the wall
+      const shade = n === 3 ? 0.68 : 0.62;                  // phones: the line sits over more of the wall
       const gap = Math.max(10, Math.min(20, W * 0.013));
       const cw = (W * (n === 3 ? 1.48 : 1.2) - gap * (n - 1)) / n;   // wider than the screen, so the tilt never shows an edge
       const ch = cw * 16 / 9, cell = ch + gap, x0 = (W - (n * cw + (n - 1) * gap)) / 2;

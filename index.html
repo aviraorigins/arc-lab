@@ -23,9 +23,9 @@
 <link rel="icon" href="assets/favicon.svg?v=2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/Satoshi-Variable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/site.css?v=26">
+<link rel="stylesheet" href="assets/site.css?v=28">
 <script defer src="assets/links.js?v=1"></script>
-<script defer src="assets/site.js?v=19"></script>
+<script defer src="assets/site.js?v=20"></script>
 <script defer src="assets/wall.js?v=1"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://arclabstudios.com/#org","name":"Arc Lab","url":"https://arclabstudios.com/","email":"contact@arclabstudios.com","logo":"https://arclabstudios.com/assets/apple-touch-icon.png"},{"@type":"Product","name":"Arc Lab Series Skill","description":"A Claude Code skill that writes, voices and animates a short series from one idea, drawn in code, with an audience vote at the end of every episode.","brand":{"@id":"https://arclabstudios.com/#org"},"offers":{"@type":"Offer","price":"24.00","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://arclabstudios.com/#pricing","seller":{"@id":"https://arclabstudios.com/#org"}}}]}</script>
 </head>
@@ -45,7 +45,7 @@
     <a href="#pricing">Pricing</a>
     <a href="#lessons">Lessons</a>
   </nav>
-  <a class="bar-cta" href="#pricing" data-show="public" hidden>Get the skill</a>
+  <div class="bar-acts"><a class="bar-free" href="#join" data-join data-place="bar">Free playbook</a><a class="bar-cta" href="#pricing" data-show="public" hidden>Get the skill</a></div>
 </header>
 
 <main id="main">
@@ -58,11 +58,8 @@
       <p class="open-sub">Type one idea. The skill writes, voices, animates and checks every episode. You approve three times.</p>
       <p class="open-perk dm-perk" data-dm-playbook hidden><a href="#join" data-join data-place="dm-banner">Here for the free playbook? Get it here</a></p>
       <div class="hero-buy" data-show="public" hidden>
-        <a class="pill pill-xl" href="#pricing" data-buy="public" data-place="hero">Get the Series Skill<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-        <p class="hb-note"><b>$24</b>, paid once. Instant access, and it works or you get your money back.</p>
-        <p class="hb-need">Runs on your computer with Claude Code and a paid Claude plan. <a href="#need">What you'll need</a></p>
-        <p class="hb-need"><a href="#join" data-join data-place="hero-free">Only on your phone? Get the free playbook</a></p>
-        <p class="hb-need"><a href="lessons.html#lesson-1">New: read our first Claude lesson free</a></p>
+        <div class="hero-btns"><a class="pill pill-xl" href="#pricing" data-buy="public" data-place="hero">Get the Series Skill<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><a class="pill pill-xl pill-line" href="#join" data-join data-place="hero-free">Get the free playbook</a></div>
+        <p class="hb-note">Series Skill: <b>$24</b> once. It works, or your money back. The playbook is free.</p>
       </div>
       <a class="link-play hero-vote" href="#made">Play an episode and vote</a>
     </div>
@@ -72,28 +69,26 @@
   <!-- 2. the proof, said once -->
   <section class="proof" id="proof" aria-labelledby="proof-h">
     <h2 id="proof-h" class="statement rv"><span>4 million views.</span> <span class="dim">20 days.</span></h2>
-    <p class="proof-note rv">Your Trainer Arc's Instagram account: 4,074,266 views from Part&nbsp;1 on 20&nbsp;October to 8&nbsp;November, Arc Lab reels included, and 81% of them from people who didn't follow us yet. Part&nbsp;1 alone has about 690,000 views across its two posts, and the series has had over 100,000 votes on what happens next.</p>
+    <p class="proof-note rv">On Your Trainer Arc's Instagram, 20 October to 8 November. 81% of the views came from people who didn't follow us yet.</p>
 
     <div class="proof-block">
       <h3 class="receipts-h rv">What the views turned into.</h3>
       <ol class="path" aria-label="What the views turned into, step by step">
-        <li class="rv"><small>Watched</small><b>939,264</b><span>different accounts. Views count plays; viewers count each account once.</span></li>
-        <li class="rv"><small>Followed</small><b>24,944</b><span>followers on 9&nbsp;November, up from 690 on 1&nbsp;October. Best day: +3,269 on 25&nbsp;October.</span></li>
-        <li class="rv"><small>Messaged</small><b>25,000+</b><span>automatic DMs sent since 2&nbsp;November: comment a word under a reel, get the free playbook or a link.</span></li>
+        <li class="rv"><small>Watched</small><b>939,264</b><span>different people</span></li>
+        <li class="rv"><small>Followed</small><b>24,944</b><span>followers, up from 690 on 1&nbsp;October</span></li>
+        <li class="rv"><small>Messaged</small><b>25,000+</b><span>automatic DMs sent since 2&nbsp;November</span></li>
       </ol>
-      <p class="lead rv">That's what an audience gives you: people to tell when you make the next thing, whether it's a guide, a product or your next series.</p>
-      <p class="proof-note rv">No one can honestly promise you views, and we won't. These are our numbers, not a forecast of yours. The DM count comes from our messaging tool.</p>
+      <p class="proof-note rv">Our numbers, not a promise of yours.</p>
       <div class="path-cta rv">
-        <a class="pill" href="#pricing" data-buy="public" data-place="proof" data-show="public" hidden>Start your own series<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <a class="pill" href="#pricing" data-buy="public" data-place="proof" data-show="public" hidden>Start your own series<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><a class="pill pill-line" href="how-we-count.html">See the screenshots</a>
       </div>
     </div>
-    <p class="count-link rv"><a class="pill pill-line" href="how-we-count.html">All the Instagram screenshots, and how we count</a></p>
   </section>
 
   <!-- 3c. what the skill itself made: Day 23, episode 1, playable up to its real vote -->
   <section class="made" id="made" aria-labelledby="made-h">
     <h2 id="made-h" class="statement-sm rv">This one the skill made.</h2>
-    <p class="lead rv">Day 23 is our own series, made with the Series Skill from one idea: the story, the voices, every drawing and every check. No famous characters to lean on. Play episode 1: it stops on its real vote, and you can cast yours.</p>
+    <p class="lead rv">Day 23 is our own series, made with the Series Skill from one idea. Play episode 1, then vote.</p>
     <div class="vd made-vd rv" data-voters="">
       <figure class="made-shot">
         <div class="device-frame"><div class="device-screen">
@@ -122,7 +117,6 @@
     </div>
     <div class="d23-shelf">
       <h3 class="receipts-h rv">Six episodes so far. All of them made with the skill.</h3>
-      <p class="proof-note rv">Every episode opens on the last one's vote, on a new page with no famous characters.</p>
       <ol class="reel-row d23-row rv" aria-label="Day 23 episodes 1 to 6">
         <li><a href="https://www.instagram.com/day23.series/reels/"><img src="assets/d23/cover_a.jpg" width="432" height="768" loading="lazy" alt="Day 23 episode 1 cover: You slept through it."><span><b>Episode 1</b></span></a></li>
         <li><a href="https://www.instagram.com/day23.series/reels/"><img src="assets/d23/cover_ep2.jpg" width="432" height="768" loading="lazy" alt="Day 23 episode 2 cover: The keys aren't in it."><span><b>Episode 2</b></span></a></li>
@@ -132,13 +126,12 @@
         <li><a href="https://www.instagram.com/day23.series/reels/"><img src="assets/d23/cover_ep6.jpg" width="432" height="768" loading="lazy" alt="Day 23 part 6 cover: The bridge is full of them."><span><b>Episode 6</b></span></a></li>
       </ol>
     </div>
-    <p class="fine rv">Day 23 is a new page on Instagram, @day23.series. The episode 1 above is a short re-cut, and its first poll was small. <a href="how-we-count.html#day23">How we count</a>.</p>
   </section>
 
   <!-- 5c. series that buyers made with the skill (shown with their OK) -->
   <section class="byyou-sec" id="made-by-you" aria-labelledby="byyou-h">
     <h2 id="byyou-h" class="statement-sm rv">Made by you.</h2>
-    <p class="lead rv">Not ours. Three Instagram pages that got the skill and started their own series in the first days. Tap one to watch it.</p>
+    <p class="lead rv">Three Instagram pages that started their own series with the skill.</p>
     <ul class="byyou rv">
       <li>
         <a href="https://www.instagram.com/ladiesnightsglist/reel/DfU2ZbOPPEE/">
@@ -165,13 +158,13 @@
         </a>
       </li>
     </ul>
-    <p class="fine rv">Shown with each creator's OK. Views are from their Instagram pages on 5&nbsp;November 2026. Made one? Tag @yourtrainerarc and we may ask to show it here.</p>
+    <p class="fine rv">Shown with each creator\'s OK.</p>
   </section>
 
   <!-- 5b. plain Claude vs the skill: a real test, 5 Nov -->
   <section class="cmp-sec" id="compare" aria-labelledby="cmp-h">
     <h2 id="cmp-h" class="statement-sm rv">Plain Claude makes a clip. The skill makes a series.</h2>
-    <p class="lead rv">We gave plain Claude Code, with no skill, the opening of a Day 23 episode. It did better than you might expect. Here's what it still didn't have.</p>
+    <p class="lead rv">We gave plain Claude Code the same scene, with no skill.</p>
 
 
     <div class="cmp rv">
@@ -243,7 +236,7 @@
       <li><a href="https://youtube.com/shorts/k7-w1EXDE4A"><img src="assets/yta/cover_p19.jpg" width="432" height="768" loading="lazy" alt="Part 19 cover: Into the dark."><span><b>Part 19</b></span></a></li>
       <li><a href="https://youtube.com/shorts/t1FBPWBT-9c"><img src="assets/yta/cover_p20.jpg" width="432" height="768" loading="lazy" alt="Part 20 cover: The moon crater inside Mt. Moon."><span><b>Part 20</b></span></a></li>
     </ol>
-    <p class="fine rv reel-note">Each cover opens the part on YouTube. A new part comes out most days.</p>
+    <p class="fine rv reel-note">Tap a cover to watch it on YouTube.</p>
   </section>
 
   <!-- 4. the product: the skill running -->
@@ -274,21 +267,21 @@
   <!-- what it really takes: time, cost, what you need (audit fix) -->
   <section class="honest" id="need" aria-labelledby="need-h">
     <h2 id="need-h" class="statement-sm rv">What it really takes.</h2>
-    <p class="lead rv">Before you buy, here is everything it needs from you, including the parts other pages leave out.</p>
+    <p class="lead rv">Everything it needs from you, before you buy.</p>
     <dl class="honest-grid rv">
-      <div><dt>A computer</dt><dd>Windows 10/11 or a Mac with macOS 13+, about 2 GB free. No graphics card. A phone alone won't do: start with the <a href="#join" data-join data-place="takes">free playbook</a> instead.</dd></div>
-      <div><dt>Claude</dt><dd>Claude Code with a paid Claude plan (Pro or Max), or a pay-as-you-go Claude API key. With a key, an episode takes a few hours of the skill working, so the usage adds up. We haven't measured what one episode costs yet: set a spending limit first.</dd></div>
-      <div><dt>Voices</dt><dd>An ElevenLabs account for the narration: free to try, and a paid ElevenLabs plan if you'll publish commercially. Music and sound effects need nothing extra. A free voice that runs on your computer is in testing for the next free update.</dd></div>
-      <div><dt>Your time</dt><dd>About 10 minutes to set up (<a href="start.html">the setup guide</a>). Then a 30 to 40 second episode takes a few hours of the skill working, mostly without you. Your part: the idea and three approvals.</dd></div>
-      <div><dt>No promised views</dt><dd>No one can honestly promise a hit. We show you the format, the process and our own numbers, good and bad.</dd></div>
-      <div><dt>It isn't a Pokémon kit</dt><dd>Your Trainer Arc is our unofficial fan series. The skill ships with original characters and contains no Pokémon characters, art or sounds.</dd></div>
+      <div><dt>A computer</dt><dd>Windows 10/11 or macOS 13+, about 2 GB free. No graphics card needed.</dd></div>
+      <div><dt>Claude</dt><dd>Claude Code with a paid Claude plan (Pro or Max) or an API key. With a key, usage adds up, so set a spending limit.</dd></div>
+      <div><dt>Voices</dt><dd>An ElevenLabs account: free to try, paid if you publish commercially. A free voice that runs on your computer is in testing.</dd></div>
+      <div><dt>Your time</dt><dd>About 10 minutes to set up (<a href="start.html">guide</a>). Then a few hours of the skill working per episode, mostly without you. Your part: the idea and three approvals.</dd></div>
+      <div><dt>No promised views</dt><dd>No one can honestly promise a hit. We show our real numbers instead.</dd></div>
+      <div><dt>It isn't a Pokémon kit</dt><dd>Your Trainer Arc is our fan series. The skill ships with original characters only.</dd></div>
     </dl>
   </section>
 
   <!-- 7. pricing -->
   <section class="tiers-sec" id="pricing" aria-labelledby="tiers-h">
     <h2 id="tiers-h" class="statement-sm rv">Pricing.</h2>
-    <p class="lead rv">Pay once, keep it. The Series Skill makes your series with Claude Code on your own computer, drawn in code, and every v1 update is free.</p>
+    <p class="lead rv">Pay once, keep it, and get every v1 update free.</p>
     <div class="tiers">
       <article class="tier tier-main rv">
         <p class="tier-tag">Pay once</p>
@@ -296,14 +289,8 @@
         <p class="tier-for">The skill and engine to make your own voted series.</p>
         <p class="price" data-show="public" hidden><b>$24</b><span>one-time</span></p>
         <ul><li>The skill and its engine: characters, sets, camera and captions drawn in code, plus an original score and a built-in sound library</li><li>An original character kit and the story templates</li><li>A complete example series: Day 23, episode 1</li><li>Setup and directing lessons</li><li>Every v1 update, and help on our Discord</li></ul>
-        <div class="need-check">
-          <p class="need-h">Can I run this? Check you have:</p>
-          <ul class="need-list"><li>A Windows 10/11 or Mac computer (macOS 13+), no GPU needed</li><li>Claude Code with a paid Claude plan (Pro or Max), or a Claude API key</li><li>An ElevenLabs account for the voices (free to try)</li></ul>
-          <p class="need-alt">Only on your phone? Start with the <a href="#join" data-join data-place="need">free playbook</a>.</p>
-        </div>
         <a class="pill" href="#pricing" data-buy="public" data-place="pricing" data-show="public" hidden>Get the Series Skill<span class="pill-ic" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
         <p class="not-ready" data-show="public" hidden>Not ready yet? <a href="#join" data-join data-place="not-ready">Get the free playbook by email</a> and decide later.</p>
-        <p class="tier-fine" data-show="public" hidden>Instant download and private GitHub access. It works or your money back: <a href="#need">check what you'll need</a> before you buy.</p>
       </article>
     </div>
     <p class="wall-strip" data-wall-strip hidden><span data-wall-names></span> are on our <a href="wall.html">founding wall</a>.</p>
@@ -312,7 +299,7 @@
       <li data-show="public" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v4.5h-4.5"/></svg><span><b>It works, or your money back</b>Can't get it running on a computer that meets <a href="#need">what you'll need</a>? Email us within 14 days. We'll fix it with you, or refund you in full.</span></li>
       <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5v11M7.5 10l4.5 4.5 4.5-4.5M4.5 19.5h15"/></svg><span><b>Instant access</b>The download, the private repo and Discord help arrive the moment you pay. <a href="start.html">See the setup guide</a>.</span></li>
     </ul>
-    <p class="fine reviews-note rv">Prices shown in US dollars. Checkout shows your local price where we have one, tax included: ₹999 in India, €22 in Europe. Some US states add sales tax at checkout. In India you can pay by UPI. Questions before you buy? Email contact@arclabstudios.com or ask in our <a href="https://discord.gg/zkgKehuG62">Discord</a>.</p>
+    <p class="fine reviews-note rv">Local price at checkout, tax included: ₹999 in India, €22 in Europe. Questions? Email contact@arclabstudios.com or ask in our <a href="https://discord.gg/zkgKehuG62">Discord</a>.</p>
   </section>
 
   <!-- lessons: coming soon, no prices until they open -->
@@ -338,8 +325,8 @@
   <!-- 6. the offer: what joining gets you -->
   <section class="offer" id="join" aria-labelledby="join-h">
     <div class="offer-card rv">
-      <h2 id="join-h"><span class="ph" data-show="public" hidden>Not ready yet?<br><span>Start with the free playbook.</span></span></h2>
-      <p class="offer-sub" data-show="public" hidden>How Your Trainer Arc got 11,786 votes in a day: the hook, the vote end card, the pinned comment and the posting rhythm. Free, with an email when our new lessons open.</p>
+      <h2 id="join-h">The free Vote Loop Playbook.</h2>
+      <p class="offer-sub">How Your Trainer Arc got 11,786 votes in a day: the hook, the vote end card, the pinned comment and the posting rhythm. Type your email and it opens straight away; we email you a copy too.</p>
       <div class="founding" id="founding" hidden>
         <div class="fd-top"><p class="fd-h">Founding members: the first <b class="fd-cap"></b> on the list</p><p class="fd-left"></p></div>
         <div class="fd-bar" aria-hidden="true"><i></i></div>
@@ -403,7 +390,7 @@
       <svg viewBox="14 0 36 64" width="12.4" height="22" aria-hidden="true"><g transform="translate(-0.875 -1.75)"><path d="M45 53 V27 A12.5 12.5 0 0 0 20.75 22.72" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"/><circle cx="29.5" cy="47.2" r="9.6" class="mark-dot"/></g></svg>
       Arc Lab
     </a>
-    <nav aria-label="Footer"><a href="start.html">Setup guide</a><a href="https://discord.gg/zkgKehuG62">Get help (Discord)</a><a href="lessons.html">Lessons</a><a href="whats-new.html">What's new</a><a href="how-we-count.html">How we count</a><a href="https://www.youtube.com/@yourtrainerarc/shorts">Your Trainer Arc on YouTube</a><a href="https://www.instagram.com/yourtrainerarc/">Instagram</a><a href="support.html">Tip Arc Lab</a><a href="terms.html">Terms and refunds</a><a href="privacy.html">Privacy</a><a href="mailto:contact@arclabstudios.com">contact@arclabstudios.com</a></nav>
+    <nav aria-label="Footer"><a href="#join" data-join data-place="footer">Free playbook</a><a href="start.html">Setup guide</a><a href="https://discord.gg/zkgKehuG62">Get help (Discord)</a><a href="lessons.html">Lessons</a><a href="whats-new.html">What's new</a><a href="how-we-count.html">How we count</a><a href="https://www.youtube.com/@yourtrainerarc/shorts">Your Trainer Arc on YouTube</a><a href="https://www.instagram.com/yourtrainerarc/">Instagram</a><a href="support.html">Tip Arc Lab</a><a href="terms.html">Terms and refunds</a><a href="privacy.html">Privacy</a><a href="mailto:contact@arclabstudios.com">contact@arclabstudios.com</a></nav>
   </div>
   <p class="legal">© 2026 Arc Lab. Your Trainer Arc is an unofficial, fan-made series and is free to watch. Pokémon © Nintendo / Creatures / GAME FREAK / The Pokémon Company. Arc Lab is not affiliated with or endorsed by them, and the Arc Lab Series Skill contains no Pokémon characters, art or sounds. View, viewer and follower counts are from our Instagram insights on 9 November 2026, for the last 30 days; poll counts are from 26 and 27 October.</p>
 </footer>

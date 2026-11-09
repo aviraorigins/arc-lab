@@ -745,3 +745,16 @@ main > section { padding-left: var(--gutter); padding-right: var(--gutter); }
 .lessons-page .su { margin: 0; }
 .lessons-page .hj-row { max-width: 560px; }
 .lessons-page .ls-join, .lessons-page .ls-join-end { padding: 0; }
+.path-cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+
+/* the free playbook, easy to find (9 Nov) */
+.bar-acts { display: flex; align-items: center; gap: 10px; }
+.bar-free { padding: 9px 16px; border-radius: 999px; background: var(--gold); color: #111; text-decoration: none; font-weight: 700; font-size: .9375rem; white-space: nowrap; }
+.bar-free:hover { background: #fff; }
+.hero-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.hero-btns .pill-line { color: #fff; }
+@media (max-width: 520px) {
+  .bar-acts { gap: 6px; }
+  .bar-free, .bar-acts .bar-cta { padding: 8px 12px; font-size: .8125rem; }
+  .hero-btns { flex-direction: column; align-items: stretch; width: 100%; max-width: 340px; }
+}
