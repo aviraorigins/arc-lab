@@ -44,7 +44,7 @@
     <a href="#files">Get your files</a>
     <a href="#place">Put it in place</a>
     <a href="#setup">Let Claude set it up</a>
-    <a href="#key">Your voice key</a>
+    <a href="#key">Your voices</a>
     <a href="#first">Your first episode</a>
     <a href="#stuck">If something's stuck</a>
     <a href="#help">Help</a>
@@ -57,7 +57,7 @@
       <tbody>
         <tr><td>Claude Code with a paid Claude plan (Pro or Max) or a pay-as-you-go Claude API key</td><td>Runs the skill. With a plan, use the desktop app's Code tab or the <code>claude</code> terminal app. With an API key, use the <code>claude</code> terminal app: when it first asks how to sign in, choose the option with API usage billing, and add credit to that account first. You pay for what you use: an episode takes a few hours of the skill working, so the usage adds up, and we haven't measured what one episode costs, so set a spending limit in your API account.</td></tr>
         <tr><td>Windows 10/11 or macOS 13+</td><td>About 2 GB free and any modern processor. No GPU needed: our code draws every frame, and no AI model makes the pictures.</td></tr>
-        <tr><td>An ElevenLabs account</td><td>The narration, with its stock voices. Needed for every episode in this version: without your ElevenLabs key, the skill can't build one. Free to try; you need a paid ElevenLabs plan if you'll publish commercially. We're testing a free voice that runs on your computer, but it isn't in this version, so plan on ElevenLabs. If the free voice passes our tests, it will come as a free update.</td></tr>
+        <tr><td>A voice (free option included)</td><td>The narration. Nothing extra is needed: the free voice runs on your computer, with a one-time download of about 350 MB. Or use ElevenLabs on your own key (a paid plan if you'll publish commercially), or another voice service you have a key for.</td></tr>
         <tr><td>Nothing extra for music or sound effects</td><td>The skill writes an original score in code and has its own sound-effects library made in code, plus free Pixabay sounds you can choose to fetch. No music service or extra account.</td></tr>
         <tr><td>Node.js, Python and ffmpeg</td><td>The engine's free tools. You don't need to install them yourself: Claude does it in step 3, with your OK.</td></tr>
       </tbody>
@@ -102,8 +102,10 @@ Mac       ~/.claude/skills/arc-lab-series/SKILL.md</code></pre>
       <p>Claude runs the setup check, tells you what's missing (Node.js, Python, ffmpeg, the drawing library) and installs it with your OK. You're done when it says <b>"ready to make episodes"</b>.</p>
     </li>
     <li>
-      <h2 id="key">Add your voice key</h2>
-      <p>When Claude makes your series folder, it asks you to paste your ElevenLabs key into a file called <code>.env</code>. You'll find the key at elevenlabs.io, under your profile, in API keys.</p>
+      <h2 id="key">Pick your voices</h2>
+      <p><b>The free voice:</b> nothing to paste. Claude asks before its one-time download (about 350 MB) and sets it up.</p>
+      <p><b>ElevenLabs:</b> when Claude makes your series folder, it asks you to paste your ElevenLabs key into a file called <code>.env</code>. You'll find the key at elevenlabs.io, under your profile, in API keys.</p>
+      <p><b>Another voice service:</b> tell Claude which one. It writes a small plug-in for it and tells you where to paste your key.</p>
       <p>The key stays on your computer. The skill never prints, shares or uploads it.</p>
     </li>
     <li>
